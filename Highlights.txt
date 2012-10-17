@@ -12,6 +12,4 @@ Finally the platform supports user-permitted aggregation of data for computer vi
 
 We discuss future scenarios for organically extending the horizon of computer vision research.
 
-Data Crowd-Sourcing
 
-Other Sciences and VisionBlocks: VaaS over the web could be useful for improving research productivity 

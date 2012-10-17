@@ -2,15 +2,23 @@
 	General Styles
 --------------------------*/
 
+.body-area {
+	margin-left: 20px;
+}
 
 #blocksDiv {
 	border: 1px solid black;
 	height: 300px;
 }
 
+.output-area {
+	width: 320px;
+}
+
 #outputDiv {
 	border: 1px solid black;
 	height: 300px;
+	width: 320px;
 }
 
 #outputDiv #inputVideo {

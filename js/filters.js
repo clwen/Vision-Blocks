@@ -1,5 +1,4 @@
-var grayScale = function () {
-	var canvas = VB.interpreter.dictionary["canvas"];
+var grayScale = function (canvas) {
 	var pixels = getPixels(canvas);
 	var data = pixels.data;
 	var i, r, g, b, v;
@@ -10,11 +9,10 @@ var grayScale = function () {
 		v = 0.2126*r + 0.7152*g + 0.0722*b;
 		data[i] = data[i+1] = data[i+2] = v;
 	}
-    updateCanvas(pixels);
+    return pixels;
 };
 
-var invert = function () {
-	var canvas = VB.interpreter.dictionary["canvas"];
+var invert = function (canvas) {
 	var pixels = getPixels(canvas);
 	var data = pixels.data;
 	var i;
@@ -23,11 +21,10 @@ var invert = function () {
 		data[i+1] = 255 - data[i+1];
 		data[i+2] = 255 - data[i+2];
 	}
-	updateCanvas(pixels);
+    return pixels;
 };
 
 var colorRearrangement = function(canvas){
-	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
 	var newPixels = getPixels(canvas);
 	var data = pixels.data;
@@ -38,11 +35,10 @@ var colorRearrangement = function(canvas){
 		newData[i+1] = data[i+2];
 		newData[i+2] = data[i];
 	}
-    updateCanvas(newPixels);
+    return newPixels;
 };
 
-var sobel = function() {
-	var canvas = VB.interpreter.dictionary["canvas"]
+var sobel = function(canvas) {
 	var v = convolve(canvas, [-1,0,1,-1,0,1,-1,0,1], true);
  	var h = convolve(canvas, [-1,-1,-1,0,0,0,1,1,1], true);
 	var outputPixels = v;
@@ -52,11 +48,11 @@ var sobel = function() {
 	for (i = 0 ; i < hData.length; i++) {
 		oData[i]+=hData[i];
 	}
-	updateCanvas(outputPixels);
+	return outputPixels;
 };
 
 var distortion = function(args) {
-	var canvas = VB.interpreter.dictionary["canvas"]
+	var canvas = args[0];
 	var pixels = getPixels(canvas);
 	var data = pixels.data;
 	var dPixels = getPixels(canvas);
@@ -81,5 +77,19 @@ var distortion = function(args) {
 		dData[i+2] = data[newI+2];
 		dData[i+3] = data[newI+3];
 	}
-	updateCanvas(dPixels);
+	return dPixels;
+};
+
+var faceDetection = function(canvas) { 
+	var canvas = canvas;
+	new HAAR.Detector(haarcascade_frontalface_alt)
+		.image(canvas).complete(function() {
+			var rect=this.objects[0];
+			var ctx=canvas.getContext('2d');
+			ctx.strokeStyle="rgba(0,0,0,1)";
+			ctx.strokeRect(rect.x,rect.y,rect.width,rect.height);
+			vb.Interpreter.dictionary["face"] = objects;
+		}).detect(1, 1.25, 0.1, 1, true);
+
+	return getPixels(canvas);
 };

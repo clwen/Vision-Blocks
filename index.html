@@ -29,74 +29,229 @@
 					<ul class="nav">
 						<li class="active"><a href="#">Home</a></li>
 						<li><a href="#">About</a></li>
+						<li><a href="#" onclick="javascript:performExecute();">Execute</a></li>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div class="container">
+	<div class="body-area">
 
 		<div class="row">
 			<div class="span12">
 				<div class="row">
-				
+
 					<div class="span4 block-area">
 						<div class="block-area-container">
-							<div class="block-container block-container-start">
-							</div>
-							<div class="block-container block-container-active block-container-vision">
-							</div>
-							<div class="block-container block-container-video">
-							</div>
-							<div class="block-container block-container-logic">
-							</div>
-							<div class="block-container block-container-move">
-							</div>
-							<div class="block-container block-container-draw">
-							</div>
-							<div class="block-container block-container-alert">
-							</div>
-							<div class="block-container block-container-more">
-							</div>
-						</div>
-						<div class="block-area-options">
-							
-						</div>
-					</div>
-					
-					<div class="span4 build-area">
-						<div class="build-block1">
-							<span>Play Forever</span>
-							<div class="build-block2">
-								<span>Invert Colors</span>
-							</div>
-							<div class="build-block2">
-								<span>Gray Scale</span>
-							</div>
-						</div>
-					</div>
-
-					<div class="span1">
-						<div class="row">
-							<div class="span6">
-								<div class="well">
-									<div class="board-name">
-										<h5>Blocks Area</h5>
-										<div id="blocksDiv">
-											<canvas id="blocksCanvas"></canvas>
+							<div class="block-container block-container-start"
+							data-title="Start"
+							>
+								<div class="icon icon-start"></div>
+								
+								<div class="block-container-content">
+									
+									<div class="build-block block-container-start build-block-1" 
+									data-block-name="play"
+									>
+										<div class="build-block-title-wrapper build-block-recalc-width">
+											<div class="build-block-title">
+												<div class="icon1-build-block icon1-play"></div>
+												<span>Play</span>
+												<div class="icon-remove-block"></div>
+											</div>
 										</div>
+										<div class="build-block-top"></div>
+										<div class="content">
+											<div class="build-block-1-leftbar"></div>
+										</div>
+										<div class="build-block-bottom build-block-recalc-width"></div>
+										<div class="build-block-1-bottom-fill build-block-recalc-width"></div>
 									</div>
+								
+									<div class="build-block block-container-start build-block-1"
+									data-block-name="playForever"
+									>
+										<div class="build-block-title-wrapper build-block-recalc-width">
+											<div class="build-block-title">
+												<div class="icon1-build-block icon1-play-forever"></div>
+												<span>Play Forever</span>
+												<div class="icon-remove-block"></div>
+											</div>
+										</div>
+										<div class="build-block-top"></div>
+										<div class="content">
+											<div class="build-block-1-leftbar"></div>
+											<div class='build-block empty-block'></div>
+										</div>
+										<div class="build-block-bottom build-block-recalc-width"></div>
+										<div class="build-block-1-bottom-fill build-block-recalc-width"></div>
+									</div>
+									
+									<div class="build-block block-container-start build-block-if build-block-extra-popover build-block-1 build-block-3"
+									data-block-name="ifBlock"
+									>
+										<div class="build-block-2-top build-block-recalc-width"></div>
+										<div class="build-block-title-wrapper build-block-recalc-width">
+											<div class="build-block-title">
+												<div class="icon1-build-block icon1-if"></div>
+												<span>IF</span>
+												<div class="icon-remove-block"></div>
+												<div class="build-block-if-condition">
+													<span>test</span>
+												</div>
+											</div>
+										</div>
+										<div class="build-block-top"></div>
+										<div class="content">
+											<div class="build-block-1-leftbar-container">
+												<div class="build-block-1-leftbar"></div>
+											</div>
+										</div>
+										<div class="build-block-bottom build-block-recalc-width"></div>
+										<div class="build-block-1-bottom-fill build-block-recalc-width"></div>
+										<div class="build-block-2-bottom build-block-recalc-width"></div>
+									</div>
+									
 								</div>
+								
 							</div>
+							<div class="block-container block-container-vision"
+							data-title="Vision"
+							>
+								<div class="icon icon-vision"></div>
+								
+								<div class="block-container-content">
+									
+									<div class="build-block block-container-vision build-block-2"
+									data-block-name="faceDetection"
+									>
+										<div class="build-block-2-top build-block-recalc-width"></div>
+										<div class="build-block-2-title-wrapper build-block-recalc-width">
+											<div class="build-block-2-title">
+												<div class="icon1-build-block icon1-detect-face"></div>
+												<span>Detect Face</span>
+												<div class="icon-remove-block"></div>
+											</div>
+										</div>
+										<div class="build-block-2-bottom build-block-recalc-width"></div>
+									</div>
+								
+								</div>
+								
+							</div>
+							<div class="block-container block-container-video"
+							data-title="Video"
+							>
+								<div class="icon icon-video"></div>
+								
+								<div class="block-container-content">
+								
+									<div class="build-block build-block-load-image block-container-video build-block-2"
+										data-block-name="loadImage"
+										>
+										<div class="build-block-2-top build-block-recalc-width"></div>
+										<div class="build-block-2-title-wrapper build-block-recalc-width">
+											<div class="build-block-2-title">
+												<div class="icon1-build-block icon1-load-image"></div>
+												<span>Load Image</span>
+												<div class="icon-remove-block"></div>
+											</div>
+										</div>
+										<div class="build-block-2-bottom build-block-recalc-width"></div>
+									</div>
+									
+<!-- 									<div class="build-block block-container-video build-block-2" -->
+<!-- 										data-block-name="loadVideo" -->
+<!-- 										> -->
+<!-- 										<div class="build-block-2-top build-block-recalc-width"></div> -->
+<!-- 										<div class="build-block-2-title-wrapper build-block-recalc-width"> -->
+<!-- 											<div class="build-block-2-title"> -->
+<!-- 												<div class="icon1-build-block icon1-load-image"></div> -->
+<!-- 												<span>Load Video</span> -->
+<!-- 												<div class="icon-remove-block"></div> -->
+<!-- 											</div> -->
+<!-- 										</div> -->
+<!-- 										<div class="build-block-2-bottom build-block-recalc-width"></div> -->
+<!-- 									</div> -->
+									
+									<div class="build-block block-container-video build-block-2"
+									data-block-name="loadWebcam"
+									>
+										<div class="build-block-2-top build-block-recalc-width"></div>
+										<div class="build-block-2-title-wrapper build-block-recalc-width">
+											<div class="build-block-2-title">
+												<div class="icon1-build-block icon1-webcam"></div>
+												<span>Web camera</span>
+												<div class="icon-remove-block"></div>
+											</div>
+										</div>
+										<div class="build-block-2-bottom build-block-recalc-width"></div>
+									</div>
+								
+								</div>
+								
+							</div>
+							<div class="block-container block-container-logic"
+							data-title="Logic"
+							>
+								<div class="icon icon-logic"></div>
+							</div>
+							<div class="block-container block-container-move"
+							data-title="Move"
+							>
+								<div class="icon icon-move"></div>
+							</div>
+							<div class="block-container block-container-draw"
+							data-title="Draw"
+							>
+								<div class="icon icon-draw"></div>
+								
+								<div class="block-container-content">
+									
+									<div class="build-block build-block-select-region block-container-draw build-block-2"
+									data-block-name="selectRegion"
+									>
+										<div class="build-block-2-top build-block-recalc-width"></div>
+										<div class="build-block-2-title-wrapper build-block-recalc-width">
+											<div class="build-block-2-title">
+												<div class="icon1-build-block icon1-draw-rect"></div>
+												<div class="build-block-draw-rect-condition">
+													<div class="build-block-draw-rect-condition-rgb">
+														<span>Color</span>
+													</div>
+												</div>
+												<div class="icon-remove-block"></div>
+											</div>
+										</div>
+										<div class="build-block-2-bottom build-block-recalc-width"></div>
+									</div>
+								
+								</div>
+								
+							</div>
+							<div class="block-container block-container-alert"
+							data-title="Alert"
+							>
+								<div class="icon icon-alert"></div>
+							</div>
+							<div class="block-container block-container-more"
+							data-title="More"
+							>
+								<div class="icon icon-more"></div>
+							</div>
+						</div>
+						<div class="block-area-options" style="display: none">
 						</div>
 					</div>
 
+					<div class="span5 build-area">
+					</div>
 
 					<div class="span1">
 						<div class="row-fluid">
 							<div class="span12">
-								<div class="well">
+								<div class="well output-area">
 									<div class="board-name">
 										<h5>Output</h5>
 									</div>
@@ -109,32 +264,35 @@
 							</div>
 						</div>
 					</div>
+
 				</div>
 			</div>
 		</div>
 	</div>
-	<div class="row-fluid">
-		<div class="span12">
-			<a href="#" onclick="addBlock('loadImage')">Load Image</a> | <a
-				href="#" onclick="addBlock('loadVideo')">Load Video</a> | <a
-				href="#" onclick="addBlock('loadWebcam')">Load Webcam</a> | <a
-				href="#" onclick="addBlock('sobelFilter')">Sobel</a> | <a href="#"
-				onclick="addBlock('grayScaleFilter')">Gray Scale</a> | <a href="#"
-				onclick="addBlock('invertFilter')">Invert Filter</a> | <a href="#"
-				onclick="addBlock('colorRearrangement')">Color Rearrangement</a> | <a
-				href="#" onclick="addBlock('distortionFilter')">Distortion
-				Filter</a> | <a href="#" onclick="addBlock('selectRegion')">Select
-				Region</a> | <a href="#" onclick="addBlock('faceDetection')">Face
-				Detection</a> | <a href="#" onclick="addBlock('ifBlock')">IF</a> | <a
-				href="#" onclick="execute()">Execute</a> | <a href="#"
-				onclick="executeLoop()">Execute Loop</a> | <a href="#"
-				onclick="reload()">Reload</a>
-		</div>
-	</div>
+<!-- 	<div class="row-fluid"> -->
+<!-- 		<div class="span12"> -->
+<!-- 			<a href="#" onclick="addBlock('loadImage')">Load Image</a> | <a -->
+<!-- 				href="#" onclick="addBlock('loadVideo')">Load Video</a> | <a -->
+<!-- 				href="#" onclick="addBlock('loadWebcam')">Load Webcam</a> | <a -->
+<!-- 				href="#" onclick="addBlock('sobelFilter')">Sobel</a> | <a href="#" -->
+<!-- 				onclick="addBlock('grayScaleFilter')">Gray Scale</a> | <a href="#" -->
+<!-- 				onclick="addBlock('invertFilter')">Invert Filter</a> | <a href="#" -->
+<!-- 				onclick="addBlock('colorRearrangement')">Color Rearrangement</a> | <a -->
+<!-- 				href="#" onclick="addBlock('distortionFilter')">Distortion -->
+<!-- 				Filter</a> | <a href="#" onclick="addBlock('selectRegion')">Select -->
+<!-- 				Region</a> | <a href="#" onclick="addBlock('faceDetection')">Face -->
+<!-- 				Detection</a> | <a href="#" onclick="addBlock('ifBlock')">IF</a> | <a -->
+<!-- 				href="#" onclick="execute()">Execute</a> | <a href="#" -->
+<!-- 				onclick="executeLoop()">Execute Loop</a> | <a href="#" -->
+<!-- 				onclick="reload()">Reload</a> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
 
 	<!-- JAVASCRIPT -->
 	<script src="js/libs/jquery.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/libs/bootstrap.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="js/libs/bootstrap-popover.js" type="text/javascript"
 		charset="utf-8"></script>
 	<script src="js/libs/ocanvas-2.1.0.min.js" type="text/javascript"
 		charset="utf-8"></script>
@@ -152,8 +310,9 @@
 		charset="utf-8"></script>
 	<script src="js/blocks_load.js" type="text/javascript" charset="utf-8"></script>
 	<script src="js/blocks_flow.js" type="text/javascript" charset="utf-8"></script>
-	
-	<script src="js/block-area.js" type="text/javascript" charset="utf-8"></script>
+
+	<script src="js/block/block-area.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/block/drag-and-drop.js" type="text/javascript" charset="utf-8"></script>
 
 </body>
 </html>

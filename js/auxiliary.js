@@ -1,7 +1,7 @@
 /* Aux Functions */
 /* Resizes, under the same ratio, a object given a max width and a max height*/
 var resize = function(obj, maxWidth, maxHeight) {
-	var newW, newH;
+	var newW = obj.width, newH = obj.height;
 	if(obj.width > maxWidth) {
 		ratio = maxWidth / obj.width;
         newW =  maxWidth;
@@ -81,75 +81,25 @@ var updateCanvas = function(imgData) {
 		);
 };
 
-/* Adds a block at the working area */
-var addBlock = function (name) {
-	var block = VB.base[name];
-	if ($.isFunction(block)) {
-		block = block();
+var executeLoopInterval = null;
+var clearExecuteLoopInterval = function() {
+	if (executeLoopInterval) {
+		clearInterval(executeLoopInterval);
+		executeLoopInterval = null;
 	}
-	if (name == "loadWebcam") {
-		camLoad();
-	}
-	VB.blocks.add(block);
 };
-
-/* Gets the first available spot on a list of blocks */
-var getSpot = function (blocks) {
-	if (blocks.length > 0) {
-		for (var i = 0; i < blocks.length; i++) {
-			if (blocks[i].y != VB.defaultValues.block.height * i + 20 + i) {
-				return [VB.b_canvas.width / 2, VB.defaultValues.block.height * i + 20 + i];
-			}
-		}
-		return [VB.b_canvas.width / 2, VB.defaultValues.block.height * blocks.length + 20 + blocks.length];
-	} else {
-		return [VB.b_canvas.width / 2, VB.defaultValues.block.height / 2 ];
-	}
-}
-
-/* Gets all the blocks added on a given canvas*/
-var getCanvasBlocks = function(canvas) {
-	var blocks = canvas.children;
-	var blocksOrdered = [];
-		
-	for (var i in blocks) {
-		if (blocks[i]._block) {
-			blocksOrdered[blocksOrdered.length] = blocks[i];
-		}
-	}
-	
-	blocksOrdered.sort(function(b1,b2){
-		return b1.y - b2.y;
-	});
-
-	return blocksOrdered;
-}
 
 /* Organizes the blocks and append them into the LinkedList for the execution */
-var execute = function () {
-	var blocksOrdered = getCanvasBlocks(VB.b_canvas);
-	VB.interpreter.clear();
-	var lastBlock = null;
-	for (var i in blocksOrdered) {
-		var _block = blocksOrdered[i]._block;
-		
-		if (lastBlock && lastBlock instanceof vb.FlowBlock) {
-			lastBlock.subStack.clear();
-			lastBlock.subStack.append(_block);
-		} else {
-			VB.interpreter.append(_block);
-		}
-		lastBlock = _block;
-	}
-	VB.interpreter.execute();
+var execute = function (stack) {
+	clearExecuteLoopInterval();
+	stack.execute();
 };
 
-var executeLoop = function () {
-	execute();
-	
-	setInterval(function () {
-		VB.interpreter.execute();
-	}, 10);
+var executeLoop = function (stack) {
+	clearExecuteLoopInterval();
+	executeLoopInterval = setInterval(function () {
+		stack.execute();
+	}, 1000);
 };
 
 var reload = function() {
@@ -168,28 +118,18 @@ var camLoad = function(){
     	video.src = window.URL.createObjectURL(stream);
   	});
 };
-
-/* This is a try for making the layout reponsive
-	It isn't finished because the layout wasn't decided.*/
-var blocksCanvasLoad = function() {
-	var width = $("#blocksDiv").width();
-	var height = $("#blocksDiv").height();
-	var blocksCanvas = document.getElementById("blocksCanvas");
-
-	blocksCanvas.setAttribute('width', width);  
-	blocksCanvas.setAttribute('height', height);
-};
+camLoad();
 
 var wait = function() {
 	//TODO
 }
 
 /* Select the region to work with the blocks */
-var drawRegion = function(box) {
+var drawRegion = function(box, color) {
 	var canvas = VB.interpreter.dictionary["canvas"];
 
 	var ctx = canvas.getContext('2d');
-	ctx.fillStyle="#FF0000";
+	ctx.strokeStyle="#"+color ? color : "000000";
 	ctx.strokeRect(
 		box.x,
 		box.y,
@@ -197,4 +137,50 @@ var drawRegion = function(box) {
 		box.height);	
 	
 	updateCanvas(getPixels(canvas));
+};
+
+var htmlExecute = function() {
+	var firstBlock = $(".build-area").find(" > .build-block");
+	
+	if (firstBlock) {
+		var result = {
+			name: firstBlock.data("block-name"),
+			children: []
+		};
+		
+		var fillResult = function(blockContainer, blockObj) {
+			blockContainer.find(".content:first > .build-block").each(function() {
+				var block = {
+					name: $(this).data("block-name"),
+					options: $(this).data("block-options"),
+					children: []
+				};
+				
+				blockObj.children.push(block);
+				
+				fillResult($(this), block);
+			});
+		};
+		
+		fillResult(firstBlock, result);
+		
+		return result;
+	}
+};
+
+var performExecute = function() {
+	VB.converter();
+	
+	var canvas = document.querySelector("#outputCanvas");
+	var ctx = canvas.getContext('2d');
+	
+	// Store the current transformation matrix
+	ctx.save();
+
+	// Use the identity matrix while clearing the canvas
+	ctx.setTransform(1, 0, 0, 1, 0, 0);
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+	// Restore the transform
+	ctx.restore();
 };

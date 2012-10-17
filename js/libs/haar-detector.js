@@ -58,9 +58,9 @@ HAAR.Detector.prototype.detect=function(baseScale, scale_inc, increment, min_nei
 	this.increment=increment;
 	this.ready=false;
 	var thiss=this;
-	if (this.async)
+	if (this.async) { 
 		this.interval=setInterval(function(){thiss.detectAsync()},30);
-	else
+	}else
 	{
 		while(this.scale<=this.maxScale+1)
 			this.detectAsync();
@@ -149,7 +149,7 @@ HAAR.Detector.prototype.detectAsync=function()
 	}
 	else
 	{
-		//if (this.async)
+		if (this.async)
 			clearInterval(this.interval);
 		this.objects= this.merge(this.ret,this.min_neighbors);
 		this.ready=true;

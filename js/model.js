@@ -1,49 +1,54 @@
 /* Block Skeleton */
-vb.Block = function (name, action) {
+vb.Block = function (name, action, async) {
 	this.name = name;
 	this.action = action;
+	this.async = async;
 	this.next = null;
+	this.executeNext = function() {
+		if (this.next) {
+			this.next.execute();
+		}
+	};
 
-	this.execute = function(lastResult) {
-		var result = action(lastResult);
-		switch(this.next) {
-			case null:
-				break;
-			default:
-				this.next.execute(result);
+	this.execute = function() {
+		var result = action.call(this);
+		if (!async) {
+			this.executeNext();
 		}
 	}
 };
 
-vb.LoadBlock = function (name, action) {
+vb.ConditionalFlowBlock = function (name, action) {
 	this.name = name;
 	this.action = action;
-	this.next = null;
-	this.execute = function() {
-		action(this.next);
-	}
-}
-vb.LoadBlock.prototype = new vb.Block();
-
-vb.FlowBlock = function (name, action) {
-	this.name = name;
-	this.action = action;
+	this.options = null;
 	this.next = null;
 	this.subStack = new vb.Interpreter();
 
-	this.execute = function(lastResult) {
-		var result = action(lastResult);
-		if (result === true) {
-			this.subStack.execute();
+	this.execute = function() {
+		if (this.options) {
+			var result = action(this.options);
+			if (result === true) {
+				this.subStack.execute();
+			}
 		}
 		
 		switch(this.next) {
 			case null:
 				break;
 			default:
-				this.next.execute(lastResult);
+				this.next.execute();
 		}
 	}
+}
+vb.ConditionalFlowBlock.prototype = new vb.Block();
+
+vb.FlowBlock = function (name, action) {
+	this.name = name;
+	this.subStack = new vb.Interpreter();
+	this.execute = function() {
+		action(this.subStack);
+	};
 }
 vb.FlowBlock.prototype = new vb.Block();
 

@@ -1,8 +1,13 @@
-var loadImage = function (nextBlock) {
+var loadImage = function () {
+	var thiss = this;
 	var canvas = document.querySelector("#outputCanvas");
 	var context = canvas.getContext('2d');
 	var img = new Image();
-    img.src = "img/rmc.jpg";
+	var url = null;
+	if (this.options) {
+		url = this.options['url'];
+	}
+	img.src = url ? url : "img/rmc.jpg";
 	var maxWidth = 320;
 	var maxHeight = 240;
 	
@@ -10,11 +15,13 @@ var loadImage = function (nextBlock) {
 		var newSize = resize(img, maxWidth, maxHeight);
 		context.drawImage(img, 0, 0, newSize[0], newSize[1]);
 		VB.interpreter.dictionary["canvas"] = canvas;
-		nextBlock.execute();
+		
+		thiss.executeNext();
 	};	
 };
 
 var loadVideo = function (nextBlock) {
+	var thiss = this;
 	var canvas = document.querySelector("#outputCanvas");
 	var context = canvas.getContext('2d');
 	var video = document.getElementById("inputVideo");
@@ -26,7 +33,7 @@ var loadVideo = function (nextBlock) {
 				if(video.ended) return false;
 				context.drawImage(video, 0, 0, canvas.width, canvas.height);
 				VB.interpreter.dictionary["canvas"] = canvas;
-				nextBlock.execute();
+				thiss.executeNext();
 				setTimeout(draw,10);
 			}
 			draw();
@@ -38,6 +45,7 @@ var loadVideo = function (nextBlock) {
 };
 
 var loadWebcam = function (nextBlock) {
+	var thiss = this;
 	var canvas = document.querySelector("#outputCanvas");
 	var context = canvas.getContext('2d');
 	var video = document.getElementById("inputVideo");
@@ -45,7 +53,7 @@ var loadWebcam = function (nextBlock) {
 		if(video.paused) video.play();
 		context.drawImage(video, 0, 0, canvas.width, canvas.height);
 		VB.interpreter.dictionary["canvas"] = canvas;
-		nextBlock.execute();
+		thiss.executeNext();
 	} else {
 		console.error("Can't access webcam...");
 	}

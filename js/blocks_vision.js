@@ -1,17 +1,19 @@
-var faceDetection = function() { 
+var faceDetection = function() {
+	var thiss = this;
 	var canvas = VB.interpreter.dictionary["canvas"];
-	new HAAR.Detector(haarcascade_frontalface_alt)
-		.image(canvas).complete(function(objects) {
-			VB.interpreter.dictionary["face"] = this.objects;
+	VB.interpreter.dictionary["faces_array"] = new HAAR.Detector(haarcascade_frontalface_alt)
+		.image(canvas).complete(function(){
+			VB.interpreter.dictionary["faces_array"] = this.objects;
+			VB.interpreter.dictionary["faces"] = this.objects ? this.objects.length : 0;
+			thiss.executeNext();
 		}).detect(1, 1.25, 0.1, 1, true);
-	return VB.interpreter.dictionary["face"];
 };
 
 var selectRegion = function() {
-	var faces = VB.interpreter.dictionary["face"];
+	var faces = VB.interpreter.dictionary["faces_array"];
 	if (faces) {
 		for (var i in faces) {
-			drawRegion(faces[i]);
+			drawRegion(faces[i], this.options['rgb']);
 		}
 	}
 };
