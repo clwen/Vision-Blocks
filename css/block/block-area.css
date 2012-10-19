@@ -1,5 +1,34 @@
 @CHARSET "UTF-8";
 
+.popover-footer {
+	border: 1px dashed black;
+}
+
+.popover-footer-title {
+	text-align: center;
+	color: black;
+}
+
+.popover-footer-content > div {
+	display: inline-block;
+}
+
+.popover-title {
+	background-color: rgb(88, 89, 91);
+	color: white;
+}
+
+.output_element {
+	padding: 4px;
+	margin: 4px;
+	border: 1px solid black;
+	background-color: white;
+}
+
+.popover-footer-content > div:HOVER {
+	cursor: move;
+}
+
 /*
  Local onde as opções de bloco serão colocadas
 */
@@ -362,17 +391,24 @@ Building blocks v2
 	overflow: hidden;
 }
 
-.build-block-if-popover > div * {
+.build-block-if-popover-top > div * {
 	width: 60px; 
 }
 
-.build-block-if-popover-top > div, .build-block-if-popover-bottom > div {
+.build-block-if-popover-top > div {
 	display: inline-block;
 	margin-right: 4px;
 }
 
 #if-popover-condition {
 	text-align: center;
+}
+
+#if-popover-final-condition {
+	font-size: 26px;
+	margin-top: 14px;
+	border-top: 1px dashed black;
+	padding-top: 6px;
 }
 
 .build-block-draw-rect-condition {

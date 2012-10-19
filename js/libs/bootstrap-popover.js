@@ -323,8 +323,20 @@
         , title = this.getTitle()
         , content = this.getContent()
 
-      $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title)
-      $tip.find('.popover-content > *')[this.options.html ? 'html' : 'text'](content)
+      $tip.find('.popover-title')[this.options.html ? 'html' : 'text'](title);
+      $tip.find('.popover-content')[this.options.html ? 'html' : 'text'](content)
+      
+      if (this.options['contentFooter']) {
+    	  var contentFooter = this.options['contentFooter']();
+    	  if (contentFooter !== null) {
+	    	  var footer = $tip.find('.popover-footer-content');
+	    	  if (footer.size() == 0) {
+	    		  $tip.find('.popover-content').parent().append($("<div class='popover-footer'><div class='popover-footer-title'><span>Outputs</span></div><div class='popover-footer-content'></div></div>"));
+	    		  footer = $tip.find('.popover-footer-content');
+	    	  }
+	    	  footer.html(contentFooter);
+    	  }
+      }
 
       $tip.removeClass('fade top bottom left right in')
     }
@@ -377,7 +389,7 @@
     placement: 'right'
   , trigger: 'click'
   , content: ''
-  , template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>'
+  , template: '<div class="popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"></div></div></div>'
   })
 
 }(window.jQuery);

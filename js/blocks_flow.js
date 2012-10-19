@@ -1,7 +1,10 @@
 var ifBlock = function (options) {
-	var options1 = options['entry-1'].split(".");
+	var options1 = options['entry'];
 	var options2 = options['condition'];
-	var options3 = options['entry-2'];
 	
-	return eval("VB.interpreter.dictionary['"+options1[0]+"']."+options1[1] + " " + options2 + " " + options3);
+	if (options1 != null && options2 != null) {
+		return eval("VB.interpreter.dictionary['"+options1+"']" + " " + options2);
+	} else {
+		return false;
+	}
 };

@@ -33,58 +33,59 @@ $(document).ready(function() {
 		recalcWidth();
 		
 		block.find(".icon-remove-block").off("click").on("click", function(){
+			block.trigger("block-remove");
 			block.remove();
 			refreshBlocks();
 		});
 		
 		if (block.hasClass("build-block-if")) {
+			var blockOptions = block.data("block-options");
+			if (!blockOptions) {
+				blockOptions = {};
+				block.data("block-options", blockOptions);
+			}
+			
 			block.find(".build-block-title-wrapper:first").each(function(){
 				var $this = $(this);
 				$this.popover({
-					title: 'Options',
+					title: 'Values',
 					content: function() {
 						var html = "<div class='build-block-if-popover'>"
 								html += "<div class='build-block-if-popover-top'>"
-									html += "<div>Entry #1</div> <div>Condition</div> <div>Entry #2</div>"
+									html += "<div>Condition</div> <div><input id='if-popover-condition' value='== 0'/></div>"
 								html += "</div>"
 								html += "<div class='build-block-if-popover-bottom'>"
-									html += "<div><input id='if-popover-entry-1'/></div> <div><input id='if-popover-condition'/></div> <div><input id='if-popover-entry-2'/></div>"
+									html += "<div id='if-popover-final-condition'><span></span></div>"
 								html += "</div>"
 						    html += "</div>"
 						
 						return html;
 					}
 				});
+				
+				block.off("block-remove").on("block-remove", function(){
+					$this.popover("destroy");
+				});
+				
 				$this.off("shown").on("shown", function() {
-					var data = $(this).parents(".build-block:first").data("block-options");
-					if (data) {
-						$("#if-popover-entry-1").val(data['entry-1']);
-						$("#if-popover-condition").val(data['condition']);
-						$("#if-popover-entry-2").val(data['entry-2']);
+					if (blockOptions['condition'] != null) {
+						$("#if-popover-condition").val(blockOptions['condition']);
 					}
+					$("#if-popover-condition").change(function(){
+						$("#if-popover-final-condition span").text(block.find(".build-block-if-condition").text() + " " + $("#if-popover-condition").val());
+					});
+					$("#if-popover-condition").change();
 				});
 				
 				$this.off("hidden").on("hidden", function() {
-					var data = $(this).parents(".build-block:first").data("block-options");
-					if (!data) {
-						data = {};
-						$(this).parents(".build-block:first").data("block-options", data);
-					}
-					
-					data['entry-1'] = $("#if-popover-entry-1").val();
-					data['condition'] = $("#if-popover-condition").val();
-					data['entry-2'] = $("#if-popover-entry-2").val();
-					
-					if (data['entry-1'] && data['condition'] && data['entry-2']) {
-						$(this).find(".build-block-if-condition span").text(data['entry-1'] + " " + data['condition'] + " " + data['entry-2']);
-					}
+					blockOptions['condition'] = $("#if-popover-condition").val();
 				});
 			});
 		} else if (block.hasClass("build-block-select-region")) {
 			block.find(".build-block-2-title-wrapper:first").each(function(){
 				var $this = $(this);
 				$this.popover({
-					title: 'Options',
+					title: 'Values',
 					content: function() {
 						var html = "<div class='build-block-select-region-popover'>"
 								html += "<div class='build-block-select-region-popover-top'>"
@@ -95,6 +96,11 @@ $(document).ready(function() {
 						return html;
 					}
 				});
+				
+				block.off("block-remove").on("block-remove", function(){
+					$this.popover("destroy");
+				});
+				
 				$this.off("shown").on("shown", function() {
 					var data = $(this).parents(".build-block:first").data("block-options");
 					if (data) {
@@ -115,13 +121,13 @@ $(document).ready(function() {
 						$(this).find(".build-block-draw-rect-condition-rgb").css("background-color", '#'+data['rgb']);
 					}
 				});
-				$this.parents(".build-block:first").data("block-options", {'rgb' : '00000'})
+				$this.parents(".build-block:first").data("block-options", {'rgb' : '000000'})
 			});
 		} else if (block.hasClass("build-block-load-image")) {
 			block.find(".build-block-2-title-wrapper:first").each(function(){
 				var $this = $(this);
 				$this.popover({
-					title: 'Options',
+					title: 'Values',
 					content: function() {
 						var html = "<div class='build-block-select-region-popover'>"
 								html += "<div>"
@@ -132,11 +138,61 @@ $(document).ready(function() {
 						return html;
 					}
 				});
+				
+				block.off("block-remove").on("block-remove", function(){
+					$this.popover("destroy");
+				});
+				
 				$this.off("shown").on("shown", function() {
 					var data = $(this).parents(".build-block:first").data("block-options");
 					if (data) {
 						$("#load-image-url").val(data['url']);
 					}
+				});
+				
+				$this.off("hidden").on("hidden", function() {
+					var data = $(this).parents(".build-block:first").data("block-options");
+					if (!data) {
+						data = {};
+						$(this).parents(".build-block:first").data("block-options", data);
+					}
+					
+					data['url'] = $("#load-image-url").val();
+				});
+			});
+		} else if (block.hasClass("build-block-detect-face")) {
+			block.find(".build-block-2-title-wrapper:first").each(function(){
+				var $this = $(this);
+				$this.popover({
+					title: 'Values',
+					contentFooter: function() {
+						var html = "";
+						html += "<div class='output_element'><span>faces</span></div>";
+			    		html += "<div class='output_element'><span>faceX</span></div>";
+		    			html += "<div class='output_element'><span>faceY</span></div>";
+		    			html += "<div class='output_element'><span>faceW</span></div>";
+		    			html += "<div class='output_element'><span>faceH</span></div>";
+		    				
+						return html;
+					}
+				});
+				
+				block.off("block-remove").on("block-remove", function(){
+					$this.popover("destroy");
+				});
+				
+				$this.off("shown").on("shown", function() {
+					var data = $(this).parents(".build-block:first").data("block-options");
+					if (data) {
+						$("#load-image-url").val(data['url']);
+					}
+					$(".popover-footer-content > div").dragAndDrop({
+						end: function(element) {
+							var blockIf = $(".build-area .build-block-if");
+							blockIf.find(".build-block-if-condition:eq(0) span").text(element.text());
+							blockIf.data("block-options")['entry'] = element.text();
+						}
+					});
 				});
 				
 				$this.off("hidden").on("hidden", function() {
