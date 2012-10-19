@@ -1,8 +1,5 @@
 @CHARSET "UTF-8";
 
-/*
- Local onde as opções de bloco serão colocadas
-*/
 .block-area {
 	height: 400px;
 }
@@ -11,15 +8,12 @@
 	float: left;
 }
 
-/*
- Local apenas para as opções chave
-*/
 .block-area-container {
 	width: 72px;
 }
 
 /*
- Local onde as opções especificas serão mostradas
+ Location where the blocks can be dragged to another place
 */
 .block-area-options {
 	width: 200px;
@@ -39,9 +33,6 @@
 	margin-bottom: 11px;
 }
 
-/*
- Opção de bloco (visão, movimento...)
-*/
 .block-container {
 	width: 60px;
 	height: 55px;
@@ -74,9 +65,11 @@
 .block-container-content {
 	display: none;
 }
+
 /*
- Tipos de bloco
+ Types of block - BEGIN
 */
+
 .block-container-start {
 	border-left-color: #ffde17;
 }
@@ -173,6 +166,10 @@
 }
 
 /*
+ Types of block - END
+*/
+
+/*
 Icons for menu
 */
 .icon-start {
@@ -208,7 +205,7 @@ Icons for menu
 }
 
 /*
- Local pra construção
+ Location where the blocks will be put
 */
 .build-area {
 	padding-top: 11px;
