@@ -99,7 +99,7 @@ var executeLoop = function (stack) {
 	clearExecuteLoopInterval();
 	executeLoopInterval = setInterval(function () {
 		stack.execute();
-	}, 1000);
+	}, 100);
 };
 
 var reload = function() {
@@ -112,7 +112,7 @@ var camLoad = function(){
 	window.URL = window.URL || window.webkitURL;
 	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 	
-	var video = document.querySelector('#inputVideo');
+	var video = document.querySelector('#inputVideoCam');
   	
   	navigator.getUserMedia({video: true}, function(stream) {
     	video.src = window.URL.createObjectURL(stream);
@@ -168,9 +168,7 @@ var htmlExecute = function() {
 	}
 };
 
-var performExecute = function() {
-	VB.converter();
-	
+var reset = function() {
 	var canvas = document.querySelector("#outputCanvas");
 	var ctx = canvas.getContext('2d');
 	
@@ -183,4 +181,16 @@ var performExecute = function() {
 
 	// Restore the transform
 	ctx.restore();
+	
+	var inputVideo = document.getElementById("inputVideo");
+	inputVideo.src = "";
+	
+	var inputVideoCam = document.getElementById("inputVideoCam");
+	inputVideoCam.pause();
+};
+
+var performExecute = function() {
+	reset();
+	
+	VB.converter();
 };

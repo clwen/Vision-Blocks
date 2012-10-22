@@ -39,16 +39,8 @@ $(document).ready(function() {
 		});
 		
 		if (block.hasClass("build-block-if")) {
-			var blockOptions = block.data("block-options");
-			if (!blockOptions) {
-				blockOptions = {};
-				block.data("block-options", blockOptions);
-			}
-			
-			block.find(".build-block-title-wrapper:first").each(function(){
-				var $this = $(this);
-				$this.popover({
-					title: 'Values',
+			block.find(".build-block-title-wrapper:first").applyPopover({
+				'popover': {
 					content: function() {
 						var html = "<div class='build-block-if-popover'>"
 								html += "<div class='build-block-if-popover-top'>"
@@ -61,13 +53,8 @@ $(document).ready(function() {
 						
 						return html;
 					}
-				});
-				
-				block.off("block-remove").on("block-remove", function(){
-					$this.popover("destroy");
-				});
-				
-				$this.off("shown").on("shown", function() {
+				},
+				'shown-event': function(blockOptions) {
 					if (blockOptions['condition'] != null) {
 						$("#if-popover-condition").val(blockOptions['condition']);
 					}
@@ -75,17 +62,14 @@ $(document).ready(function() {
 						$("#if-popover-final-condition span").text(block.find(".build-block-if-condition").text() + " " + $("#if-popover-condition").val());
 					});
 					$("#if-popover-condition").change();
-				});
-				
-				$this.off("hidden").on("hidden", function() {
+				},
+				'hidden-event': function(blockOptions) {
 					blockOptions['condition'] = $("#if-popover-condition").val();
-				});
+				}
 			});
 		} else if (block.hasClass("build-block-select-region")) {
-			block.find(".build-block-2-title-wrapper:first").each(function(){
-				var $this = $(this);
-				$this.popover({
-					title: 'Values',
+			block.find(".build-block-2-title-wrapper:first").applyPopover({
+				'popover': {
 					content: function() {
 						var html = "<div class='build-block-select-region-popover'>"
 								html += "<div class='build-block-select-region-popover-top'>"
@@ -95,39 +79,25 @@ $(document).ready(function() {
 						
 						return html;
 					}
-				});
-				
-				block.off("block-remove").on("block-remove", function(){
-					$this.popover("destroy");
-				});
-				
-				$this.off("shown").on("shown", function() {
-					var data = $(this).parents(".build-block:first").data("block-options");
-					if (data) {
-						$("#select-region-popover-color").val(data['rgb']);
-					}
-				});
-				
-				$this.off("hidden").on("hidden", function() {
-					var data = $(this).parents(".build-block:first").data("block-options");
-					if (!data) {
-						data = {};
-						$(this).parents(".build-block:first").data("block-options", data);
-					}
+				},
+				'block-options': {
+					'rgb' : '000000'
+				},
+				'shown-event': function(blockOptions) {
+					$("#select-region-popover-color").val(blockOptions['rgb']);
+				},
+				'hidden-event': function(blockOptions) {
+					blockOptions['rgb'] = $("#select-region-popover-color").val();
 					
-					data['rgb'] = $("#select-region-popover-color").val();
-					
-					if (data['rgb']) {
-						$(this).find(".build-block-draw-rect-condition-rgb").css("background-color", '#'+data['rgb']);
+					if (blockOptions['rgb']) {
+						block.find(".build-block-draw-rect-condition-rgb").css("background-color", '#'+blockOptions['rgb']);
 					}
-				});
-				$this.parents(".build-block:first").data("block-options", {'rgb' : '000000'})
+				}
 			});
+			
 		} else if (block.hasClass("build-block-load-image")) {
-			block.find(".build-block-2-title-wrapper:first").each(function(){
-				var $this = $(this);
-				$this.popover({
-					title: 'Values',
+			block.find(".build-block-2-title-wrapper:first").applyPopover({
+				'popover': {
 					content: function() {
 						var html = "<div class='build-block-select-region-popover'>"
 								html += "<div>"
@@ -137,34 +107,18 @@ $(document).ready(function() {
 						
 						return html;
 					}
-				});
-				
-				block.off("block-remove").on("block-remove", function(){
-					$this.popover("destroy");
-				});
-				
-				$this.off("shown").on("shown", function() {
-					var data = $(this).parents(".build-block:first").data("block-options");
-					if (data) {
-						$("#load-image-url").val(data['url']);
-					}
-				});
-				
-				$this.off("hidden").on("hidden", function() {
-					var data = $(this).parents(".build-block:first").data("block-options");
-					if (!data) {
-						data = {};
-						$(this).parents(".build-block:first").data("block-options", data);
-					}
-					
-					data['url'] = $("#load-image-url").val();
-				});
+				},
+				'shown-event': function(blockOptions) {
+					$("#load-image-url").val(blockOptions['url']);
+				},
+				'hidden-event': function(blockOptions) {
+					blockOptions['url'] = $("#load-image-url").val();
+				}
 			});
+			
 		} else if (block.hasClass("build-block-detect-face")) {
-			block.find(".build-block-2-title-wrapper:first").each(function(){
-				var $this = $(this);
-				$this.popover({
-					title: 'Values',
+			block.find(".build-block-2-title-wrapper:first").applyPopover({
+				'popover': {
 					contentFooter: function() {
 						var html = "";
 						html += "<div class='output_element'><span>faces</span></div>";
@@ -175,35 +129,22 @@ $(document).ready(function() {
 		    				
 						return html;
 					}
-				});
-				
-				block.off("block-remove").on("block-remove", function(){
-					$this.popover("destroy");
-				});
-				
-				$this.off("shown").on("shown", function() {
-					var data = $(this).parents(".build-block:first").data("block-options");
-					if (data) {
-						$("#load-image-url").val(data['url']);
-					}
+				},
+				'shown-event': function(blockOptions) {
+					$("#load-image-url").val(blockOptions['url']);
 					$(".popover-footer-content > div").dragAndDrop({
 						end: function(element) {
-							var blockIf = $(".build-area .build-block-if");
-							blockIf.find(".build-block-if-condition:eq(0) span").text(element.text());
-							blockIf.data("block-options")['entry'] = element.text();
+							var blockIf = $(".build-area .build-block-if:eq(0)");
+							if (blockIf) {
+								blockIf.find(".build-block-if-condition:eq(0) span").text(element.text());
+								blockIf.data("block-options")['entry'] = element.text();
+							}
 						}
 					});
-				});
-				
-				$this.off("hidden").on("hidden", function() {
-					var data = $(this).parents(".build-block:first").data("block-options");
-					if (!data) {
-						data = {};
-						$(this).parents(".build-block:first").data("block-options", data);
-					}
-					
-					data['url'] = $("#load-image-url").val();
-				});
+				},
+				'hidden-event': function(blockOptions) {
+					blockOptions['url'] = $("#load-image-url").val();
+				}
 			});
 		}
 	};
@@ -240,7 +181,6 @@ $(document).ready(function() {
 			}
 		}
 		
-		
 		var blockWithContent = buildArea.find(".content").toArray().reverse();
 		for (var i = 0; i < blockWithContent.length; i++) {
 			applyMainBlock($(blockWithContent[i]).parents(".build-block:first"));
@@ -248,39 +188,52 @@ $(document).ready(function() {
 	};
 	
 	var linkToDragAndDrop = function(parent) {
+		var moveDragFitBlock = function(blockParent, block, posY) {
+			var content = blockParent.find(".content:first");
+			if (content.size() > 0) {
+				var children = blockParent.find(".content:first > .build-block:not(.empty-block)").toArray();
+				
+				var emptyBlock = $("<div class='build-block empty-block'/>")
+				
+				if (children.length > 0) {
+					for (var i = 0; i < children.length; i++) {
+						var $this = $(children[i]);
+						var offTop = $this.offset().top;
+						var diff = $this.height();
+	
+						
+						if (posY < offTop) {
+							if ($this.prev().size() == 0 || !$this.prev().hasClass(".build-block")) {
+								$(".empty-block").remove();
+								emptyBlock.height(block.height());
+								$this.before(emptyBlock);
+								refreshBlocks();
+								return;
+							}
+						} else if ((posY > (offTop + diff))){
+							if (!$this.prev().hasClass(".build-block") && i == children.length - 1) {
+								$(".empty-block").remove();
+								emptyBlock.height(block.height());
+								$this.after(emptyBlock);
+								refreshBlocks();
+								return;
+							}
+						} else {
+							moveDragFitBlock($this, block, posY);
+						}
+					}
+				} else {
+					$(".empty-block").remove();
+					content.append(emptyBlock);
+				}
+			}
+		};
+		
 		parent.find(".build-block").dragAndDrop({
 			move : function(block, posX, posY) {
 				var blocks = $(".build-area .build-block .build-block:not(.empty-block)").toArray();
-				for (var i = 0; i < blocks.length; i++) {
-					var $this = $(blocks[i]);
-					var offTop = $this.offset().top;
-					var diff = $this.height();
-					
-					var emptyBlock = $("<div class='build-block empty-block'/>")
-					
-					if (posY < offTop) {
-						if (!$this.prev().hasClass(".build-block")) {
-							$(".empty-block").remove();
-							emptyBlock.height(block.height());
-							if ($this.find(".content").size() > 0) {
-								$this.find(".content:first").append(emptyBlock);
-							} else {
-								$this.before(emptyBlock);
-							}
-							refreshBlocks();
-							break;
-						}
-					} else {
-						if (!$this.prev().hasClass(".build-block") && i == blocks.length - 1) {
-							$(".empty-block").remove();
-							emptyBlock.height(block.height());
-							$this.after(emptyBlock);
-							refreshBlocks();
-							break;
-						}
-					}
-					
-				}
+				
+				moveDragFitBlock($(".build-area .build-block:eq(0)"), block, posY);
 			},
 			end : function(block) {
 				var emptyBlock = $(".build-area .empty-block");

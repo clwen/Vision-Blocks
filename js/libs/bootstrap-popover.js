@@ -160,12 +160,14 @@
       $tip.removeClass('fade in top bottom left right')
     }
 
-  , hide: function () {
+  , hide: function (viaToogle) {
       var that = this
         , $tip = this.tip();
       
-      this.$element.trigger("hidden");
-
+      if (viaToogle) {
+    	  this.$element.trigger("hidden");
+      }
+      
       $tip.removeClass('in');
 
       function removeWithAnimation() {
@@ -240,7 +242,7 @@
     }
 
   , toggle: function () {
-      this[this.tip().hasClass('in') ? 'hide' : 'show']()
+      this[this.tip().hasClass('in') ? 'hide' : 'show'](true)
     }
 
   , destroy: function () {
