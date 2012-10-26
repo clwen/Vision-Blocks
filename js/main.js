@@ -27,8 +27,8 @@ $(document).ready(function(){
 			'selectRegion' 			: function() {return new vb.Block('select Region', selectRegion)},
 			'faceDetection' 		: function() {return new vb.Block('Face Detection', faceDetection, true)},
 			'ifBlock'				: function() {return new vb.ConditionalFlowBlock('If Block', ifBlock)},
-			'play'					: function() {return new vb.FlowBlock('Play', execute)},
-			'playForever'			: function() {return new vb.FlowBlock('Play Forever', executeLoop)}
+			'play'					: function() {return new vb.FlowBlock('Play', play)},
+			'playForever'			: function() {return new vb.FlowBlock('Play Forever', playForever)}
 		},
 		
 		converter : function() {

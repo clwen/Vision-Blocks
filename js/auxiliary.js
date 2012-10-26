@@ -81,27 +81,6 @@ var updateCanvas = function(imgData) {
 		);
 };
 
-var executeLoopInterval = null;
-var clearExecuteLoopInterval = function() {
-	if (executeLoopInterval) {
-		clearInterval(executeLoopInterval);
-		executeLoopInterval = null;
-	}
-};
-
-/* Organizes the blocks and append them into the LinkedList for the execution */
-var execute = function (stack) {
-	clearExecuteLoopInterval();
-	stack.execute();
-};
-
-var executeLoop = function (stack) {
-	clearExecuteLoopInterval();
-	executeLoopInterval = setInterval(function () {
-		stack.execute();
-	}, 100);
-};
-
 var reload = function() {
 	
 	window.location = window.location.href.replace(/#/,'');
