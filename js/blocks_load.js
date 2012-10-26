@@ -26,10 +26,15 @@ var loadVideo = function () {
 	var context = canvas.getContext('2d');
 	var video = document.getElementById("inputVideo");
 	
-	var def = "img/fox.mp4";
+	var url = null;
+	if (this.options) {
+		url = this.options['url'];
+	}
 	
-	if (video.src.indexOf(def) == -1) {
-		video.src = def;
+	url = url ? url : "img/fox.mp4";
+	
+	if (video.src.indexOf(url) == -1) {
+		video.src = url;
 	}
 	
 	if (video.paused) {
