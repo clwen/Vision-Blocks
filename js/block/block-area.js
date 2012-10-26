@@ -99,7 +99,7 @@ $(document).ready(function() {
 			block.find(".build-block-2-title-wrapper:first").applyPopover({
 				'popover': {
 					content: function() {
-						var html = "<div class='build-block-select-region-popover'>"
+						var html = "<div>"
 								html += "<div>"
 									html += "<div>URL</div> <div><input id='load-image-url'/></div>"
 								html += "</div>"
@@ -113,6 +113,27 @@ $(document).ready(function() {
 				},
 				'hidden-event': function(blockOptions) {
 					blockOptions['url'] = $("#load-image-url").val();
+				}
+			});
+		
+		} else if (block.hasClass("build-block-load-video")) {
+			block.find(".build-block-2-title-wrapper:first").applyPopover({
+				'popover': {
+					content: function() {
+						var html = "<div>"
+								html += "<div>"
+									html += "<div>URL</div> <div><input id='load-video-url'/></div>"
+								html += "</div>"
+						    html += "</div>"
+						
+						return html;
+					}
+				},
+				'shown-event': function(blockOptions) {
+					$("#load-video-url").val(blockOptions['url']);
+				},
+				'hidden-event': function(blockOptions) {
+					blockOptions['url'] = $("#load-video-url").val();
 				}
 			});
 			
