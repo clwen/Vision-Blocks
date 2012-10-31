@@ -83,12 +83,18 @@ $(document).ready(function() {
 						return html;
 					}
 				},
+				'block-options': {
+					'condition' : ' == 0',
+					'entry': 'faces'
+				},
 				'shown-event': function(blockOptions) {
 					if (blockOptions['condition'] != null) {
 						$("#if-popover-condition").val(blockOptions['condition']);
 					}
 					$("#if-popover-condition").change(function(){
-						$("#if-popover-final-condition span").text(block.find(".build-block-if-condition").text() + " " + $("#if-popover-condition").val());
+						var ifCondition = blockOptions['entry'] + " " + blockOptions['condition'];
+						$("#if-popover-final-condition span").text(ifCondition);
+						block.find(".build-block-desc:eq(0) span").text(ifCondition);
 					});
 					$("#if-popover-condition").change();
 				},
@@ -137,11 +143,18 @@ $(document).ready(function() {
 						return html;
 					}
 				},
+				'block-options': {
+					'url' : 'file/rmc.jpg'
+				},
 				'shown-event': function(blockOptions) {
 					$("#load-image-url").val(blockOptions['url']);
 				},
 				'hidden-event': function(blockOptions) {
 					blockOptions['url'] = $("#load-image-url").val();
+					
+					if (blockOptions['url']) {
+						block.find(".build-block-desc span").text(blockOptions['url']);
+					}
 				}
 			});
 		
@@ -158,11 +171,18 @@ $(document).ready(function() {
 						return html;
 					}
 				},
+				'block-options': {
+					'url' : 'file/fox.mp4'
+				},
 				'shown-event': function(blockOptions) {
 					$("#load-video-url").val(blockOptions['url']);
 				},
 				'hidden-event': function(blockOptions) {
 					blockOptions['url'] = $("#load-video-url").val();
+					
+					if (blockOptions['url']) {
+						block.find(".build-block-desc span").text(blockOptions['url']);
+					}
 				}
 			});
 			
@@ -186,8 +206,8 @@ $(document).ready(function() {
 						end: function(element) {
 							var blockIf = $(".build-area .build-block-if:eq(0)");
 							if (blockIf) {
-								blockIf.find(".build-block-if-condition:eq(0) span").text(element.text());
 								blockIf.data("block-options")['entry'] = element.text();
+								blockIf.find(".build-block-desc:eq(0) span").text(element.text() + " " +blockIf.data("block-options")['condition']);
 							}
 						}
 					});
