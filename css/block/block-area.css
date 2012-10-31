@@ -381,7 +381,7 @@ Building blocks v2
 	height: 48px;
 }
 
-.build-block-if-condition {
+.build-block-desc {
 	width: 74px;
 	height: 24px;
 	background-color: rgb(190, 190, 190);
@@ -389,6 +389,14 @@ Building blocks v2
 	margin-left: 6px;
 	text-align: center;
 	overflow: hidden;
+}
+
+.build-block-load-video .build-block-desc {
+	width: 50px;
+}
+
+.build-block-load-image .build-block-desc {
+	width: 64px;
 }
 
 .build-block-if-popover-top > div * {
