@@ -1,14 +1,43 @@
 $(document).ready(function() {
 	
-	$(".block-container").tooltip({placement: "right"});
+	var hidePopoverActive = function() {
+		if ($(".popover.in").size() > 0) {
+			var $popover = null;
+			var popovers = $(".popover-enable").toArray();
+			for (var idx in popovers) {
+				var $p = $(popovers[idx]);
+				if ($p.data("popover").tip().hasClass('in')) {
+					$popover = $p;
+					break;
+				}
+			}
+			
+			if ($popover) {
+				$popover.popover("hide", true);
+			}
+		}
+	};
 	
+	$("html").on("click", "body", function(e){
+		var test = $(e.target);
+		if (!test.is(".popover") && test.parents(".popover:first").size() == 0) {
+			hidePopoverActive();
+		}
+	});
+	
+	$("body").on("keydown", ".enter-out-popover", function(e){
+		if (e.keyCode == 13) {
+			hidePopoverActive();
+		}
+	});
+	
+	$(".block-container").tooltip({placement: "right"});
 	
 	var measurements = {
 		"build-block-border-width": parseInt($(".build-block-title-wrapper:first").css("border-left-width")) + 
 		parseInt($(".build-block-title-wrapper:first").css("border-right-width")), 
 	};
 	measurements["build-area-gap-right"] = parseInt($(".build-area").css("padding-left")) + measurements['build-block-border-width'];
-	
 	
 	var recalcWidth = function() {
 		var max = 0;
@@ -44,7 +73,7 @@ $(document).ready(function() {
 					content: function() {
 						var html = "<div class='build-block-if-popover'>"
 								html += "<div class='build-block-if-popover-top'>"
-									html += "<div>Condition</div> <div><input id='if-popover-condition' value='== 0'/></div>"
+									html += "<div>Condition</div> <div><input id='if-popover-condition' value='== 0' class='enter-out-popover'/></div>"
 								html += "</div>"
 								html += "<div class='build-block-if-popover-bottom'>"
 									html += "<div id='if-popover-final-condition'><span></span></div>"
@@ -73,7 +102,7 @@ $(document).ready(function() {
 					content: function() {
 						var html = "<div class='build-block-select-region-popover'>"
 								html += "<div class='build-block-select-region-popover-top'>"
-									html += "<div>RGB</div> <div><input id='select-region-popover-color' maxlength='6'/></div>"
+									html += "<div>RGB</div> <div><input id='select-region-popover-color' maxlength='6' class='enter-out-popover'/></div>"
 								html += "</div>"
 						    html += "</div>"
 						
@@ -101,7 +130,7 @@ $(document).ready(function() {
 					content: function() {
 						var html = "<div>"
 								html += "<div>"
-									html += "<div>URL</div> <div><input id='load-image-url'/></div>"
+									html += "<div>URL</div> <div><input id='load-image-url' class='enter-out-popover'/></div>"
 								html += "</div>"
 						    html += "</div>"
 						
@@ -122,7 +151,7 @@ $(document).ready(function() {
 					content: function() {
 						var html = "<div>"
 								html += "<div>"
-									html += "<div>URL</div> <div><input id='load-video-url'/></div>"
+									html += "<div>URL</div> <div><input id='load-video-url' class='enter-out-popover'/></div>"
 								html += "</div>"
 						    html += "</div>"
 						

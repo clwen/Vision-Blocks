@@ -160,11 +160,11 @@
       $tip.removeClass('fade in top bottom left right')
     }
 
-  , hide: function (viaToogle) {
+  , hide: function (flag) {
       var that = this
         , $tip = this.tip();
       
-      if (viaToogle) {
+      if (flag) {
     	  this.$element.trigger("hidden");
       }
       
@@ -241,7 +241,8 @@
       this.enabled = !this.enabled
     }
 
-  , toggle: function () {
+  , toggle: function (e) {
+	  e.stopPropagation();
       this[this.tip().hasClass('in') ? 'hide' : 'show'](true)
     }
 
@@ -375,13 +376,13 @@
  /* POPOVER PLUGIN DEFINITION
   * ======================= */
 
-  $.fn.popover = function (option) {
+  $.fn.popover = function (option, flag) {
     return this.each(function () {
       var $this = $(this)
         , data = $this.data('popover')
         , options = typeof option == 'object' && option
       if (!data) $this.data('popover', (data = new Popover(this, options)))
-      if (typeof option == 'string') data[option]()
+      if (typeof option == 'string') data[option](flag)
     })
   }
 

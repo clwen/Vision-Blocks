@@ -23,7 +23,7 @@ $.fn.applyPopover = function(options) {
 		});
 		
 		$this.off("shown").on("shown", function() {
-			$(".popover-enable").not(this).popover("hide");
+			$(".popover-enable").not(this).popover("hide", false);
 			if (options['shown-event']) {
 				options['shown-event'](blockOptions);
 			}

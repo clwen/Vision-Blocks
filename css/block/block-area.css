@@ -494,6 +494,10 @@ Icons for building locks
 	background-position: -240px -40px;
 }
 
+.icon1-fake {
+	background-position: -280px -40px;
+}
+
 .icon-remove-block {
 	float: right;
 }

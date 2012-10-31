@@ -7,7 +7,7 @@ var loadImage = function () {
 	if (this.options) {
 		url = this.options['url'];
 	}
-	img.src = url ? url : "img/rmc.jpg";
+	img.src = url ? url : "file/rmc.jpg";
 	var maxWidth = 320;
 	var maxHeight = 240;
 	
@@ -31,7 +31,7 @@ var loadVideo = function () {
 		url = this.options['url'];
 	}
 	
-	url = url ? url : "img/fox.mp4";
+	url = url ? url : "file/fox.mp4";
 	
 	if (video.src.indexOf(url) == -1) {
 		video.src = url;
