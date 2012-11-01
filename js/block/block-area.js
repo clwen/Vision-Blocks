@@ -136,24 +136,23 @@ $(document).ready(function() {
 					content: function() {
 						var html = "<div>"
 								html += "<div>"
-									html += "<div>URL</div> <div><input id='load-image-url' class='enter-out-popover'/></div>"
+									html += "<div>URL</div> <div><input id='load-image-url' name='files[]' type='file'/></div>"
 								html += "</div>"
 						    html += "</div>"
 						
 						return html;
 					}
 				},
-				'block-options': {
-					'url' : 'file/rmc.jpg'
-				},
-				'shown-event': function(blockOptions) {
-					$("#load-image-url").val(blockOptions['url']);
-				},
 				'hidden-event': function(blockOptions) {
-					blockOptions['url'] = $("#load-image-url").val();
-					
-					if (blockOptions['url']) {
-						block.find(".build-block-desc span").text(blockOptions['url']);
+					var file = document.getElementById("load-image-url").files;
+					if (file && file.length) {
+						file = file[0];
+						
+						blockOptions['url'] =  window.URL.createObjectURL(file);
+						
+						if (blockOptions['url']) {
+							block.find(".build-block-desc div").text(file.name.substring(0,6));
+						}
 					}
 				}
 			});
@@ -164,24 +163,23 @@ $(document).ready(function() {
 					content: function() {
 						var html = "<div>"
 								html += "<div>"
-									html += "<div>URL</div> <div><input id='load-video-url' class='enter-out-popover'/></div>"
+									html += "<div>URL</div> <div><input type='file' id='load-video-url' name='files[]' /></div>"
 								html += "</div>"
 						    html += "</div>"
 						
 						return html;
 					}
 				},
-				'block-options': {
-					'url' : 'file/fox.mp4'
-				},
-				'shown-event': function(blockOptions) {
-					$("#load-video-url").val(blockOptions['url']);
-				},
 				'hidden-event': function(blockOptions) {
-					blockOptions['url'] = $("#load-video-url").val();
-					
-					if (blockOptions['url']) {
-						block.find(".build-block-desc span").text(blockOptions['url']);
+					var file = document.getElementById("load-video-url").files;
+					if (file && file.length) {
+						file = file[0];
+						
+						blockOptions['url'] = window.URL.createObjectURL(file);
+						
+						if (blockOptions['url']) {
+							block.find(".build-block-desc div").text(file.name.substring(0,6));
+						}
 					}
 				}
 			});

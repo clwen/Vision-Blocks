@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+.popover {
+	overflow: hidden;
+}
+
 .popover-footer {
 	border: 1px dashed black;
 }
