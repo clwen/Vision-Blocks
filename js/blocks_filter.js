@@ -84,6 +84,34 @@ var distortion = function(args) {
 	updateCanvas(dPixels);
 };
 
+var rgb_to_h = function(r, g, b) {
+    var h;
+    var min, max;
+
+    min = Math.min(r, g, b);
+    max = Math.max(r, g, b);
+    delta = max - min;
+
+    if (max === 0) {
+        h = -1;
+        return h;
+    }
+
+    if (r === max) {
+        h = (g - b) / delta;
+    } else if (g === max) {
+        h = 2 + (b - r) / delta;
+    } else {
+        h = 4 + (r - g) / delta;
+    }
+
+    h *= 60;
+    if (h < 0) {
+        h += 360;
+    }
+    return h;
+}
+
 var skinDetection = function () {
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
@@ -98,8 +126,11 @@ var skinDetection = function () {
 
         cr = 0.15 * r - 0.3 * g + 0.45 * b + 128;
         cb = 0.45 * r - 0.35 * g - 0.07 + 128;
+        h = rgb_to_h(r, g, b);
 
-        if ((cr >= 150) && (cr <= 165) && (cb >= 145) && (cb <= 190)) {
+        if ((cr >= 140) && (cr <= 175) && 
+                (cb >= 135) && (cb <= 200) &&
+                (h >= 5) && (h <= 50)) {
             data[i] = 255;
             data[i+1] = 255;
             data[i+2] = 255;
