@@ -26,6 +26,7 @@ $(document).ready(function(){
 			'distortionFilter' 		: function() {return new vb.Block('Distortion Filter', distortion)},
 			'selectRegion' 			: function() {return new vb.Block('select Region', selectRegion)},
 			'faceDetection' 		: function() {return new vb.Block('Face Detection', faceDetection, true)},
+			'skinDetection' 		: function() {return new vb.Block('Skin Detection', skinDetection)},
 			'ifBlock'				: function() {return new vb.ConditionalFlowBlock('If Block', ifBlock)},
 			'play'					: function() {return new vb.FlowBlock('Play', play)},
 			'playForever'			: function() {return new vb.FlowBlock('Play Forever', playForever)}
