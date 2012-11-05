@@ -17,5 +17,5 @@ var playForever = function (stack) {
 	clearExecuteLoopInterval();
 	executeLoopInterval = setInterval(function () {
 		stack.execute();
-	}, 100);
+	}, 500);
 };

@@ -27,3 +27,35 @@ var selectRegion = function() {
 		}
 	}
 };
+
+
+var intrusionDetection = function () {
+	var canvas = VB.interpreter.dictionary["canvas"];
+	var pixels = getPixels(canvas);
+	var newPixels = getPixels(canvas);
+	var data = pixels.data;
+	var newData = newPixels.data;
+
+	if (!VB.interpreter.dictionary["pixelsMean"]) {
+		VB.interpreter.dictionary["pixelsMean"] = data;
+	}
+
+	var pixelsMean = VB.interpreter.dictionary["pixelsMean"];
+	var i;
+
+	for (i=0; i<data.length; i+=4) {
+		newData[i] = data[i] - pixelsMean[i];
+		newData[i+1] = data[i+1] - pixelsMean[i+1];
+		newData[i+2] = data[i+2] - pixelsMean[i+2];
+
+		pixelsMean[i] = (pixelsMean[i] + data[i]) / 2;
+		pixelsMean[i+1] = (pixelsMean[i+1] + data[i+1]) / 2;
+		pixelsMean[i+2] = (pixelsMean[i+2] + data[i+2]) / 2;
+	}
+	updateCanvas(newPixels);
+}
+
+var speedDetection = function () {
+	var canvas = VB.interpreter.dictionary["canvas"];
+	var pixels = getPixels(canvas);
+}
