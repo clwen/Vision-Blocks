@@ -24,10 +24,10 @@ var resize = function(obj, maxWidth, maxHeight) {
 var getPixels = function (canvas) {
   ctx = canvas.getContext('2d');
   return ctx.getImageData(
-  		VB.defaultValues.workingArea.x,
-  		VB.defaultValues.workingArea.y,
-  		VB.defaultValues.workingArea.width,
-  		VB.defaultValues.workingArea.height
+  		VB.interpreter.dictionary["workingArea"].x,
+  		VB.interpreter.dictionary["workingArea"].y,
+  		VB.interpreter.dictionary["workingArea"].width,
+  		VB.interpreter.dictionary["workingArea"].height
   		);
 };
 
@@ -76,8 +76,8 @@ var updateCanvas = function(imgData) {
 	var canvas = document.getElementById("outputCanvas");
 	canvas.getContext('2d').putImageData(
 		imgData,
-		VB.defaultValues.workingArea.x,
-		VB.defaultValues.workingArea.y		
+		VB.interpreter.dictionary["workingArea"].x,
+		VB.interpreter.dictionary["workingArea"].y		
 		);
 };
 
@@ -97,14 +97,11 @@ var camLoad = function(){
     	video.src = window.URL.createObjectURL(stream);
   	});
 };
+/* Bad practice . . .*/
 camLoad();
 
-var wait = function() {
-	//TODO
-}
-
 /* Select the region to work with the blocks */
-var drawRegion = function(box, color) {
+var draw = function(box, color) {
 	var canvas = VB.interpreter.dictionary["canvas"];
 
 	var ctx = canvas.getContext('2d');

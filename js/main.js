@@ -5,15 +5,6 @@ $(document).ready(function(){
 	VB = {
 		interpreter : new vb.Interpreter(),
 		
-		defaultValues : {
-			workingArea : {
-				x : 0,
-				y : 0,
-				width: 320,
-				height: 240
-			}
-		},
-
 		/* Blocks declaration */
 		base : {
 			'loadImage' 			: function() {return new vb.Block('Load Image', loadImage, true)},
@@ -24,7 +15,7 @@ $(document).ready(function(){
 			'colorRearrangement'	: function() {return new vb.Block('Color Rearrangement', colorRearrangement)},
 			'grayScaleFilter' 		: function() {return new vb.Block('Gray Scale', grayScale)},
 			'distortionFilter' 		: function() {return new vb.Block('Distortion Filter', distortion)},
-			'selectRegion' 			: function() {return new vb.Block('select Region', selectRegion)},
+			'drawRegion' 			: function() {return new vb.Block('Draw Region', drawRegion)},
 			'faceDetection' 		: function() {return new vb.Block('Face Detection', faceDetection, true)},
 			'skinDetection' 		: function() {return new vb.Block('Skin Detection', skinDetection)},
 			'intrusionDetection' 	: function() {return new vb.Block('Intrusion Detection', intrusionDetection)},
@@ -61,4 +52,11 @@ $(document).ready(function(){
 			VB.interpreter.execute();
 		}
 	};
+	VB.interpreter.dictionary["workingArea"] = {
+			x : 0,
+			y : 0,
+			width: 320,
+			height: 240
+	};
+
 });

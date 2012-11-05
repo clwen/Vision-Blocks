@@ -19,14 +19,21 @@ var faceDetection = function() {
 		}).detect(1, 1.25, 0.1, 1, true);
 };
 
-var selectRegion = function() {
+var drawRegion = function() {
 	var faces = VB.interpreter.dictionary["faces_array"];
 	if (faces) {
 		for (var i in faces) {
-			drawRegion(faces[i], this.options['rgb']);
+			draw(faces[i], this.options['rgb']);
 		}
 	}
 };
+
+var selectRegion = function() {
+	VB.interpreter.dictionary["workingArea"].x = this.options['x'];
+	VB.interpreter.dictionary["workingArea"].x = this.options['y'];
+	VB.interpreter.dictionary["workingArea"].x = this.options['width'];
+	VB.interpreter.dictionary["workingArea"].x = this.options['height'];
+}
 
 
 var intrusionDetection = function () {
