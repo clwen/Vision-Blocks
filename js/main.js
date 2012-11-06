@@ -26,27 +26,35 @@ $(document).ready(function(){
 			'playForever'			: function() {return new vb.FlowBlock('Play Forever', playForever)}
 		},
 		
-		converter : function() {
-			var mainBlockFake = htmlExecute();
+		/*
+		 * Get the chain of block-info, creates real blocks based on block-info and organization of the chain.
+		 * 
+		 * A block-info has;
+		 *  - name     : Name of real block
+		 *  - options  : Options on popover
+		 *  - children : Blocks dragged inside
+		 * */
+		execute : function() {
+			var mainBlockInfo = getBlockInfoChain();
 			
-			var mainBlock = VB.base[mainBlockFake.name]();
+			var mainBlock = VB.base[mainBlockInfo.name]();
 			
-			var fillStack = function(blockParent, blockParentFake) {
-				for (var i in blockParentFake.children) {
-					var blockFake = blockParentFake.children[i];
-					var blockReal = VB.base[blockFake.name]();
+			var fillStack = function(blockParent, blockParentInfo) {
+				for (var i in blockParentInfo.children) {
+					var blockInfo = blockParentInfo.children[i];
+					var blockReal = VB.base[blockInfo.name]();
 					
-					blockReal.options = blockFake.options;
+					blockReal.options = blockInfo.options;
 					
 					blockParent.subStack.append(blockReal);
 					
 					if (blockReal.subStack) {
-						fillStack(blockReal, blockFake);
+						fillStack(blockReal, blockInfo);
 					}
 				}
 			};
 			
-			fillStack(mainBlock, mainBlockFake);
+			fillStack(mainBlock, mainBlockInfo);
 			
 			VB.interpreter.clear();
 			VB.interpreter.append(mainBlock);

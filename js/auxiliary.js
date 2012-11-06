@@ -115,7 +115,11 @@ var draw = function(box, color) {
 	updateCanvas(getPixels(canvas));
 };
 
-var htmlExecute = function() {
+
+/*
+ * Returns the chain of block-info (Base information about a block, like name and options on popover)
+ * */
+var getBlockInfoChain = function() {
 	var firstBlock = $(".build-area").find(" > .build-block");
 	
 	if (firstBlock) {
@@ -168,5 +172,5 @@ var reset = function() {
 var performExecute = function() {
 	reset();
 	
-	VB.converter();
+	VB.execute();
 };
