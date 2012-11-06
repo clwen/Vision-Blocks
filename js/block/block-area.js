@@ -102,13 +102,13 @@ $(document).ready(function() {
 					blockOptions['condition'] = $("#if-popover-condition").val();
 				}
 			});
-		} else if (block.hasClass("build-block-select-region")) {
+		} else if (block.hasClass("build-block-draw-region")) {
 			block.find(".build-block-2-title-wrapper:first").applyPopover({
 				'popover': {
 					content: function() {
-						var html = "<div class='build-block-select-region-popover'>"
-								html += "<div class='build-block-select-region-popover-top'>"
-									html += "<div>RGB</div> <div><input id='select-region-popover-color' maxlength='6' class='enter-out-popover'/></div>"
+						var html = "<div class='build-block-draw-region-popover'>"
+								html += "<div class='build-block-draw-region-popover-top'>"
+									html += "<div>RGB</div> <div><input id='draw-region-popover-color' maxlength='6' class='enter-out-popover'/></div>"
 								html += "</div>"
 						    html += "</div>"
 						
@@ -119,14 +119,51 @@ $(document).ready(function() {
 					'rgb' : '000000'
 				},
 				'shown-event': function(blockOptions) {
-					$("#select-region-popover-color").val(blockOptions['rgb']);
+					$("#draw-region-popover-color").val(blockOptions['rgb']);
 				},
 				'hidden-event': function(blockOptions) {
-					blockOptions['rgb'] = $("#select-region-popover-color").val();
+					blockOptions['rgb'] = $("#draw-region-popover-color").val();
 					
 					if (blockOptions['rgb']) {
 						block.find(".build-block-draw-rect-condition-rgb").css("background-color", '#'+blockOptions['rgb']);
 					}
+				}
+			});
+			
+		} else if (block.hasClass("build-block-select-region")) {
+			block.find(".build-block-2-title-wrapper:first").applyPopover({
+				'popover': {
+					content: function() {
+						var html = "<div class='build-block-select-region-popover'>"
+								html += "<div class='build-block-select-region-popover-top'>"
+									html += "<div>X</div> <div><input id='select-region-popover-x' maxlength='3' class='enter-out-popover'/></div>"
+									html += "<div>Y</div> <div><input id='select-region-popover-y' maxlength='3' class='enter-out-popover'/></div>"
+									html += "<br/>"
+									html += "<div>W</div> <div><input id='select-region-popover-w' maxlength='3' class='enter-out-popover'/></div>"
+									html += "<div>H</div> <div><input id='select-region-popover-h' maxlength='3' class='enter-out-popover'/></div>"
+								html += "</div>"
+						    html += "</div>"
+						
+						return html;
+					}
+				},
+				'block-options': {
+					'x' 	 : '0',
+					'y' 	 : '0',
+					'width'  : 320,
+					'height' : 240
+				},
+				'shown-event': function(blockOptions) {
+					$("#select-region-popover-x").val(blockOptions['x']);
+					$("#select-region-popover-y").val(blockOptions['y']);
+					$("#select-region-popover-w").val(blockOptions['width']);
+					$("#select-region-popover-h").val(blockOptions['height']);
+				},
+				'hidden-event': function(blockOptions) {
+					blockOptions['x'] = $("#select-region-popover-x").val();
+					blockOptions['y'] = $("#select-region-popover-y").val();
+					blockOptions['width'] = $("#select-region-popover-w").val();
+					blockOptions['height'] = $("#select-region-popover-h").val();
 				}
 			});
 			

@@ -16,6 +16,7 @@ $(document).ready(function(){
 			'grayScaleFilter' 		: function() {return new vb.Block('Gray Scale', grayScale)},
 			'distortionFilter' 		: function() {return new vb.Block('Distortion Filter', distortion)},
 			'drawRegion' 			: function() {return new vb.Block('Draw Region', drawRegion)},
+			'selectRegion' 			: function() {return new vb.Block('Select Region', selectRegion)},
 			'faceDetection' 		: function() {return new vb.Block('Face Detection', faceDetection, true)},
 			'skinDetection' 		: function() {return new vb.Block('Skin Detection', skinDetection)},
 			'intrusionDetection' 	: function() {return new vb.Block('Intrusion Detection', intrusionDetection)},

@@ -30,9 +30,9 @@ var drawRegion = function() {
 
 var selectRegion = function() {
 	VB.interpreter.dictionary["workingArea"].x = this.options['x'];
-	VB.interpreter.dictionary["workingArea"].x = this.options['y'];
-	VB.interpreter.dictionary["workingArea"].x = this.options['width'];
-	VB.interpreter.dictionary["workingArea"].x = this.options['height'];
+	VB.interpreter.dictionary["workingArea"].y = this.options['y'];
+	VB.interpreter.dictionary["workingArea"].width = this.options['width'];
+	VB.interpreter.dictionary["workingArea"].height = this.options['height'];
 }
 
 
