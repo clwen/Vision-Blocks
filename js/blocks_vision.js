@@ -33,6 +33,7 @@ var selectRegion = function() {
 	VB.interpreter.dictionary["workingArea"].y = this.options['y'];
 	VB.interpreter.dictionary["workingArea"].width = this.options['width'];
 	VB.interpreter.dictionary["workingArea"].height = this.options['height'];
+	draw(VB.interpreter.dictionary["workingArea"], 000000);
 }
 
 
@@ -48,18 +49,23 @@ var intrusionDetection = function () {
 	}
 
 	var pixelsMean = VB.interpreter.dictionary["pixelsMean"];
-	var i;
+	var i,j = 0;
 
 	for (i=0; i<data.length; i+=4) {
 		newData[i] = data[i] - pixelsMean[i];
 		newData[i+1] = data[i+1] - pixelsMean[i+1];
 		newData[i+2] = data[i+2] - pixelsMean[i+2];
 
+		if (((newData[i] + newData[i+1] + newData[i+2])/3) > 128) {
+			VB.interpreter.dictionary["intrusion"] = true;
+			console.log("intruder detected:"+j);
+			j++;
+		}
+
 		pixelsMean[i] = (pixelsMean[i] + data[i]) / 2;
 		pixelsMean[i+1] = (pixelsMean[i+1] + data[i+1]) / 2;
 		pixelsMean[i+2] = (pixelsMean[i+2] + data[i+2]) / 2;
 	}
-	updateCanvas(newPixels);
 }
 
 var speedDetection = function () {
