@@ -1,21 +1,19 @@
-/* Organizes the blocks and append them into the LinkedList for the execution */
-var executeLoopInterval = null;
-var clearExecuteLoopInterval = function() {
-	if (executeLoopInterval) {
-		clearInterval(executeLoopInterval);
-		executeLoopInterval = null;
-	}
-};
+var executingLoopInterval = false;
 
 /* Organizes the blocks and append them into the LinkedList for the execution */
 var play = function (stack) {
-	clearExecuteLoopInterval();
+	executingLoopInterval = false;
 	stack.execute();
 };
 
 var playForever = function (stack) {
-	clearExecuteLoopInterval();
-	executeLoopInterval = setInterval(function () {
-		stack.execute();
-	}, 500);
+	var executeLoop = function() {
+		if (executingLoopInterval) {
+			stack.execute();
+			setTimeout(executeLoop, 800);
+		}
+	};
+	
+	executingLoopInterval = true;
+	executeLoop();
 };
