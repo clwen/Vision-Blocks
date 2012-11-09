@@ -25,8 +25,8 @@ HAAR.Detector.prototype.image=function(image,scale)
 		scale=0.5;
 	this.ratio=scale;
 	this.async=true;
-	this.canvas.width=this.ratio*VB.defaultValues.workingArea.width;
-	this.canvas.height=this.ratio*VB.defaultValues.workingArea.height;
+	this.canvas.width=this.ratio*VB.interpreter.dictionary["workingArea"].width;
+	this.canvas.height=this.ratio*VB.interpreter.dictionary["workingArea"].height;
 	this.canvas.getContext('2d').drawImage(image, 0, 0, image.width, image.height, 0, 0, this.ratio*image.width, this.ratio*image.height);
 	return this;
 };
@@ -77,15 +77,15 @@ HAAR.Detector.prototype.computeGray=function(image)
 	/* Refactoring to use just the selected area ********************************
 	var data=image.getContext('2d').getImageData(0,0,image.width,image.height); */
 	var data=image.getContext('2d').getImageData(
-		VB.defaultValues.workingArea.x,
-  		VB.defaultValues.workingArea.y,
-  		VB.defaultValues.workingArea.width,
-  		VB.defaultValues.workingArea.height
+		VB.interpreter.dictionary["workingArea"].x,
+  		VB.interpreter.dictionary["workingArea"].y,
+  		VB.interpreter.dictionary["workingArea"].width,
+  		VB.interpreter.dictionary["workingArea"].height
 		);
-	this.width=VB.defaultValues.workingArea.width;
-	this.height=VB.defaultValues.workingArea.height;
-	var w=VB.defaultValues.workingArea.width;
-	var h=VB.defaultValues.workingArea.height;
+	this.width=VB.interpreter.dictionary["workingArea"].width;
+	this.height=VB.interpreter.dictionary["workingArea"].height;
+	var w=VB.interpreter.dictionary["workingArea"].width;
+	var h=VB.interpreter.dictionary["workingArea"].height;
 	/************************************* End ***********************************/ 
 
 	var col,col2,i,j,pix,r,g,b,grayc,grayc2;
