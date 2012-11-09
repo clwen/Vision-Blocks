@@ -1,5 +1,8 @@
 $(document).ready(function() {
 	
+	/*
+	 * Hides visible popovers
+	 * */
 	var hidePopoverActive = function() {
 		if ($(".popover.in").size() > 0) {
 			var $popover = null;
@@ -18,6 +21,9 @@ $(document).ready(function() {
 		}
 	};
 	
+	/*
+	 * When user clicks out a popover, visible popovers are closed
+	 * */
 	$("html").on("click", "body", function(e){
 		var test = $(e.target);
 		if (!test.is(".popover") && test.parents(".popover:first").size() == 0) {
@@ -25,20 +31,33 @@ $(document).ready(function() {
 		}
 	});
 	
+	/*
+	 * When user press ENTER inside a input with class "enter-out-popover", the parent
+	 * popover is closed
+	 * */
 	$("body").on("keydown", ".enter-out-popover", function(e){
 		if (e.keyCode == 13) {
 			hidePopoverActive();
 		}
 	});
 	
+	/*
+	 * Configures popovers to the right
+	 * */
 	$(".block-container").tooltip({placement: "right"});
 	
+	/*
+	 * Stores base measurements to do the process of drag-and-drop 
+	 * */
 	var measurements = {
 		"build-block-border-width": parseInt($(".build-block-title-wrapper:first").css("border-left-width")) + 
 		parseInt($(".build-block-title-wrapper:first").css("border-right-width")), 
 	};
 	measurements["build-area-gap-right"] = parseInt($(".build-area").css("padding-left")) + measurements['build-block-border-width'];
 	
+	/*
+	 * Recalcs the max width of the blocks, and adjust all of them to the same width
+	 * */
 	var recalcWidth = function() {
 		var max = 0;
 		var firstBlock = $(".build-area .build-block:first");
@@ -58,6 +77,9 @@ $(document).ready(function() {
 		$(".build-area").width(firstBlock.find("*:first").width() + measurements["build-area-gap-right"]);
 	};
 	
+	/*
+	 * Function called when a block is added
+	 * */
 	var addedBlock = function(block) {
 		recalcWidth();
 		
@@ -254,6 +276,11 @@ $(document).ready(function() {
 		}
 	};
 	
+	/*
+	 * Function called to reorganize blocks on stack.
+	 * 
+	 * Fix - There are some magic numbers
+	 * */
 	var refreshBlocks = function() {
 		var buildArea = $(".build-area");
 		
