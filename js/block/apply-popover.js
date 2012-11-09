@@ -1,3 +1,16 @@
+/*
+ * This jQuery's plugin creates popovers on blocks. The popovers
+ * receive inputs from user.
+ * 
+ * The parameter "options" is an object, and can has these attributes:
+ * 
+ * {
+ * 	 "popover": Object that is used by Bootstrap's Popover function.
+ *	 "shown-event": Function that is called when the popover is opened.
+ *	 "hidden-event": Function that is called when the popover is closed.
+ * }
+ * 
+ * */
 $.fn.applyPopover = function(options) {
 	var popoverDefault = {
 		title: "Values"
