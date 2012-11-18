@@ -131,6 +131,10 @@ $(document).ready(function() {
 						var html = "<div class='build-block-draw-region-popover'>"
 								html += "<div class='build-block-draw-region-popover-top'>"
 									html += "<div>RGB</div> <div><input id='draw-region-popover-color' maxlength='6' class='enter-out-popover'/></div>"
+									html += "<div>X</div> <div><input id='draw-region-popover-x' maxlength='3' class='enter-out-popover'/></div>"
+									html += "<div>Y</div> <div><input id='draw-region-popover-y' maxlength='3' class='enter-out-popover'/></div>"
+									html += "<div>Width</div> <div><input id='draw-region-popover-width' maxlength='3' class='enter-out-popover'/></div>"
+									html += "<div>Height</div> <div><input id='draw-region-popover-height' maxlength='3' class='enter-out-popover'/></div>"
 								html += "</div>"
 						    html += "</div>"
 						
@@ -138,13 +142,57 @@ $(document).ready(function() {
 					}
 				},
 				'block-options': {
-					'rgb' : '000000'
+					'rgb' 	: '000000',
+					'x'		: 0,
+					'y'		: 0,
+					'width' : 320,			
+					'height': 240
 				},
 				'shown-event': function(blockOptions) {
 					$("#draw-region-popover-color").val(blockOptions['rgb']);
+					$("#draw-region-popover-x").val(blockOptions['x']);
+					$("#draw-region-popover-y").val(blockOptions['y']);
+					$("#draw-region-popover-width").val(blockOptions['width']);
+					$("#draw-region-popover-height").val(blockOptions['height']);
 				},
 				'hidden-event': function(blockOptions) {
 					blockOptions['rgb'] = $("#draw-region-popover-color").val();
+					blockOptions['x'] = $("#draw-region-popover-x").val();
+					blockOptions['y'] = $("#draw-region-popover-y").val();
+					blockOptions['width'] = $("#draw-region-popover-width").val();
+					blockOptions['height'] = $("#draw-region-popover-height").val();
+					
+					if (blockOptions['rgb']) {
+						block.find(".build-block-draw-rect-condition-rgb").css("background-color", '#'+blockOptions['rgb']);
+					}
+				}
+			});
+			
+		} else if (block.hasClass("build-block-draw-regions")) {
+			block.find(".build-block-2-title-wrapper:first").applyPopover({
+				'popover': {
+					content: function() {
+						var html = "<div class='build-block-draw-region-popover'>"
+								html += "<div class='build-block-draw-region-popover-top'>"
+									html += "<div>RGB</div> <div><input id='draw-regions-popover-color' maxlength='6' class='enter-out-popover'/></div>"
+									html += "<div>Boxes</div> <div><input id='draw-regions-popover-boxes' class='enter-out-popover'/></div>"
+								html += "</div>"
+						    html += "</div>"
+						
+						return html;
+					}
+				},
+				'block-options': {
+					'rgb' 	: '000000',
+					'boxes'	: 'faces'
+				},
+				'shown-event': function(blockOptions) {
+					$("#draw-regions-popover-color").val(blockOptions['rgb']);
+					$("#draw-regions-popover-x").val(blockOptions['boxes']);
+				},
+				'hidden-event': function(blockOptions) {
+					blockOptions['rgb'] = $("#draw-regions-popover-color").val();
+					blockOptions['boxes'] = $("#draw-regions-popover-boxes").val();
 					
 					if (blockOptions['rgb']) {
 						block.find(".build-block-draw-rect-condition-rgb").css("background-color", '#'+blockOptions['rgb']);
@@ -253,6 +301,33 @@ $(document).ready(function() {
 		    			html += "<div class='output_element'><span>faceY</span></div>";
 		    			html += "<div class='output_element'><span>faceW</span></div>";
 		    			html += "<div class='output_element'><span>faceH</span></div>";
+		    				
+						return html;
+					}
+				},
+				'shown-event': function(blockOptions) {
+					$("#load-image-url").val(blockOptions['url']);
+					$(".popover-footer-content > div").dragAndDrop({
+						end: function(element) {
+							var blockIf = $(".build-area .build-block-if:eq(0)");
+							if (blockIf) {
+								blockIf.data("block-options")['entry'] = element.text();
+								blockIf.find(".build-block-desc:eq(0) span").text(element.text() + " " +blockIf.data("block-options")['condition']);
+							}
+						}
+					});
+				},
+				'hidden-event': function(blockOptions) {
+					blockOptions['url'] = $("#load-image-url").val();
+				}
+			});
+		} else if (block.hasClass("build-block-detect-intrusion")) {
+			block.find(".build-block-2-title-wrapper:first").applyPopover({
+				'popover': {
+					contentFooter: function() {
+						var html = "";
+						html += "<div class='output_element'><span>intrusionDetected</span></div>";
+			    		html += "<div class='output_element'><span>intrusionBox</span></div>";
 		    				
 						return html;
 					}

@@ -20,10 +20,20 @@ var faceDetection = function() {
 };
 
 var drawRegion = function() {
-	var faces = VB.interpreter.dictionary["faces_array"];
-	if (faces) {
-		for (var i in faces) {
-			draw(faces[i], this.options['rgb']);
+	var box = {
+		x 		: this.options['x'],
+		y 		: this.options['y'],
+		width 	: this.options['width'],
+		height 	: this.options['height'],
+	};
+	draw(box, this.options['rgb']);
+};
+
+var drawRegions = function() {
+	var boxes = VB.interpreter.dictionary[this.options['boxes']];
+	if (boxes) { 
+		for (var i in boxes) {
+			draw(boxes[i], this.options['rgb']);
 		}
 	}
 };
@@ -49,7 +59,7 @@ var intrusionDetection = function () {
 	}
 
 	var pixelsMean = VB.interpreter.dictionary["pixelsMean"];
-	var i,j = 0;
+	var i = 0;
 
 	for (i=0; i<data.length; i+=4) {
 		newData[i] = data[i] - pixelsMean[i];
@@ -58,8 +68,6 @@ var intrusionDetection = function () {
 
 		if (((newData[i] + newData[i+1] + newData[i+2])/3) > 128) {
 			VB.interpreter.dictionary["intrusion"] = true;
-			console.log("intruder detected:"+j);
-			j++;
 		}
 
 		pixelsMean[i] = (pixelsMean[i] + data[i]) / 2;
