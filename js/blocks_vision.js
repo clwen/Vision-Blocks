@@ -19,16 +19,6 @@ var faceDetection = function() {
 		}).detect(1, 1.25, 0.1, 1, true);
 };
 
-var drawRegion = function() {
-	var box = {
-		x 		: this.options['x'],
-		y 		: this.options['y'],
-		width 	: this.options['width'],
-		height 	: this.options['height'],
-	};
-	draw(box, this.options['rgb']);
-};
-
 var drawRegions = function() {
 	var boxes = VB.interpreter.dictionary[this.options['boxes']];
 	if (boxes) { 
@@ -49,12 +39,7 @@ var selectRegion = function() {
 
 var intrusionDetection = function () {
 	VB.interpreter.dictionary["intrusion"] = false;
-	VB.interpreter.dictionary["intrusions"] = {
-		x 		: 0,
-		y 		: 0,
-		width 	: 0,
-		height	: 0
-	};
+	VB.interpreter.dictionary["intrusions"] = [];
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
 	var newPixels = getPixels(canvas);
@@ -86,15 +71,15 @@ var intrusionDetection = function () {
 	}
 
 	if (VB.interpreter.dictionary["intrusion"] == true) {
-		VB.interpreter.dictionary["intrusions"] = {
-		x 		: (Math.floor(begin / 1280)),
-		y 		: (Math.round((begin % 1280) / 4)),
-		width 	: (Math.floor(end / 1280)),
-		height	: (Math.round((end % 1280) / 4))
+		var intrusions = {
+		x 		: (Math.floor((begin % 1280) / 4)),
+		y 		: (Math.floor(begin / 1280)),
+		width 	: (Math.floor((end % 1280) / 4)),
+		height	: (Math.floor(end / 1280))
 		};
-	};
 
-	console.log(VB.interpreter.dictionary["intrusions"]);
+		VB.interpreter.dictionary["intrusions"][0] = intrusions;
+	};
 }
 
 var speedDetection = function () {
