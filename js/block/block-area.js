@@ -95,6 +95,8 @@ $(document).ready(function() {
 					content: function() {
 						var html = "<div class='build-block-if-popover'>"
 								html += "<div class='build-block-if-popover-top'>"
+									html += "<div>Entry</div> <div><input id='if-popover-entry' value='faces' class='enter-out-popover'/></div>"
+									html += "<br/>"
 									html += "<div>Condition</div> <div><input id='if-popover-condition' value='== 0' class='enter-out-popover'/></div>"
 								html += "</div>"
 								html += "<div class='build-block-if-popover-bottom'>"
@@ -110,6 +112,9 @@ $(document).ready(function() {
 					'entry': 'faces'
 				},
 				'shown-event': function(blockOptions) {
+					if (blockOptions['entry'] != null) {
+						$("#if-popover-entry").val(blockOptions['entry']);
+					}
 					if (blockOptions['condition'] != null) {
 						$("#if-popover-condition").val(blockOptions['condition']);
 					}
@@ -122,6 +127,7 @@ $(document).ready(function() {
 				},
 				'hidden-event': function(blockOptions) {
 					blockOptions['condition'] = $("#if-popover-condition").val();
+					blockOptions['entry'] = $("#if-popover-entry").val();
 				}
 			});
 		} else if (block.hasClass("build-block-draw-region")) {

@@ -48,6 +48,13 @@ var selectRegion = function() {
 
 
 var intrusionDetection = function () {
+	VB.interpreter.dictionary["intrusion"] = false;
+	VB.interpreter.dictionary["intrusions"] = {
+		x 		: 0,
+		y 		: 0,
+		width 	: 0,
+		height	: 0
+	};
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
 	var newPixels = getPixels(canvas);
@@ -59,7 +66,8 @@ var intrusionDetection = function () {
 	}
 
 	var pixelsMean = VB.interpreter.dictionary["pixelsMean"];
-	var i = 0;
+	var i=0, end=0;
+	var begin = data.length;
 
 	for (i=0; i<data.length; i+=4) {
 		newData[i] = data[i] - pixelsMean[i];
@@ -68,12 +76,25 @@ var intrusionDetection = function () {
 
 		if (((newData[i] + newData[i+1] + newData[i+2])/3) > 128) {
 			VB.interpreter.dictionary["intrusion"] = true;
+			if (i < begin) { begin = i};
+			if (i > end) { end = i};
 		}
 
 		pixelsMean[i] = (pixelsMean[i] + data[i]) / 2;
 		pixelsMean[i+1] = (pixelsMean[i+1] + data[i+1]) / 2;
 		pixelsMean[i+2] = (pixelsMean[i+2] + data[i+2]) / 2;
 	}
+
+	if (VB.interpreter.dictionary["intrusion"] == true) {
+		VB.interpreter.dictionary["intrusions"] = {
+		x 		: (Math.floor(begin / 1280)),
+		y 		: (Math.round((begin % 1280) / 4)),
+		width 	: (Math.floor(end / 1280)),
+		height	: (Math.round((end % 1280) / 4))
+		};
+	};
+
+	console.log(VB.interpreter.dictionary["intrusions"]);
 }
 
 var speedDetection = function () {
