@@ -330,13 +330,31 @@ $(document).ready(function() {
 		} else if (block.hasClass("build-block-detect-intrusion")) {
 			block.find(".build-block-2-title-wrapper:first").applyPopover({
 				'popover': {
+					content : function() {
+						var html = "<div class='build-block-detect-intrusion-popover'>"
+								html += "<div class='build-block-detect-intrusion-popover-top'>"
+									html += "<div>X</div> <div><input id='detect-intrusion-popover-x' maxlength='3' class='enter-out-popover'/></div>"
+									html += "<div>Y</div> <div><input id='detect-intrusion-popover-y' maxlength='3' class='enter-out-popover'/></div>"
+									html += "<br/>"
+									html += "<div>W</div> <div><input id='detect-intrusion-popover-w' maxlength='3' class='enter-out-popover'/></div>"
+									html += "<div>H</div> <div><input id='detect-intrusion-popover-h' maxlength='3' class='enter-out-popover'/></div>"
+								html += "</div>"
+						    html += "</div>"
+						    return html;
+					},
 					contentFooter: function() {
 						var html = "";
-						html += "<div class='output_element'><span>intrusionDetected</span></div>";
-			    		html += "<div class='output_element'><span>intrusionBox</span></div>";
+						html += "<div class='output_element'><span>intrusionBox</span></div>";
+			    		html += "<div class='output_element'><span>intrusion</span></div>";
 		    				
 						return html;
 					}
+				},
+				'block-options': {
+					'x' 	 : '0',
+					'y' 	 : '0',
+					'width'  : 320,
+					'height' : 240
 				},
 				'shown-event': function(blockOptions) {
 					$("#load-image-url").val(blockOptions['url']);
@@ -349,9 +367,17 @@ $(document).ready(function() {
 							}
 						}
 					});
+					$("#detect-intrusion-popover-x").val(blockOptions['x']);
+					$("#detect-intrusion-popover-y").val(blockOptions['y']);
+					$("#detect-intrusion-popover-w").val(blockOptions['width']);
+					$("#detect-intrusion-popover-h").val(blockOptions['height']);
 				},
 				'hidden-event': function(blockOptions) {
 					blockOptions['url'] = $("#load-image-url").val();
+					blockOptions['x'] = $("#detect-intrusion-popover-x").val();
+					blockOptions['y'] = $("#detect-intrusion-popover-y").val();
+					blockOptions['width'] = $("#detect-intrusion-popover-w").val();
+					blockOptions['height'] = $("#detect-intrusion-popover-h").val();
 				}
 			});
 		}

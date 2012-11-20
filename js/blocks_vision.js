@@ -40,6 +40,12 @@ var selectRegion = function() {
 var intrusionDetection = function () {
 	VB.interpreter.dictionary["intrusion"] = false;
 	VB.interpreter.dictionary["intrusions"] = [];
+	VB.interpreter.dictionary["workingArea"].x = this.options['x'];
+	VB.interpreter.dictionary["workingArea"].y = this.options['y'];
+	VB.interpreter.dictionary["workingArea"].width = this.options['width'];
+	VB.interpreter.dictionary["workingArea"].height = this.options['height'];
+	draw(VB.interpreter.dictionary["workingArea"], 000000);
+	
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
 	var newPixels = getPixels(canvas);
