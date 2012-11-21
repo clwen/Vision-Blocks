@@ -118,7 +118,7 @@ var writeText = function() {
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var ctx = canvas.getContext('2d');
 	ctx.font="20px Georgia";
-	ctx.fillText(this.options['text'], 0, 0);
+	ctx.fillText(this.options['text'], 0, 15);
 }
 
 var cutHex = function(rgbh) {
