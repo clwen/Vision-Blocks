@@ -119,12 +119,7 @@ var writeText = function() {
 	var ctx = canvas.getContext('2d');
 	ctx.font="20px Georgia";
 	ctx.fillText(this.options['text'], 0, 15);
-}
-
-var cutHex = function(rgbh) {
-	return (rgbh.charAt(0)=="#") ? rgbh.substring(1,7):rgbh;
-}
-
+};
 
 /*
  * Returns the chain of block-info (Base information about a block, like name and options on popover)

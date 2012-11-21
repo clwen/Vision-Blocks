@@ -34,8 +34,7 @@ var selectRegion = function() {
 	VB.interpreter.dictionary["workingArea"].width = this.options['width'];
 	VB.interpreter.dictionary["workingArea"].height = this.options['height'];
 	draw(VB.interpreter.dictionary["workingArea"], 000000);
-}
-
+};
 
 var intrusionDetection = function () {
 	VB.interpreter.dictionary["intrusion"] = false;

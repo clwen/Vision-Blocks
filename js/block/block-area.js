@@ -375,10 +375,10 @@ $(document).ready(function() {
 					}
 				},
 				'block-options': {
-					'x' 	 : '0',
-					'y' 	 : '0',
-					'width'  : 320,
-					'height' : 240
+					'x' 	 : 50,
+					'y' 	 : 50,
+					'width'  : 100,
+					'height' : 100
 				},
 				'shown-event': function(blockOptions) {
 					$("#load-image-url").val(blockOptions['url']);
@@ -529,6 +529,5 @@ $(document).ready(function() {
 				$(this).slideDown();
 			}
 		});
-	});
-	
+	});	
 });
