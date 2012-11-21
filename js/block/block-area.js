@@ -174,6 +174,31 @@ $(document).ready(function() {
 				}
 			});
 			
+		} else if (block.hasClass("build-block-write-text")) {
+			block.find(".build-block-2-title-wrapper:first").applyPopover({
+				'popover': {
+					content: function() {
+						var html = "<div class='build-block-write-text-popover'>"
+								html += "<div class='build-block-write-text-popover-top'>"
+									html += "<div>Text</div> <div><input id='write-text-popover-text' maxlength='15' class='enter-out-popover'/></div>"
+								html += "</div>"
+						    html += "</div>"
+						
+						return html;
+					}
+				},
+				'block-options': {
+					'text'		: ''
+				},
+				'shown-event': function(blockOptions) {
+					$("#write-text-popover-text").val(blockOptions['text']);
+				},
+				'hidden-event': function(blockOptions) {
+					blockOptions['text'] = $("#write-text-popover-text").val();
+					
+				}
+			});
+			
 		} else if (block.hasClass("build-block-draw-regions")) {
 			block.find(".build-block-2-title-wrapper:first").applyPopover({
 				'popover': {
@@ -303,6 +328,7 @@ $(document).ready(function() {
 					contentFooter: function() {
 						var html = "";
 						html += "<div class='output_element'><span>faces</span></div>";
+						html += "<div class='output_element'><span>faces_array</span></div>";
 			    		html += "<div class='output_element'><span>faceX</span></div>";
 		    			html += "<div class='output_element'><span>faceY</span></div>";
 		    			html += "<div class='output_element'><span>faceW</span></div>";
@@ -344,9 +370,7 @@ $(document).ready(function() {
 					},
 					contentFooter: function() {
 						var html = "";
-						html += "<div class='output_element'><span>intrusionBox</span></div>";
-			    		html += "<div class='output_element'><span>intrusion</span></div>";
-		    				
+							html += "<div class='output_element'><span>intrusion</span></div>";
 						return html;
 					}
 				},

@@ -103,7 +103,6 @@ camLoad();
 /* Select the region to work with the blocks */
 var draw = function(box, color) {
 	var canvas = VB.interpreter.dictionary["canvas"];
-
 	var ctx = canvas.getContext('2d');
 	ctx.strokeStyle="#"+color ? color : "000000";
 	ctx.strokeRect(
@@ -114,6 +113,17 @@ var draw = function(box, color) {
 	
 	updateCanvas(getPixels(canvas));
 };
+
+var writeText = function() {
+	var canvas = VB.interpreter.dictionary["canvas"];
+	var ctx = canvas.getContext('2d');
+	ctx.font="20px Georgia";
+	ctx.fillText(this.options['text'], 0, 0);
+}
+
+var cutHex = function(rgbh) {
+	return (rgbh.charAt(0)=="#") ? rgbh.substring(1,7):rgbh;
+}
 
 
 /*

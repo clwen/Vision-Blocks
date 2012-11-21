@@ -39,7 +39,6 @@ var selectRegion = function() {
 
 var intrusionDetection = function () {
 	VB.interpreter.dictionary["intrusion"] = false;
-	VB.interpreter.dictionary["intrusions"] = [];
 	VB.interpreter.dictionary["workingArea"].x = this.options['x'];
 	VB.interpreter.dictionary["workingArea"].y = this.options['y'];
 	VB.interpreter.dictionary["workingArea"].width = this.options['width'];
@@ -67,8 +66,6 @@ var intrusionDetection = function () {
 
 		if (((newData[i] + newData[i+1] + newData[i+2])/3) > 128) {
 			VB.interpreter.dictionary["intrusion"] = true;
-			if (i < begin) { begin = i};
-			if (i > end) { end = i};
 		}
 
 		pixelsMean[i] = (pixelsMean[i] + data[i]) / 2;
@@ -76,16 +73,6 @@ var intrusionDetection = function () {
 		pixelsMean[i+2] = (pixelsMean[i+2] + data[i+2]) / 2;
 	}
 
-	if (VB.interpreter.dictionary["intrusion"] == true) {
-		var intrusions = {
-		x 		: (Math.floor((begin % 1280) / 4)),
-		y 		: (Math.floor(begin / 1280)),
-		width 	: (Math.floor((end % 1280) / 4)),
-		height	: (Math.floor(end / 1280))
-		};
-
-		VB.interpreter.dictionary["intrusions"][0] = intrusions;
-	};
 }
 
 var speedDetection = function () {
