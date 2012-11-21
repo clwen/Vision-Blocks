@@ -63,13 +63,13 @@ var intrusionDetection = function () {
 		newData[i+1] = data[i+1] - pixelsMean[i+1];
 		newData[i+2] = data[i+2] - pixelsMean[i+2];
 
-		if (((newData[i] + newData[i+1] + newData[i+2])/3) > 128) {
+		if (((newData[i] + newData[i+1] + newData[i+2])/3) > 64) {
 			VB.interpreter.dictionary["intrusion"] = true;
 		}
 
-		pixelsMean[i] = (pixelsMean[i] + data[i]) / 2;
-		pixelsMean[i+1] = (pixelsMean[i+1] + data[i+1]) / 2;
-		pixelsMean[i+2] = (pixelsMean[i+2] + data[i+2]) / 2;
+		// pixelsMean[i] = (pixelsMean[i] + data[i]) / 2;
+		// pixelsMean[i+1] = (pixelsMean[i+1] + data[i+1]) / 2;
+		// pixelsMean[i+2] = (pixelsMean[i+2] + data[i+2]) / 2;
 	}
 
 }
