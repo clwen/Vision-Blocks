@@ -66,12 +66,13 @@ var loadFoodcam = function () {
 	var canvas = document.querySelector("#outputCanvas");
 	var context = canvas.getContext('2d');
 	var video = document.getElementById("inputVideoCam");
-	if (navigator.getUserMedia) {	
-		if(video.paused) video.play();
-		context.drawImage(video, 0, 0, canvas.width, canvas.height);
-		VB.interpreter.dictionary["canvas"] = canvas;
-		thiss.executeNext();
-	} else {
-		console.error("Can't access webcam...");
-	}
+
+    var mjpeg = new MjpegCanvas({
+        host : 'foodcam.media.mit.edu',
+        topic : '/axis-cgi/mjpg/video.cgi?',
+        canvasID : 'outputCanvas',
+    });
+
+    VB.interpreter.dictionary["canvas"] = canvas;
+    thiss.executeNext();
 };
