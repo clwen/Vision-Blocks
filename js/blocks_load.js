@@ -60,3 +60,18 @@ var loadWebcam = function () {
 		console.error("Can't access webcam...");
 	}
 };
+
+var loadFoodcam = function () {
+	var thiss = this;
+	var canvas = document.querySelector("#outputCanvas");
+	var context = canvas.getContext('2d');
+	var video = document.getElementById("inputVideoCam");
+	if (navigator.getUserMedia) {	
+		if(video.paused) video.play();
+		context.drawImage(video, 0, 0, canvas.width, canvas.height);
+		VB.interpreter.dictionary["canvas"] = canvas;
+		thiss.executeNext();
+	} else {
+		console.error("Can't access webcam...");
+	}
+};
