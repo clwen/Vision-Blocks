@@ -215,11 +215,11 @@ $(document).ready(function() {
 				},
 				'block-options': {
 					'rgb' 	: '000000',
-					'boxes'	: 'faces'
+					'boxes'	: 'faces_array'
 				},
 				'shown-event': function(blockOptions) {
 					$("#draw-regions-popover-color").val(blockOptions['rgb']);
-					$("#draw-regions-popover-x").val(blockOptions['boxes']);
+					$("#draw-regions-popover-boxes").val(blockOptions['boxes']);
 				},
 				'hidden-event': function(blockOptions) {
 					blockOptions['rgb'] = $("#draw-regions-popover-color").val();
