@@ -68,7 +68,7 @@ var loadFoodcam = function () {
 	var video = document.getElementById("inputVideoCam");
 
     var mjpeg = new MjpegCanvas({
-        host : 'foodcam.media.mit.edu',
+        host : 'foodcam-proxy.media.mit.edu',
         topic : '/axis-cgi/mjpg/video.cgi?',
         canvasID : 'outputCanvas',
     });
