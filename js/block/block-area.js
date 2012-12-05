@@ -203,12 +203,12 @@ $(document).ready(function() {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
-                        var html = "<div class='build-block-draw-region-popover'>"
-                        html += "<div class='build-block-draw-region-popover-top'>"
-                        html += "<div>RGB</div> <div><input id='draw-regions-popover-color' maxlength='6' class='enter-out-popover'/></div>"
-                        html += "<div>Boxes</div> <div><input id='draw-regions-popover-boxes' class='enter-out-popover'/></div>"
-                        html += "</div>"
-                        html += "</div>"
+                        var html = "<div class='build-block-draw-region-popover'>";
+                        html += "<div class='build-block-draw-region-popover-top'>";
+                        html += "<div>RGB</div> <div><input id='draw-regions-popover-color' maxlength='6' class='enter-out-popover'/></div>";
+                        html += "<div>Boxes</div> <div><input id='draw-regions-popover-boxes' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
 
                         return html;
                     }
