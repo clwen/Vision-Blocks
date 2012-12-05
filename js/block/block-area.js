@@ -149,10 +149,10 @@ $(document).ready(function() {
                 },
                 'block-options': {
                     'rgb' 	: '000000',
-                'x'		: 0,
-                'y'		: 0,
-                'width' : 320,			
-                'height': 240
+                    'x'		: 0,
+                    'y'		: 0,
+                    'width' : 320,			
+                    'height': 240
                 },
                 'shown-event': function(blockOptions) {
                     $("#draw-region-popover-color").val(blockOptions['rgb']);
@@ -214,7 +214,7 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'rgb' 	: '000000',
+                    'rgb' 	: 'FF0000',
                     'boxes'	: 'faces_array'
                 },
                 'shown-event': function(blockOptions) {
