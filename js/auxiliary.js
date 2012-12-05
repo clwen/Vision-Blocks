@@ -117,8 +117,9 @@ var draw = function(box, color) {
 var writeText = function() {
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var ctx = canvas.getContext('2d');
-	ctx.font="20px Georgia";
-	ctx.fillText(this.options['text'], 0, 15);
+	ctx.font="30px Georgia";
+    ctx.fillStyle = '#FF0000';
+	ctx.fillText(this.options['text'], 30, 30);
 };
 
 /*
