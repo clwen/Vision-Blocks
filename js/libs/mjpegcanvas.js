@@ -196,13 +196,14 @@
                  if (img.width > 0 && img.height > 0) {
                      context.drawImage(img, 0, 0, width, height);
                      errorDrawn = false;
-                 } else if (!errorDrawn) {
-                     // center the error icon
-                     context.drawImage(errorIcon, (width - (width / 2)) / 2,
-                             (height - (height / 2)) / 2, width / 2, height / 2);
-                     errorDrawn = true;
-                     mjpegCanvas.emit('error', 'Invalid stream');
-                 }
+                 } 
+                 // else if (!errorDrawn) {
+                 //     // center the error icon
+                 //     context.drawImage(errorIcon, (width - (width / 2)) / 2,
+                 //             (height - (height / 2)) / 2, width / 2, height / 2);
+                 //     errorDrawn = true;
+                 //     mjpegCanvas.emit('error', 'Invalid stream');
+                 // }
              } else {
                  context.clearRect(0, 0, width, height);
              }
