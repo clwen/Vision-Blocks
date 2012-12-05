@@ -8,8 +8,8 @@ var loadImage = function () {
 		url = this.options['url'];
 	}
 	img.src = url ? url : "file/rmc.jpg";
-	var maxWidth = 320;
-	var maxHeight = 240;
+	var maxWidth = 640;
+	var maxHeight = 480;
 	
 	img.onload = function() {
 		var newSize = resize(img, maxWidth, maxHeight);

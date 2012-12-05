@@ -16,13 +16,13 @@ html,body {
 }
 
 .output-area {
-	width: 320px;
+	width: 640px;
 }
 
 #outputDiv {
 	border: 1px solid black;
-	height: 300px;
-	width: 320px;
+	width: 640px;
+	height: 480px;
 }
 
 #outputDiv video {
