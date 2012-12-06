@@ -1,12 +1,7 @@
-Remember starting a simple server (e.g. python -m SimpleHTTPServer) to avoid canvas security errors
--------------------
-Browsers Compatibility
-Chrome	->	Ok
-Opera	->	Ok
-Firefox	->	NOk
-Safari	->	NOk
-------------------
-We are using object properties as "Dictionary" that may cause problems if we let user create his own keys
-(like "watch", "__proto__" and others reserved words), there is a solution[1] but its perfomance is slower (?)
+VisionBlocks is a platform that makes computer vision programming much easier via drag-and-drop user interface.
 
-[1]https://github.com/sid0/jsdict
+Dev version is constantly updated on web.media.mit.edu/~clwen/vblocks/. Please use latest Google Chrome to enjoy the cutting-edge web technologies. There is an older version located at: http://visionblocks.org/.
+
+Presented by Camera Culture Group at MIT Media Lab <cameraculture.media.mit.edu>.
+
+Feedbacks and collaboration welcomed.
