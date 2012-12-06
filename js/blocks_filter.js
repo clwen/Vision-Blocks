@@ -142,3 +142,34 @@ var skinDetection = function () {
 	}
 	updateCanvas(pixels);
 };
+
+var pixelArt = function () {
+	var canvas = VB.interpreter.dictionary["canvas"];
+	var pixels = getPixels(canvas);
+	var data = pixels.data;
+    var r, g, b;
+    var cr, cb, h;
+	var i;
+	for (i=0; i<data.length; i+=4) {
+		r = data[i];
+		g = data[i+1];
+		b = data[i+2];
+
+        cr = 0.15 * r - 0.3 * g + 0.45 * b + 128;
+        cb = 0.45 * r - 0.35 * g - 0.07 + 128;
+        h = rgb_to_h(r, g, b);
+
+        if ((cr >= 140) && (cr <= 175) && 
+                (cb >= 135) && (cb <= 200) &&
+                (h >= 5) && (h <= 50)) {
+            data[i] = 255;
+            data[i+1] = 255;
+            data[i+2] = 255;
+        } else {
+            data[i] = 0;
+            data[i+1] = 0;
+            data[i+2] = 0;
+        }
+	}
+	updateCanvas(pixels);
+};
