@@ -144,7 +144,14 @@ var skinDetection = function () {
 };
 
 var avg_colors = function(data, sx, sy, w, h, c, gsz) {
-    return data[(sy*w + sx) * 4 + c];
+    // return data[(sy*w + sx) * 4 + c];
+    var sum = 0.0;
+    for (y = sy; y < sy+gsz; y += 1) {
+        for (x = sx; x < sx+gsz; x += 1) {
+            sum += data[(y*w + x) * 4 + c];
+        }
+    }
+    return sum / (gsz * gsz);
 };
 
 var pixelization = function () {
