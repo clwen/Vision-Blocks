@@ -93,23 +93,23 @@ $(document).ready(function() {
             block.find(".build-block-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
-                        var html = "<div class='build-block-if-popover'>"
-                html += "<div class='build-block-if-popover-top'>"
-                html += "<div>Entry</div> <div><input id='if-popover-entry' value='faces' class='enter-out-popover'/></div>"
-                html += "<br/>"
-                html += "<div>Condition</div> <div><input id='if-popover-condition' value='== 0' class='enter-out-popover'/></div>"
-                html += "</div>"
-                html += "<div class='build-block-if-popover-bottom'>"
-                html += "<div id='if-popover-final-condition'><span></span></div>"
-                html += "</div>"
-                html += "</div>"
+                        var html = "<div class='build-block-if-popover'>";
+                        html += "<div class='build-block-if-popover-top'>";
+                        html += "<div>Entry</div> <div><input id='if-popover-entry' value='faces' class='enter-out-popover'/></div>";
+                        html += "<br/>";
+                        html += "<div>Condition</div> <div><input id='if-popover-condition' value='== 0' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "<div class='build-block-if-popover-bottom'>";
+                        html += "<div id='if-popover-final-condition'><span></span></div>";
+                        html += "</div>";
+                        html += "</div>";
 
-                return html;
+                        return html;
                     }
                 },
                 'block-options': {
                     'condition' : ' == 0',
-                'entry': 'faces'
+                    'entry': 'faces'
                 },
                 'shown-event': function(blockOptions) {
                     if (blockOptions['entry'] != null) {
@@ -134,17 +134,17 @@ $(document).ready(function() {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
-                        var html = "<div class='build-block-draw-region-popover'>"
-                html += "<div class='build-block-draw-region-popover-top'>"
-                html += "<div>RGB</div> <div><input id='draw-region-popover-color' maxlength='6' class='enter-out-popover'/></div>"
-                html += "<div>X</div> <div><input id='draw-region-popover-x' maxlength='3' class='enter-out-popover'/></div>"
-                html += "<div>Y</div> <div><input id='draw-region-popover-y' maxlength='3' class='enter-out-popover'/></div>"
-                html += "<div>Width</div> <div><input id='draw-region-popover-width' maxlength='3' class='enter-out-popover'/></div>"
-                html += "<div>Height</div> <div><input id='draw-region-popover-height' maxlength='3' class='enter-out-popover'/></div>"
-                html += "</div>"
-                html += "</div>"
+                        var html = "<div class='build-block-draw-region-popover'>";
+                        html += "<div class='build-block-draw-region-popover-top'>";
+                        html += "<div>RGB</div> <div><input id='draw-region-popover-color' maxlength='6' class='enter-out-popover'/></div>";
+                        html += "<div>X</div> <div><input id='draw-region-popover-x' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<div>Y</div> <div><input id='draw-region-popover-y' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<div>Width</div> <div><input id='draw-region-popover-width' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<div>Height</div> <div><input id='draw-region-popover-height' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
 
-                return html;
+                        return html;
                     }
                 },
                 'block-options': {
@@ -178,13 +178,13 @@ $(document).ready(function() {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
-                        var html = "<div class='build-block-write-text-popover'>"
-                html += "<div class='build-block-write-text-popover-top'>"
-                html += "<div>Text</div> <div><input id='write-text-popover-text' maxlength='15' class='enter-out-popover'/></div>"
-                html += "</div>"
-                html += "</div>"
+                        var html = "<div class='build-block-write-text-popover'>";
+                        html += "<div class='build-block-write-text-popover-top'>";
+                        html += "<div>Text</div> <div><input id='write-text-popover-text' maxlength='15' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
 
-                return html;
+                        return html;
                     }
                 },
                 'block-options': {
@@ -235,24 +235,24 @@ $(document).ready(function() {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
-                        var html = "<div class='build-block-select-region-popover'>"
-                html += "<div class='build-block-select-region-popover-top'>"
-                html += "<div>X</div> <div><input id='select-region-popover-x' maxlength='3' class='enter-out-popover'/></div>"
-                html += "<div>Y</div> <div><input id='select-region-popover-y' maxlength='3' class='enter-out-popover'/></div>"
-                html += "<br/>"
-                html += "<div>W</div> <div><input id='select-region-popover-w' maxlength='3' class='enter-out-popover'/></div>"
-                html += "<div>H</div> <div><input id='select-region-popover-h' maxlength='3' class='enter-out-popover'/></div>"
-                html += "</div>"
-                html += "</div>"
+                        var html = "<div class='build-block-select-region-popover'>";
+                        html += "<div class='build-block-select-region-popover-top'>";
+                        html += "<div>X</div> <div><input id='select-region-popover-x' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<div>Y</div> <div><input id='select-region-popover-y' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<br/>";
+                        html += "<div>W</div> <div><input id='select-region-popover-w' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<div>H</div> <div><input id='select-region-popover-h' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
 
-                return html;
+                        return html;
                     }
                 },
                 'block-options': {
                     'x' 	 : '0',
-                'y' 	 : '0',
-                'width'  : 320,
-                'height' : 240
+                    'y' 	 : '0',
+                    'width'  : 320,
+                    'height' : 240
                 },
                 'shown-event': function(blockOptions) {
                     $("#select-region-popover-x").val(blockOptions['x']);
@@ -272,13 +272,13 @@ $(document).ready(function() {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
-                        var html = "<div>"
-                html += "<div>"
-                html += "<div>URL</div> <div><input id='load-image-url' name='files[]' type='file'/></div>"
-                html += "</div>"
-                html += "</div>"
+                        var html = "<div>";
+                        html += "<div>";
+                        html += "<div>URL</div> <div><input id='load-image-url' name='files[]' type='file'/></div>";
+                        html += "</div>";
+                        html += "</div>";
 
-                return html;
+                        return html;
                     }
                 },
                 'hidden-event': function(blockOptions) {
@@ -299,13 +299,13 @@ $(document).ready(function() {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
-                        var html = "<div>"
-                html += "<div>"
-                html += "<div>URL</div> <div><input type='file' id='load-video-url' name='files[]' /></div>"
-                html += "</div>"
-                html += "</div>"
+                        var html = "<div>";
+                        html += "<div>";
+                        html += "<div>URL</div> <div><input type='file' id='load-video-url' name='files[]' /></div>";
+                        html += "</div>";
+                        html += "</div>";
 
-                return html;
+                        return html;
                     }
                 },
                 'hidden-event': function(blockOptions) {
@@ -357,22 +357,22 @@ $(document).ready(function() {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content : function() {
-                        var html = "<div class='build-block-detect-intrusion-popover'>"
-                html += "<div class='build-block-detect-intrusion-popover-top'>"
-                html += "<div>X</div> <div><input id='detect-intrusion-popover-x' maxlength='3' class='enter-out-popover'/></div>"
-                html += "<div>Y</div> <div><input id='detect-intrusion-popover-y' maxlength='3' class='enter-out-popover'/></div>"
-                html += "<br/>"
-                html += "<div>W</div> <div><input id='detect-intrusion-popover-w' maxlength='3' class='enter-out-popover'/></div>"
-                html += "<div>H</div> <div><input id='detect-intrusion-popover-h' maxlength='3' class='enter-out-popover'/></div>"
-                html += "</div>"
-                html += "</div>"
-                return html;
+                        var html = "<div class='build-block-detect-intrusion-popover'>";
+                        html += "<div class='build-block-detect-intrusion-popover-top'>";
+                        html += "<div>X</div> <div><input id='detect-intrusion-popover-x' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<div>Y</div> <div><input id='detect-intrusion-popover-y' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<br/>";
+                        html += "<div>W</div> <div><input id='detect-intrusion-popover-w' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<div>H</div> <div><input id='detect-intrusion-popover-h' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
+                        return html;
                     },
-                contentFooter: function() {
-                    var html = "";
-                    html += "<div class='output_element'><span>intrusion</span></div>";
-                    return html;
-                }
+                    contentFooter: function() {
+                        var html = "";
+                        html += "<div class='output_element'><span>intrusion</span></div>";
+                        return html;
+                    }
                 },
                 'block-options': {
                     'x' 	 : 50,
