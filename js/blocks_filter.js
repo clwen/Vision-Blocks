@@ -143,32 +143,34 @@ var skinDetection = function () {
 	updateCanvas(pixels);
 };
 
+var avg_colors = function(data, sx, sy, w, h, c, gsz) {
+    return data[(sy*w + sx) * 4 + c];
+};
+
 var pixelArt = function () {
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
 	var data = pixels.data;
-    var r, g, b;
-    var cr, cb, h;
-	var i;
-	for (i=0; i<data.length; i+=4) {
-		r = data[i];
-		g = data[i+1];
-		b = data[i+2];
+    var gsz = 20; // grid_size
+    var w = canvas.width;
+    var h = canvas.height;
+    var x = 0, y = 0;
+    // for each seed (top left corner in a block)
+    for (y = 0; y < h; y += gsz) {
+        for (x = 0; x < w; x += gsz) {
+            // calculate r, g, b for this block
+            avg_r = avg_colors(data, x, y, w, h, 0, gsz);
+            avg_g = avg_colors(data, x, y, w, h, 1, gsz);
+            avg_b = avg_colors(data, x, y, w, h, 2, gsz);
 
-        cr = 0.15 * r - 0.3 * g + 0.45 * b + 128;
-        cb = 0.45 * r - 0.35 * g - 0.07 + 128;
-        h = rgb_to_h(r, g, b);
-
-        if ((cr >= 140) && (cr <= 175) && 
-                (cb >= 135) && (cb <= 200) &&
-                (h >= 5) && (h <= 50)) {
-            data[i] = 255;
-            data[i+1] = 255;
-            data[i+2] = 255;
-        } else {
-            data[i] = 0;
-            data[i+1] = 0;
-            data[i+2] = 0;
+            // assign avg r, g, b to each pixel in this block
+            for (yi = y; yi < y+gsz; yi += 1) {
+                for (xi = x; xi < x+gsz; xi += 1) {
+                    data[(yi*w + xi) * 4] = avg_r;
+                    data[(yi*w + xi) * 4 + 1] = avg_g;
+                    data[(yi*w + xi) * 4 + 2] = avg_b;
+                }
+            }
         }
 	}
 	updateCanvas(pixels);
