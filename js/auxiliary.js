@@ -122,6 +122,10 @@ var writeText = function() {
 	ctx.fillText(this.options['text'], 30, 30);
 };
 
+var browserAlert = function() {
+    alert('Yay!!');
+};
+
 /*
  * Returns the chain of block-info (Base information about a block, like name and options on popover)
  * */

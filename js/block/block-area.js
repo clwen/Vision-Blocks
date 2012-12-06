@@ -95,7 +95,7 @@ $(document).ready(function() {
                     content: function() {
                         var html = "<div class='build-block-if-popover'>";
                         html += "<div class='build-block-if-popover-top'>";
-                        html += "<div>Entry</div> <div><input id='if-popover-entry' value='faces' class='enter-out-popover'/></div>";
+                        html += "<div>Variable</div> <div><input id='if-popover-entry' value='faces' class='enter-out-popover'/></div>";
                         html += "<br/>";
                         html += "<div>Condition</div> <div><input id='if-popover-condition' value='> 0' class='enter-out-popover'/></div>";
                         html += "</div>";
