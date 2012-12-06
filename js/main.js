@@ -24,7 +24,7 @@ $(document).ready(function(){
 
         'faceDetection' 		: function() {return new vb.Block('Face Detection', faceDetection, true)},
         'skinDetection' 		: function() {return new vb.Block('Skin Detection', skinDetection)},
-        'pixelArt'       		: function() {return new vb.Block('Pixel Art', pixelArt)},
+        'pixelization'     		: function() {return new vb.Block('Pixelization', pixelization)},
         'intrusionDetection' 	: function() {return new vb.Block('Intrusion Detection', intrusionDetection)},
         'speedDetection' 		: function() {return new vb.Block('Speed Detection', speedDetection)},
 

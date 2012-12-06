@@ -147,7 +147,7 @@ var avg_colors = function(data, sx, sy, w, h, c, gsz) {
     return data[(sy*w + sx) * 4 + c];
 };
 
-var pixelArt = function () {
+var pixelization = function () {
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
 	var data = pixels.data;
