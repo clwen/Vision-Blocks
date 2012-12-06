@@ -97,7 +97,7 @@ $(document).ready(function() {
                         html += "<div class='build-block-if-popover-top'>";
                         html += "<div>Entry</div> <div><input id='if-popover-entry' value='faces' class='enter-out-popover'/></div>";
                         html += "<br/>";
-                        html += "<div>Condition</div> <div><input id='if-popover-condition' value='== 0' class='enter-out-popover'/></div>";
+                        html += "<div>Condition</div> <div><input id='if-popover-condition' value='> 0' class='enter-out-popover'/></div>";
                         html += "</div>";
                         html += "<div class='build-block-if-popover-bottom'>";
                         html += "<div id='if-popover-final-condition'><span></span></div>";
@@ -108,7 +108,7 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'condition' : ' == 0',
+                    'condition' : ' > 0',
                     'entry': 'faces'
                 },
                 'shown-event': function(blockOptions) {
