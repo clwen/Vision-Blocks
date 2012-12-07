@@ -2,20 +2,18 @@ $.fn.dragAndDrop = function(callback) {
     return this.each(function() {
         var $this = $(this);
         var _dragElement;
-        var _startX = 0;            // mouse starting positions
+        var _startX = 0; // mouse starting positions
         var _startY = 0;
         var _oldOffset = 0;
         var _dragOn = 0; // current element offset
-                                    // OnMouseMove
+
         InitDragDrop();
         
-        function InitDragDrop()
-        {
+        function InitDragDrop() {
             $this.on("mousedown", OnMouseDown);
         }
         
-        function OnMouseDown(e)
-        {
+        function OnMouseDown(e) {
             _startX = e.clientX;
             _startY = e.clientY;
             
@@ -38,8 +36,7 @@ $.fn.dragAndDrop = function(callback) {
             return false;
         }
         
-        function OnMouseMove(e)
-        {
+        function OnMouseMove(e) {
             if (dragOn) {
                 var left = _offset.left + e.clientX - _startX;
                 var top = _offset.top + e.clientY - _startY;
@@ -56,8 +53,7 @@ $.fn.dragAndDrop = function(callback) {
             }
         }
         
-        function OnMouseUp(e)
-        {
+        function OnMouseUp(e) {
             if (dragOn) {
                 dragOn = 0;
                 $(document).off(".draganddrop");
