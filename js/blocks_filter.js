@@ -182,3 +182,36 @@ var pixelization = function () {
 	}
 	updateCanvas(pixels);
 };
+
+var idx = function(x, y, c, w, h) {
+    return ((y*w + x) * 4 + c);
+};
+
+var blur_avg = function(data, x, y, w, h, c) {
+    // add all the one-neighborhood. will parameterize it later.
+    s = 0.0;
+    for (yi = y-2; yi <= y+2; yi += 1) {
+        for (xi = x-2; xi <= x+2; xi += 1) {
+            s += data[idx(xi, yi, c, w, h)];
+        }
+    }
+    return s / 25.0;
+};
+
+var bluring = function () {
+	var canvas = VB.interpreter.dictionary["canvas"];
+	var pixels = getPixels(canvas);
+	var data = pixels.data;
+	var i;
+    var w = canvas.width;
+    var h = canvas.height;
+    var x = 0, y = 0;
+    for (y = 2; y < h-2; y += 1) {
+        for (x = 2; x < w-2; x += 1) {
+            data[(y*w + x) * 4] = blur_avg(data, x, y, w, h, 0);
+            data[(y*w + x) * 4 + 1] = blur_avg(data, x, y, w, h, 1);
+            data[(y*w + x) * 4 + 2] = blur_avg(data, x, y, w, h, 2);
+        }
+	}
+	updateCanvas(pixels);
+};
