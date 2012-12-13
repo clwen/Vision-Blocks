@@ -15,7 +15,7 @@ $(document).ready(function(){
         'sobelFilter' 			: function() {return new vb.Block('Sobel', sobel)},
         'invertFilter' 			: function() {return new vb.Block('Invert Filter', invert)},
         'colorRearrangement'	: function() {return new vb.Block('Color Rearrangement', colorRearrangement)},
-        'grayScaleFilter' 		: function() {return new vb.Block('Gray Scale', grayScale)},
+        'grayscaleFilter' 		: function() {return new vb.Block('Gray Scale', grayscale)},
         'distortionFilter' 		: function() {return new vb.Block('Distortion Filter', distortion)},
         'blurFilter'     		: function() {return new vb.Block('Blur Filter', bluring)},
 

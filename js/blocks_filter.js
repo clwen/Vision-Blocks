@@ -1,4 +1,4 @@
-var grayScale = function () {
+var grayscale = function () {
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
 	var data = pixels.data;
