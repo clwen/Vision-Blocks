@@ -67,11 +67,12 @@ vb.Interpreter = function () {
 	/* The interpreter execute function is responsible to call the first
 		block execute */
 	this.execute = function() {
+		var canvas = document.querySelector("#outputCanvas");
 		if (this.length > 0) {
 			VB.interpreter.dictionary["workingArea"].x = 0;
 			VB.interpreter.dictionary["workingArea"].y = 0;
-			VB.interpreter.dictionary["workingArea"].width = 640;
-			VB.interpreter.dictionary["workingArea"].height = 480;
+			VB.interpreter.dictionary["workingArea"].width = canvas.width;
+			VB.interpreter.dictionary["workingArea"].height = canvas.height;
 			this.first.execute();
 		}
 	};
