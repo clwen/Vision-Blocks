@@ -13,6 +13,26 @@ var grayscale = function () {
     updateCanvas(pixels);
 };
 
+var binarize = function () {
+	var canvas = VB.interpreter.dictionary["canvas"];
+	var pixels = getPixels(canvas);
+	var data = pixels.data;
+	var i, r, g, b, v;
+	for (i=0; i<data.length; i+=4) {
+		r = data[i];
+		g = data[i+1];
+		b = data[i+2];
+		v = 0.2126*r + 0.7152*g + 0.0722*b;
+        if (v > 128) {
+            v = 255;
+        } else {
+            v = 0;
+        }
+		data[i] = data[i+1] = data[i+2] = v;
+	}
+    updateCanvas(pixels);
+};
+
 var invert = function () {
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
@@ -25,6 +45,7 @@ var invert = function () {
 	}
 	updateCanvas(pixels);
 };
+
 
 var colorRearrangement = function(canvas){
 	var canvas = VB.interpreter.dictionary["canvas"];
