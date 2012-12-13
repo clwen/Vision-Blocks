@@ -34,7 +34,7 @@
 }
 
 /*
- Local onde as opções de bloco serão colocadas
+ where the options block will be placed
 */
 .block-area {
 	height: 400px;
@@ -45,14 +45,14 @@
 }
 
 /*
- Local apenas para as opções chave
+ local only for the options key
 */
 .block-area-container {
 	width: 72px;
 }
 
 /*
- Local onde as opções especificas serão mostradas
+ where the specific options will be displayed
 */
 .block-area-options {
 	width: 200px;
@@ -73,7 +73,7 @@
 }
 
 /*
- Opção de bloco (visão, movimento...)
+ blocks option (vision, motion)
 */
 .block-container {
 	width: 60px;
@@ -108,7 +108,7 @@
 	display: none;
 }
 /*
- Tipos de bloco
+ blocks types
 */
 .block-container-start {
 	border-left-color: #ffde17;
@@ -241,7 +241,7 @@ Icons for menu
 }
 
 /*
- Local pra construção
+ local to construction
 */
 .build-area {
 	padding-top: 11px;
@@ -457,7 +457,7 @@ Building blocks v2
 }
 
 /*
-Icons for building locks
+ icons for building locks
 */
 
 .icon1-build-block {
