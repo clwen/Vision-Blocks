@@ -70,8 +70,8 @@ vb.Interpreter = function () {
 		if (this.length > 0) {
 			VB.interpreter.dictionary["workingArea"].x = 0;
 			VB.interpreter.dictionary["workingArea"].y = 0;
-			VB.interpreter.dictionary["workingArea"].width = 320;
-			VB.interpreter.dictionary["workingArea"].height = 240;
+			VB.interpreter.dictionary["workingArea"].width = 640;
+			VB.interpreter.dictionary["workingArea"].height = 480;
 			this.first.execute();
 		}
 	};
