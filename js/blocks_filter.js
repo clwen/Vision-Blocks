@@ -209,14 +209,16 @@ var idx = function(x, y, c, w, h) {
 };
 
 var blur_avg = function(data, x, y, w, h, c, bsz) {
-    // add all the one-neighborhood. will parameterize it later.
-    s = 0.0;
+    var s = 0.0;
+    var pxl_num = 0.0;
     for (yi = y-bsz; yi <= y+bsz; yi += 1) {
         for (xi = x-bsz; xi <= x+bsz; xi += 1) {
-            s += data[idx(xi, yi, c, w, h)];
+            if ((xi >= 0) && (xi < w) && (yi >= 0) && (yi < h)) { // if within canvas size
+                s += data[idx(xi, yi, c, w, h)];
+                pxl_num += 1;
+            }
         }
     }
-    pxl_num = (1 + 2*bsz) * (1 + 2*bsz); // pixel number
     return s / pxl_num;
 };
 
@@ -229,8 +231,8 @@ var bluring = function () {
     var h = canvas.height;
     var x = 0, y = 0;
     var bsz = parseInt(this.options['blurSize']); // blur size
-    for (y = bsz; y < h-bsz; y += 1) {
-        for (x = bsz; x < w-bsz; x += 1) {
+    for (y = 0; y < h; y += 1) {
+        for (x = 0; x < w; x += 1) {
             data[(y*w + x) * 4] = blur_avg(data, x, y, w, h, 0, bsz);
             data[(y*w + x) * 4 + 1] = blur_avg(data, x, y, w, h, 1, bsz);
             data[(y*w + x) * 4 + 2] = blur_avg(data, x, y, w, h, 2, bsz);
