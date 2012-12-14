@@ -141,6 +141,160 @@ $(document).ready(function() {
                     }
                 }
             });
+        } else if (block.hasClass("build-block-binarize")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div class='build-block-binarize-popover'>";
+                        html += "<div class='build-block-binarize-popover-top'>";
+                        html += "<div>Threshold</div> <div><input id='binarize-popover-threshold' maxlength='15' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
+
+                        return html;
+                    }
+                },
+                'block-options': {
+                    'binThreshold' : '128'
+                },
+                'shown-event': function(blockOptions) {
+                    $("#binarize-popover-threshold").val(blockOptions['binThreshold']);
+                },
+                'hidden-event': function(blockOptions) {
+                    blockOptions['binThreshold'] = $("#binarize-popover-threshold").val();
+
+                }
+            });
+        } else if (block.hasClass("build-block-pixelization")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div class='build-block-pixelization-popover'>";
+                        html += "<div class='build-block-pixelization-popover-top'>";
+                        html += "<div>Grid size</div> <div><input id='pixelization-popover-size' maxlength='15' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
+
+                        return html;
+                    }
+                },
+                'block-options': {
+                    'gridSize' : '10'
+                },
+                'shown-event': function(blockOptions) {
+                    $("#pixelization-popover-size").val(blockOptions['gridSize']);
+                },
+                'hidden-event': function(blockOptions) {
+                    blockOptions['gridSize'] = $("#pixelization-popover-size").val();
+
+                }
+            });
+        } else if (block.hasClass("build-block-blur")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div class='build-block-blur-popover'>";
+                        html += "<div class='build-block-blur-popover-top'>";
+                        html += "<div>Blur extent<br/>(1 ~ 5, the larger the blurrier)</div> <div><input id='blur-popover-size' maxlength='15' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
+
+                        return html;
+                    }
+                },
+                'block-options': {
+                    'blurSize' : '3'
+                },
+                'shown-event': function(blockOptions) {
+                    $("#blur-popover-size").val(blockOptions['blurSize']);
+                },
+                'hidden-event': function(blockOptions) {
+                    blockOptions['blurSize'] = $("#blur-popover-size").val();
+
+                }
+            });
+        } else if (block.hasClass("build-block-detect-face")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    contentFooter: function() {
+                        var html = "";
+                        html += "<div class='output_element'><span>faces</span></div>";
+                        html += "<div class='output_element'><span>faces_array</span></div>";
+                        html += "<div class='output_element'><span>faceX</span></div>";
+                        html += "<div class='output_element'><span>faceY</span></div>";
+                        html += "<div class='output_element'><span>faceW</span></div>";
+                        html += "<div class='output_element'><span>faceH</span></div>";
+
+                        return html;
+                    }
+                },
+                'shown-event': function(blockOptions) {
+                    $("#load-image-url").val(blockOptions['url']);
+                    $(".popover-footer-content > div").dragAndDrop({
+                        end: function(element) {
+                            var blockIf = $(".build-area .build-block-if:eq(0)");
+                            if (blockIf) {
+                                blockIf.data("block-options")['entry'] = element.text();
+                                blockIf.find(".build-block-desc:eq(0) span").text(element.text() + " " +blockIf.data("block-options")['condition']);
+                            }
+                        }
+                    });
+                },
+                    'hidden-event': function(blockOptions) {
+                        blockOptions['url'] = $("#load-image-url").val();
+                    }
+            });
+        } else if (block.hasClass("build-block-detect-intrusion")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content : function() {
+                        var html = "<div class='build-block-detect-intrusion-popover'>";
+                        html += "<div class='build-block-detect-intrusion-popover-top'>";
+                        html += "<div>X</div> <div><input id='detect-intrusion-popover-x' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<div>Y</div> <div><input id='detect-intrusion-popover-y' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<br/>";
+                        html += "<div>W</div> <div><input id='detect-intrusion-popover-w' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<div>H</div> <div><input id='detect-intrusion-popover-h' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
+                        return html;
+                    },
+                    contentFooter: function() {
+                        var html = "";
+                        html += "<div class='output_element'><span>intrusion</span></div>";
+                        return html;
+                    }
+                },
+                'block-options': {
+                    'x' 	 : 50,
+                    'y' 	 : 50,
+                    'width'  : 100,
+                    'height' : 100
+                },
+                'shown-event': function(blockOptions) {
+                    $("#load-image-url").val(blockOptions['url']);
+                    $(".popover-footer-content > div").dragAndDrop({
+                        end: function(element) {
+                            var blockIf = $(".build-area .build-block-if:eq(0)");
+                            if (blockIf) {
+                                blockIf.data("block-options")['entry'] = element.text();
+                                blockIf.find(".build-block-desc:eq(0) span").text(element.text() + " " +blockIf.data("block-options")['condition']);
+                            }
+                        }
+                    });
+                    $("#detect-intrusion-popover-x").val(blockOptions['x']);
+                    $("#detect-intrusion-popover-y").val(blockOptions['y']);
+                    $("#detect-intrusion-popover-w").val(blockOptions['width']);
+                    $("#detect-intrusion-popover-h").val(blockOptions['height']);
+                },
+                'hidden-event': function(blockOptions) {
+                    blockOptions['url'] = $("#load-image-url").val();
+                    blockOptions['x'] = $("#detect-intrusion-popover-x").val();
+                    blockOptions['y'] = $("#detect-intrusion-popover-y").val();
+                    blockOptions['width'] = $("#detect-intrusion-popover-w").val();
+                    blockOptions['height'] = $("#detect-intrusion-popover-h").val();
+                }
+            });
         } else if (block.hasClass("build-block-if")) {
             block.find(".build-block-title-wrapper:first").applyPopover({
                 'popover': {
@@ -249,78 +403,6 @@ $(document).ready(function() {
 
                 }
             });
-        } else if (block.hasClass("build-block-binarize")) {
-            block.find(".build-block-2-title-wrapper:first").applyPopover({
-                'popover': {
-                    content: function() {
-                        var html = "<div class='build-block-binarize-popover'>";
-                        html += "<div class='build-block-binarize-popover-top'>";
-                        html += "<div>Threshold</div> <div><input id='binarize-popover-threshold' maxlength='15' class='enter-out-popover'/></div>";
-                        html += "</div>";
-                        html += "</div>";
-
-                        return html;
-                    }
-                },
-                'block-options': {
-                    'binThreshold' : '128'
-                },
-                'shown-event': function(blockOptions) {
-                    $("#binarize-popover-threshold").val(blockOptions['binThreshold']);
-                },
-                'hidden-event': function(blockOptions) {
-                    blockOptions['binThreshold'] = $("#binarize-popover-threshold").val();
-
-                }
-            });
-        } else if (block.hasClass("build-block-blur")) {
-            block.find(".build-block-2-title-wrapper:first").applyPopover({
-                'popover': {
-                    content: function() {
-                        var html = "<div class='build-block-blur-popover'>";
-                        html += "<div class='build-block-blur-popover-top'>";
-                        html += "<div>Blur extent<br/>(1 ~ 5, the larger the blurrier)</div> <div><input id='blur-popover-size' maxlength='15' class='enter-out-popover'/></div>";
-                        html += "</div>";
-                        html += "</div>";
-
-                        return html;
-                    }
-                },
-                'block-options': {
-                    'blurSize' : '3'
-                },
-                'shown-event': function(blockOptions) {
-                    $("#blur-popover-size").val(blockOptions['blurSize']);
-                },
-                'hidden-event': function(blockOptions) {
-                    blockOptions['blurSize'] = $("#blur-popover-size").val();
-
-                }
-            });
-        } else if (block.hasClass("build-block-pixelization")) {
-            block.find(".build-block-2-title-wrapper:first").applyPopover({
-                'popover': {
-                    content: function() {
-                        var html = "<div class='build-block-pixelization-popover'>";
-                        html += "<div class='build-block-pixelization-popover-top'>";
-                        html += "<div>Grid size</div> <div><input id='pixelization-popover-size' maxlength='15' class='enter-out-popover'/></div>";
-                        html += "</div>";
-                        html += "</div>";
-
-                        return html;
-                    }
-                },
-                'block-options': {
-                    'gridSize' : '10'
-                },
-                'shown-event': function(blockOptions) {
-                    $("#pixelization-popover-size").val(blockOptions['gridSize']);
-                },
-                'hidden-event': function(blockOptions) {
-                    blockOptions['gridSize'] = $("#pixelization-popover-size").val();
-
-                }
-            });
         } else if (block.hasClass("build-block-draw-regions")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
@@ -386,88 +468,6 @@ $(document).ready(function() {
                     blockOptions['y'] = $("#select-region-popover-y").val();
                     blockOptions['width'] = $("#select-region-popover-w").val();
                     blockOptions['height'] = $("#select-region-popover-h").val();
-                }
-            });
-        } else if (block.hasClass("build-block-detect-face")) {
-            block.find(".build-block-2-title-wrapper:first").applyPopover({
-                'popover': {
-                    contentFooter: function() {
-                        var html = "";
-                        html += "<div class='output_element'><span>faces</span></div>";
-                        html += "<div class='output_element'><span>faces_array</span></div>";
-                        html += "<div class='output_element'><span>faceX</span></div>";
-                        html += "<div class='output_element'><span>faceY</span></div>";
-                        html += "<div class='output_element'><span>faceW</span></div>";
-                        html += "<div class='output_element'><span>faceH</span></div>";
-
-                        return html;
-                    }
-                },
-                'shown-event': function(blockOptions) {
-                    $("#load-image-url").val(blockOptions['url']);
-                    $(".popover-footer-content > div").dragAndDrop({
-                        end: function(element) {
-                            var blockIf = $(".build-area .build-block-if:eq(0)");
-                            if (blockIf) {
-                                blockIf.data("block-options")['entry'] = element.text();
-                                blockIf.find(".build-block-desc:eq(0) span").text(element.text() + " " +blockIf.data("block-options")['condition']);
-                            }
-                        }
-                    });
-                },
-                    'hidden-event': function(blockOptions) {
-                        blockOptions['url'] = $("#load-image-url").val();
-                    }
-            });
-        } else if (block.hasClass("build-block-detect-intrusion")) {
-            block.find(".build-block-2-title-wrapper:first").applyPopover({
-                'popover': {
-                    content : function() {
-                        var html = "<div class='build-block-detect-intrusion-popover'>";
-                        html += "<div class='build-block-detect-intrusion-popover-top'>";
-                        html += "<div>X</div> <div><input id='detect-intrusion-popover-x' maxlength='3' class='enter-out-popover'/></div>";
-                        html += "<div>Y</div> <div><input id='detect-intrusion-popover-y' maxlength='3' class='enter-out-popover'/></div>";
-                        html += "<br/>";
-                        html += "<div>W</div> <div><input id='detect-intrusion-popover-w' maxlength='3' class='enter-out-popover'/></div>";
-                        html += "<div>H</div> <div><input id='detect-intrusion-popover-h' maxlength='3' class='enter-out-popover'/></div>";
-                        html += "</div>";
-                        html += "</div>";
-                        return html;
-                    },
-                    contentFooter: function() {
-                        var html = "";
-                        html += "<div class='output_element'><span>intrusion</span></div>";
-                        return html;
-                    }
-                },
-                'block-options': {
-                    'x' 	 : 50,
-                    'y' 	 : 50,
-                    'width'  : 100,
-                    'height' : 100
-                },
-                'shown-event': function(blockOptions) {
-                    $("#load-image-url").val(blockOptions['url']);
-                    $(".popover-footer-content > div").dragAndDrop({
-                        end: function(element) {
-                            var blockIf = $(".build-area .build-block-if:eq(0)");
-                            if (blockIf) {
-                                blockIf.data("block-options")['entry'] = element.text();
-                                blockIf.find(".build-block-desc:eq(0) span").text(element.text() + " " +blockIf.data("block-options")['condition']);
-                            }
-                        }
-                    });
-                    $("#detect-intrusion-popover-x").val(blockOptions['x']);
-                    $("#detect-intrusion-popover-y").val(blockOptions['y']);
-                    $("#detect-intrusion-popover-w").val(blockOptions['width']);
-                    $("#detect-intrusion-popover-h").val(blockOptions['height']);
-                },
-                'hidden-event': function(blockOptions) {
-                    blockOptions['url'] = $("#load-image-url").val();
-                    blockOptions['x'] = $("#detect-intrusion-popover-x").val();
-                    blockOptions['y'] = $("#detect-intrusion-popover-y").val();
-                    blockOptions['width'] = $("#detect-intrusion-popover-w").val();
-                    blockOptions['height'] = $("#detect-intrusion-popover-h").val();
                 }
             });
         }
