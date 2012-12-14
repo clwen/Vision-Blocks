@@ -23,7 +23,6 @@ $(document).ready(function(){
         'drawRegions' 			: function() {return new vb.Block('Draw Regions', drawRegions)},
         'writeText' 			: function() {return new vb.Block('Write Text', writeText)},
         'browserAlert'		    : function() {return new vb.Block('Alert', browserAlert)},
-        // 'selectRegion' 			: function() {return new vb.Block('Select Region', selectRegion)},
 
         'faceDetection' 		: function() {return new vb.Block('Face Detection', faceDetection, true)},
         'skinDetection' 		: function() {return new vb.Block('Skin Detection', skinDetection)},
