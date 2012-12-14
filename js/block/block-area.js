@@ -199,6 +199,31 @@ $(document).ready(function() {
                 }
             });
 
+        } else if (block.hasClass("build-block-binarize")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div class='build-block-binarize-popover'>";
+                        html += "<div class='build-block-binarize-popover-top'>";
+                        html += "<div>Threshold</div> <div><input id='binarize-popover-threshold' maxlength='15' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
+
+                        return html;
+                    }
+                },
+                'block-options': {
+                    'binThreshold' : '128'
+                },
+                'shown-event': function(blockOptions) {
+                    $("#binarize-popover-threshold").val(blockOptions['binThreshold']);
+                },
+                'hidden-event': function(blockOptions) {
+                    blockOptions['binThreshold'] = $("#binarize-popover-threshold").val();
+
+                }
+            });
+
         } else if (block.hasClass("build-block-draw-regions")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
