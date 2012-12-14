@@ -228,7 +228,7 @@ var bluring = function () {
     var w = canvas.width;
     var h = canvas.height;
     var x = 0, y = 0;
-    var bsz = 3; // blur size
+    var bsz = parseInt(this.options['blurSize']); // blur size
     for (y = bsz; y < h-bsz; y += 1) {
         for (x = bsz; x < w-bsz; x += 1) {
             data[(y*w + x) * 4] = blur_avg(data, x, y, w, h, 0, bsz);

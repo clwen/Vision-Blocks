@@ -224,6 +224,31 @@ $(document).ready(function() {
                 }
             });
 
+        } else if (block.hasClass("build-block-blur")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div class='build-block-blur-popover'>";
+                        html += "<div class='build-block-blur-popover-top'>";
+                        html += "<div>Blur extent<br/>(1 ~ 5, the larger the blurrier)</div> <div><input id='blur-popover-size' maxlength='15' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
+
+                        return html;
+                    }
+                },
+                'block-options': {
+                    'blurSize' : '3'
+                },
+                'shown-event': function(blockOptions) {
+                    $("#blur-popover-size").val(blockOptions['blurSize']);
+                },
+                'hidden-event': function(blockOptions) {
+                    blockOptions['blurSize'] = $("#blur-popover-size").val();
+
+                }
+            });
+
         } else if (block.hasClass("build-block-draw-regions")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
