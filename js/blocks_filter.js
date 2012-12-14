@@ -208,15 +208,16 @@ var idx = function(x, y, c, w, h) {
     return ((y*w + x) * 4 + c);
 };
 
-var blur_avg = function(data, x, y, w, h, c) {
+var blur_avg = function(data, x, y, w, h, c, bsz) {
     // add all the one-neighborhood. will parameterize it later.
     s = 0.0;
-    for (yi = y-2; yi <= y+2; yi += 1) {
-        for (xi = x-2; xi <= x+2; xi += 1) {
+    for (yi = y-bsz; yi <= y+bsz; yi += 1) {
+        for (xi = x-bsz; xi <= x+bsz; xi += 1) {
             s += data[idx(xi, yi, c, w, h)];
         }
     }
-    return s / 25.0;
+    pxl_num = (1 + 2*bsz) * (1 + 2*bsz); // pixel number
+    return s / pxl_num;
 };
 
 var bluring = function () {
@@ -227,11 +228,12 @@ var bluring = function () {
     var w = canvas.width;
     var h = canvas.height;
     var x = 0, y = 0;
-    for (y = 2; y < h-2; y += 1) {
-        for (x = 2; x < w-2; x += 1) {
-            data[(y*w + x) * 4] = blur_avg(data, x, y, w, h, 0);
-            data[(y*w + x) * 4 + 1] = blur_avg(data, x, y, w, h, 1);
-            data[(y*w + x) * 4 + 2] = blur_avg(data, x, y, w, h, 2);
+    var bsz = 3; // blur size
+    for (y = bsz; y < h-bsz; y += 1) {
+        for (x = bsz; x < w-bsz; x += 1) {
+            data[(y*w + x) * 4] = blur_avg(data, x, y, w, h, 0, bsz);
+            data[(y*w + x) * 4 + 1] = blur_avg(data, x, y, w, h, 1, bsz);
+            data[(y*w + x) * 4 + 2] = blur_avg(data, x, y, w, h, 2, bsz);
         }
 	}
 	updateCanvas(pixels);
