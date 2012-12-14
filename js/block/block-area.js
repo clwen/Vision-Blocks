@@ -249,6 +249,31 @@ $(document).ready(function() {
                 }
             });
 
+        } else if (block.hasClass("build-block-pixelization")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div class='build-block-pixelization-popover'>";
+                        html += "<div class='build-block-pixelization-popover-top'>";
+                        html += "<div>Grid size</div> <div><input id='pixelization-popover-size' maxlength='15' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
+
+                        return html;
+                    }
+                },
+                'block-options': {
+                    'gridSize' : '10'
+                },
+                'shown-event': function(blockOptions) {
+                    $("#pixelization-popover-size").val(blockOptions['gridSize']);
+                },
+                'hidden-event': function(blockOptions) {
+                    blockOptions['gridSize'] = $("#pixelization-popover-size").val();
+
+                }
+            });
+
         } else if (block.hasClass("build-block-draw-regions")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {

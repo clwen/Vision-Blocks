@@ -182,7 +182,7 @@ var pixelization = function () {
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
 	var data = pixels.data;
-    var gsz = 7; // grid_size
+    var gsz = parseInt(this.options['gridSize']); // grid_size
     var w = canvas.width;
     var h = canvas.height;
     var x = 0, y = 0;
