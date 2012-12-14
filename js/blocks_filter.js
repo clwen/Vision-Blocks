@@ -23,7 +23,7 @@ var binarize = function () {
 		g = data[i+1];
 		b = data[i+2];
 		v = 0.2126*r + 0.7152*g + 0.0722*b;
-        if (v > 128) {
+        if (v > this.options['binThreshold']) {
             v = 255;
         } else {
             v = 0;
