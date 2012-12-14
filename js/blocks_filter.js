@@ -165,21 +165,24 @@ var skinDetection = function () {
 };
 
 var avg_colors = function(data, sx, sy, w, h, c, gsz) {
-    // return data[(sy*w + sx) * 4 + c];
     var sum = 0.0;
+    var pxl_num = 0.0; // number of pixels
     for (y = sy; y < sy+gsz; y += 1) {
         for (x = sx; x < sx+gsz; x += 1) {
-            sum += data[(y*w + x) * 4 + c];
+            if ((x >= 0) && (x < w) && (y >= 0) && (y < h)) {
+                sum += data[(y*w + x) * 4 + c];
+                pxl_num += 1;
+            }
         }
     }
-    return sum / (gsz * gsz);
+    return sum / pxl_num;
 };
 
 var pixelization = function () {
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
 	var data = pixels.data;
-    var gsz = 20; // grid_size
+    var gsz = 7; // grid_size
     var w = canvas.width;
     var h = canvas.height;
     var x = 0, y = 0;
@@ -194,9 +197,11 @@ var pixelization = function () {
             // assign avg r, g, b to each pixel in this block
             for (yi = y; yi < y+gsz; yi += 1) {
                 for (xi = x; xi < x+gsz; xi += 1) {
-                    data[(yi*w + xi) * 4] = avg_r;
-                    data[(yi*w + xi) * 4 + 1] = avg_g;
-                    data[(yi*w + xi) * 4 + 2] = avg_b;
+                    if ((xi >= 0) && (xi < w) && (yi >= 0) && (yi < h)) {
+                        data[(yi*w + xi) * 4] = avg_r;
+                        data[(yi*w + xi) * 4 + 1] = avg_g;
+                        data[(yi*w + xi) * 4 + 2] = avg_b;
+                    }
                 }
             }
         }
