@@ -89,7 +89,59 @@ $(document).ready(function() {
             refreshBlocks();
         });
 
-        if (block.hasClass("build-block-if")) {
+        if (block.hasClass("build-block-load-image")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div>";
+                        html += "<div>";
+                        html += "<div>URL</div> <div><input id='load-image-url' name='files[]' type='file'/></div>";
+                        html += "</div>";
+                        html += "</div>";
+
+                        return html;
+                    }
+                },
+                'hidden-event': function(blockOptions) {
+                    var file = document.getElementById("load-image-url").files;
+                    if (file && file.length) {
+                        file = file[0];
+
+                        blockOptions['url'] =  window.URL.createObjectURL(file);
+
+                        if (blockOptions['url']) {
+                            block.find(".build-block-desc div").text(file.name.substring(0,6));
+                        }
+                    }
+                }
+            });
+        } else if (block.hasClass("build-block-load-video")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div>";
+                        html += "<div>";
+                        html += "<div>URL</div> <div><input type='file' id='load-video-url' name='files[]' /></div>";
+                        html += "</div>";
+                        html += "</div>";
+
+                        return html;
+                    }
+                },
+                'hidden-event': function(blockOptions) {
+                    var file = document.getElementById("load-video-url").files;
+                    if (file && file.length) {
+                        file = file[0];
+
+                        blockOptions['url'] = window.URL.createObjectURL(file);
+
+                        if (blockOptions['url']) {
+                            block.find(".build-block-desc div").text(file.name.substring(0,6));
+                        }
+                    }
+                }
+            });
+        } else if (block.hasClass("build-block-if")) {
             block.find(".build-block-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -173,7 +225,6 @@ $(document).ready(function() {
                     }
                 }
             });
-
         } else if (block.hasClass("build-block-write-text")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
@@ -198,7 +249,6 @@ $(document).ready(function() {
 
                 }
             });
-
         } else if (block.hasClass("build-block-binarize")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
@@ -223,7 +273,6 @@ $(document).ready(function() {
 
                 }
             });
-
         } else if (block.hasClass("build-block-blur")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
@@ -248,7 +297,6 @@ $(document).ready(function() {
 
                 }
             });
-
         } else if (block.hasClass("build-block-pixelization")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
@@ -273,7 +321,6 @@ $(document).ready(function() {
 
                 }
             });
-
         } else if (block.hasClass("build-block-draw-regions")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
@@ -305,7 +352,6 @@ $(document).ready(function() {
                     }
                 }
             });
-
         } else if (block.hasClass("build-block-select-region")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
@@ -342,61 +388,6 @@ $(document).ready(function() {
                     blockOptions['height'] = $("#select-region-popover-h").val();
                 }
             });
-
-        } else if (block.hasClass("build-block-load-image")) {
-            block.find(".build-block-2-title-wrapper:first").applyPopover({
-                'popover': {
-                    content: function() {
-                        var html = "<div>";
-                        html += "<div>";
-                        html += "<div>URL</div> <div><input id='load-image-url' name='files[]' type='file'/></div>";
-                        html += "</div>";
-                        html += "</div>";
-
-                        return html;
-                    }
-                },
-                'hidden-event': function(blockOptions) {
-                    var file = document.getElementById("load-image-url").files;
-                    if (file && file.length) {
-                        file = file[0];
-
-                        blockOptions['url'] =  window.URL.createObjectURL(file);
-
-                        if (blockOptions['url']) {
-                            block.find(".build-block-desc div").text(file.name.substring(0,6));
-                        }
-                    }
-                }
-            });
-
-        } else if (block.hasClass("build-block-load-video")) {
-            block.find(".build-block-2-title-wrapper:first").applyPopover({
-                'popover': {
-                    content: function() {
-                        var html = "<div>";
-                        html += "<div>";
-                        html += "<div>URL</div> <div><input type='file' id='load-video-url' name='files[]' /></div>";
-                        html += "</div>";
-                        html += "</div>";
-
-                        return html;
-                    }
-                },
-                'hidden-event': function(blockOptions) {
-                    var file = document.getElementById("load-video-url").files;
-                    if (file && file.length) {
-                        file = file[0];
-
-                        blockOptions['url'] = window.URL.createObjectURL(file);
-
-                        if (blockOptions['url']) {
-                            block.find(".build-block-desc div").text(file.name.substring(0,6));
-                        }
-                    }
-                }
-            });
-
         } else if (block.hasClass("build-block-detect-face")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
