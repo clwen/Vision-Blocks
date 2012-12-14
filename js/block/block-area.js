@@ -188,7 +188,7 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'text'		: ''
+                    'text'		: 'Yay!'
                 },
                 'shown-event': function(blockOptions) {
                     $("#write-text-popover-text").val(blockOptions['text']);
