@@ -18,6 +18,7 @@ html,body {
 
 .output-area {
 	width: 640px;
+  padding-top: 3px;
 }
 
 #outputDiv {
