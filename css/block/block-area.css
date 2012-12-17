@@ -37,6 +37,7 @@
  where the options block will be placed
 */
 .block-area {
+  width: 290px;
 	height: 400px;
 }
 
