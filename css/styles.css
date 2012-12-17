@@ -21,9 +21,10 @@ html,body {
 }
 
 #outputDiv {
-	border: 1px solid black;
 	width: 640px;
 	height: 480px;
+	border: 1px solid #666;
+  border-radius: 5px;
 }
 
 #outputDiv video {

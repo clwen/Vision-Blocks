@@ -249,7 +249,8 @@ Icons for menu
 	padding-left: 11px;
 	height: 400px;
 	width: 189px;
-	border: 1px solid black;
+	border: 1px solid #666;
+  border-radius: 5px;
 }
 
 .build-area span {
