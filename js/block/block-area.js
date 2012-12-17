@@ -336,7 +336,7 @@ $(document).ready(function() {
                         blockOptions['entry'] = $("#if-popover-entry").val();
                     }
             });
-        } else if (block.hasClass("build-block-draw-region")) { // TODO: not used anymore? cleanup later
+        } else if (block.hasClass("build-block-draw-region")) { // TODO: not in use anymore? cleanup later
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
