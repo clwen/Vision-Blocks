@@ -10,7 +10,7 @@ var playForever = function (stack) {
 	var executeLoop = function() {
 		if (executingLoopInterval) {
 			stack.execute();
-			setTimeout(executeLoop, 800);
+			setTimeout(executeLoop, 100);
 		}
 	};
 	
