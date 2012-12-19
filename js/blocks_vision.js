@@ -46,30 +46,25 @@ var intrusionDetection = function () {
 	
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
-	var newPixels = getPixels(canvas);
+	var diffPixels = getPixels(canvas);
 	var data = pixels.data;
-	var newData = newPixels.data;
+    var diff = diffPixels.data;
 
-	if (!VB.interpreter.dictionary["pixelsMean"]) {
-		VB.interpreter.dictionary["pixelsMean"] = data;
+	if (!VB.interpreter.dictionary["initData"]) {
+		VB.interpreter.dictionary["initData"] = data;
 	}
 
-	var pixelsMean = VB.interpreter.dictionary["pixelsMean"];
-	var i=0, end=0;
-	var begin = data.length;
+	var initData = VB.interpreter.dictionary["initData"];
+	var i = 0;
 
-	for (i=0; i<data.length; i+=4) {
-		newData[i] = data[i] - pixelsMean[i];
-		newData[i+1] = data[i+1] - pixelsMean[i+1];
-		newData[i+2] = data[i+2] - pixelsMean[i+2];
+	for (i = 0; i < data.length; i += 4) {
+		diff[i] = data[i] - initData[i];
+		diff[i+1] = data[i+1] - initData[i+1];
+		diff[i+2] = data[i+2] - initData[i+2];
 
-		if (((newData[i] + newData[i+1] + newData[i+2])/3) > 64) {
+		if (((diff[i] + diff[i+1] + diff[i+2])/3) > 64) {
 			VB.interpreter.dictionary["intrusion"] = true;
 		}
-
-		// pixelsMean[i] = (pixelsMean[i] + data[i]) / 2;
-		// pixelsMean[i+1] = (pixelsMean[i+1] + data[i+1]) / 2;
-		// pixelsMean[i+2] = (pixelsMean[i+2] + data[i+2]) / 2;
 	}
 
 }
