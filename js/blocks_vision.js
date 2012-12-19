@@ -56,17 +56,17 @@ var intrusionDetection = function () {
 
 	var initData = VB.interpreter.dictionary["initData"];
 	var i = 0;
+    var diff_sum = 0;
 
 	for (i = 0; i < data.length; i += 4) {
-		diff[i] = data[i] - initData[i];
-		diff[i+1] = data[i+1] - initData[i+1];
-		diff[i+2] = data[i+2] - initData[i+2];
-
-		if (((diff[i] + diff[i+1] + diff[i+2])/3) > 64) {
-			VB.interpreter.dictionary["intrusion"] = true;
-		}
+		diff_sum += data[i] - initData[i];
+		diff_sum += data[i+1] - initData[i+1];
+		diff_sum += data[i+2] - initData[i+2];
 	}
-
+    var avg_diff = diff_sum / (data.length * 0.75); // only three channels calculated
+    if (avg_diff > 10) {
+        VB.interpreter.dictionary["intrusion"] = true;
+    }
 }
 
 var speedDetection = function () {
