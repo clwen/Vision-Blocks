@@ -64,7 +64,8 @@ var intrusionDetection = function () {
 		diff_sum += data[i+2] - initData[i+2];
 	}
     var avg_diff = diff_sum / (data.length * 0.75); // only three channels calculated
-    if (avg_diff > 10) {
+    var threshold = this.options['threshold'];
+    if (avg_diff > threshold) {
         VB.interpreter.dictionary["intrusion"] = true;
     }
 }

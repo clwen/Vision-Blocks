@@ -250,11 +250,13 @@ $(document).ready(function() {
                     content : function() {
                         var html = "<div class='build-block-detect-intrusion-popover'>";
                         html += "<div class='build-block-detect-intrusion-popover-top'>";
-                        html += "<div>X</div> <div><input id='detect-intrusion-popover-x' maxlength='3' class='enter-out-popover'/></div>";
-                        html += "<div>Y</div> <div><input id='detect-intrusion-popover-y' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<div>Start X</div> <div><input id='detect-intrusion-popover-x' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<div>Start Y</div> <div><input id='detect-intrusion-popover-y' maxlength='3' class='enter-out-popover'/></div>";
                         html += "<br/>";
-                        html += "<div>W</div> <div><input id='detect-intrusion-popover-w' maxlength='3' class='enter-out-popover'/></div>";
-                        html += "<div>H</div> <div><input id='detect-intrusion-popover-h' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<div>Width</div> <div><input id='detect-intrusion-popover-w' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<div>Height</div> <div><input id='detect-intrusion-popover-h' maxlength='3' class='enter-out-popover'/></div>";
+                        html += "<br/>";
+                        html += "<div>Threshold</div> <div><input id='detect-intrusion-popover-thresh' maxlength='3' class='enter-out-popover'/></div>";
                         html += "</div>";
                         html += "</div>";
                         return html;
@@ -269,7 +271,8 @@ $(document).ready(function() {
                     'x' 	 : 50,
                     'y' 	 : 50,
                     'width'  : 100,
-                    'height' : 100
+                    'height' : 100,
+                    'threshold': 10,
                 },
                 'shown-event': function(blockOptions) {
                     $("#load-image-url").val(blockOptions['url']);
@@ -286,6 +289,7 @@ $(document).ready(function() {
                     $("#detect-intrusion-popover-y").val(blockOptions['y']);
                     $("#detect-intrusion-popover-w").val(blockOptions['width']);
                     $("#detect-intrusion-popover-h").val(blockOptions['height']);
+                    $("#detect-intrusion-popover-thresh").val(blockOptions['threshold']);
                 },
                 'hidden-event': function(blockOptions) {
                     blockOptions['url'] = $("#load-image-url").val();
@@ -293,6 +297,7 @@ $(document).ready(function() {
                     blockOptions['y'] = $("#detect-intrusion-popover-y").val();
                     blockOptions['width'] = $("#detect-intrusion-popover-w").val();
                     blockOptions['height'] = $("#detect-intrusion-popover-h").val();
+                    blockOptions['threshold'] = $("#detect-intrusion-popover-thresh").val();
                 }
             });
         } else if (block.hasClass("build-block-if")) {
