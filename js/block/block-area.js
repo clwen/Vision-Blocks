@@ -189,6 +189,33 @@ $(document).ready(function() {
 
                 }
             });
+        } else if (block.hasClass("build-block-color-detect")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div class='build-block-color-detect-popover'>";
+                        html += "<div class='build-block-color-detect-popover-top'>";
+                        html += "<div>Hue</div> <div><input id='color-detect-popover-hue' maxlength='15' class='enter-out-popover'/></div>";
+                        html += "<div>Threshold</div> <div><input id='color-detect-popover-thresh' maxlength='15' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
+
+                        return html;
+                    }
+                },
+                'block-options': {
+                    'hue' : '50',
+                    'colThreshold' : '18',
+                },
+                'shown-event': function(blockOptions) {
+                    $("#color-detect-popover-hue").val(blockOptions['hue']);
+                    $("#color-detect-popover-thresh").val(blockOptions['colThreshold']);
+                },
+                'hidden-event': function(blockOptions) {
+                    blockOptions['hue'] = $("#color-detect-popover-hue").val();
+                    blockOptions['colThreshold'] = $("#color-detect-popover-thresh").val();
+                }
+            });
         } else if (block.hasClass("build-block-blur")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {

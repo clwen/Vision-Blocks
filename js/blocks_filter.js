@@ -51,8 +51,8 @@ var colorDetection = function () {
 	var pixels = getPixels(canvas);
 	var data = pixels.data;
 	var i, r, g, b, v, h, diff;
-    var ht = 50; // hue target
-    var threshold = 20;
+    var ht = parseInt(this.options['hue']); // hue target
+    var threshold = parseInt(this.options['colThreshold']);
 	for (i = 0; i < data.length; i += 4) {
 		r = data[i];
 		g = data[i+1];
