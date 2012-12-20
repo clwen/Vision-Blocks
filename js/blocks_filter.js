@@ -50,13 +50,20 @@ var colorDetection = function () {
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
 	var data = pixels.data;
+    var rt = 14; // red target 
+    var gt = 210; // green target
+    var bt = 186; // blue target
 	var i, r, g, b, v;
-	for (i=0; i<data.length; i+=4) {
+    var threshold = 120;
+	for (i = 0; i < data.length; i += 4) {
 		r = data[i];
 		g = data[i+1];
 		b = data[i+2];
 		v = 0.2126*r + 0.7152*g + 0.0722*b;
-		data[i] = data[i+1] = data[i+2] = v;
+        var diff = Math.abs(r - rt) + Math.abs(g - gt) + Math.abs(b - bt);
+        if (diff > threshold) {
+            data[i] = data[i+1] = data[i+2] = 255;
+        }
 	}
     updateCanvas(pixels);
 };
