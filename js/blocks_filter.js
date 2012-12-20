@@ -46,6 +46,20 @@ var invert = function () {
 	updateCanvas(pixels);
 };
 
+var colorDetection = function () {
+	var canvas = VB.interpreter.dictionary["canvas"];
+	var pixels = getPixels(canvas);
+	var data = pixels.data;
+	var i, r, g, b, v;
+	for (i=0; i<data.length; i+=4) {
+		r = data[i];
+		g = data[i+1];
+		b = data[i+2];
+		v = 0.2126*r + 0.7152*g + 0.0722*b;
+		data[i] = data[i+1] = data[i+2] = v;
+	}
+    updateCanvas(pixels);
+};
 
 var colorRearrangement = function(canvas){
 	var canvas = VB.interpreter.dictionary["canvas"];

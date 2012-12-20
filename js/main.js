@@ -18,6 +18,7 @@ $(document).ready(function(){
         'colorRearrangement'	: function() {return new vb.Block('Color Rearrangement', colorRearrangement)},
         'grayscaleFilter' 		: function() {return new vb.Block('Gray Scale', grayscale)},
         'distortionFilter' 		: function() {return new vb.Block('Distortion Filter', distortion)},
+        'colorDetection' 		: function() {return new vb.Block('Color Detection', colorDetection)},
         'blurFilter'     		: function() {return new vb.Block('Blur Filter', bluring)},
 
         'drawRegions' 			: function() {return new vb.Block('Draw Regions', drawRegions)},
