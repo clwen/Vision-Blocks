@@ -195,7 +195,7 @@ $(document).ready(function() {
                     content: function() {
                         var html = "<div class='build-block-color-detect-popover'>";
                         html += "<div class='build-block-color-detect-popover-top'>";
-                        html += "<div>Hue</div> <div><input id='color-detect-popover-hue' maxlength='15' class='enter-out-popover'/></div>";
+                        html += "<div>Hue</div> <div><input id='color-detect-popover-hue' class='enter-out-popover' type='range' min='1' max='360' /></div>";
                         html += "<div>Threshold</div> <div><input id='color-detect-popover-thresh' maxlength='15' class='enter-out-popover'/></div>";
                         html += "</div>";
                         html += "</div>";
