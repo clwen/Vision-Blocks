@@ -466,6 +466,36 @@ $(document).ready(function() {
                     }
                 }
             });
+        } else if (block.hasClass("build-block-os-alert")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div class='build-block-draw-region-popover'>";
+                        html += "<div class='build-block-draw-region-popover-top'>";
+                        html += "<button type='button' class='btn btn-primary'>Permission</button>";
+                        html += "</div>";
+                        html += "</div>";
+
+                        return html;
+                    }
+                },
+                'block-options': {
+                    'rgb' 	: 'FF0000',
+                    'boxes'	: 'faces_array'
+                },
+                'shown-event': function(blockOptions) {
+                    $("#draw-regions-popover-color").val(blockOptions['rgb']);
+                    $("#draw-regions-popover-boxes").val(blockOptions['boxes']);
+                },
+                'hidden-event': function(blockOptions) {
+                    blockOptions['rgb'] = $("#draw-regions-popover-color").val();
+                    blockOptions['boxes'] = $("#draw-regions-popover-boxes").val();
+
+                    if (blockOptions['rgb']) {
+                        block.find(".build-block-draw-rect-condition-rgb").css("background-color", '#'+blockOptions['rgb']);
+                    }
+                }
+            });
         }
     };
 
