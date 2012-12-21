@@ -135,8 +135,8 @@ var osAlert = function() {
         RequestPermission(osAlert);
     } else {
         var icon = 'icon.png';
-        var title = 'vision blocks';
-        var msg = 'come and get some food';
+        var title = this.options['notifTitle'];
+        var msg = this.options['notifMsg'];
         var notification = window.webkitNotifications.createNotification(icon, title, msg);
         notification.show();
     }

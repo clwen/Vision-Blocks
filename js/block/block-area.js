@@ -21,12 +21,6 @@ $(document).ready(function() {
         }
     };
 
-    // when click the request permission button on os alert popover, request permission
-    $("#os-alert-req-perm").click(function() {
-        console.log('event entered');
-        alert("clicked >///<");
-    });
-
     /*
      * When user clicks out a popover, visible popovers are closed
      * */
@@ -478,7 +472,8 @@ $(document).ready(function() {
                     content: function() {
                         var html = "<div class='build-block-draw-region-popover'>";
                         html += "<div class='build-block-draw-region-popover-top'>";
-                        html += "<div id='os-alert-req-perm'><button type='button' class='btn btn-primary'>Permission</button></div>";
+                        html += "<div>Title</div> <div><input id='os-alert-popover-title' maxlength='15' class='enter-out-popover'/></div>";
+                        html += "<div>Msg</div> <div><input id='os-alert-popover-msg' maxlength='15' class='enter-out-popover'/></div>";
                         html += "</div>";
                         html += "</div>";
 
@@ -486,20 +481,16 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'rgb' 	: 'FF0000',
-                    'boxes'	: 'faces_array'
+                    'notifTitle': 'Vision Blocks',
+                    'notifMsg': 'Come and get some food!',
                 },
                 'shown-event': function(blockOptions) {
-                    $("#draw-regions-popover-color").val(blockOptions['rgb']);
-                    $("#draw-regions-popover-boxes").val(blockOptions['boxes']);
+                    $("#os-alert-popover-title").val(blockOptions['notifTitle']);
+                    $("#os-alert-popover-msg").val(blockOptions['notifMsg']);
                 },
                 'hidden-event': function(blockOptions) {
-                    blockOptions['rgb'] = $("#draw-regions-popover-color").val();
-                    blockOptions['boxes'] = $("#draw-regions-popover-boxes").val();
-
-                    if (blockOptions['rgb']) {
-                        block.find(".build-block-draw-rect-condition-rgb").css("background-color", '#'+blockOptions['rgb']);
-                    }
+                    blockOptions['notifTitle'] = $("#os-alert-popover-title").val();
+                    blockOptions['notifMsg'] = $("#os-alert-popover-msg").val();
                 }
             });
         }
