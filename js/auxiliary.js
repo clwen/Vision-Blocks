@@ -126,6 +126,10 @@ var browserAlert = function() {
     alert('Yay!!');
 };
 
+var osAlert = function() {
+    alert('Yay!!');
+};
+
 /*
  * Returns the chain of block-info (Base information about a block, like name and options on popover)
  * */
