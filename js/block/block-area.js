@@ -21,6 +21,12 @@ $(document).ready(function() {
         }
     };
 
+    // when click the request permission button on os alert popover, request permission
+    $("#os-alert-req-perm").click(function() {
+        console.log('event entered');
+        alert("clicked >///<");
+    });
+
     /*
      * When user clicks out a popover, visible popovers are closed
      * */
@@ -472,7 +478,7 @@ $(document).ready(function() {
                     content: function() {
                         var html = "<div class='build-block-draw-region-popover'>";
                         html += "<div class='build-block-draw-region-popover-top'>";
-                        html += "<button type='button' class='btn btn-primary'>Permission</button>";
+                        html += "<div id='os-alert-req-perm'><button type='button' class='btn btn-primary'>Permission</button></div>";
                         html += "</div>";
                         html += "</div>";
 

@@ -126,8 +126,20 @@ var browserAlert = function() {
     alert('Yay!!');
 };
 
+var RequestPermission = function(callback) {
+    window.webkitNotifications.requestPermission(callback);
+};
+
 var osAlert = function() {
-    alert('Yay!!');
+    if (window.webkitNotifications.checkPermission() > 0) {
+        RequestPermission(osAlert);
+    } else {
+        var icon = 'icon.png';
+        var title = 'vision blocks';
+        var msg = 'come and get some food';
+        var notification = window.webkitNotifications.createNotification(icon, title, msg);
+        notification.show();
+    }
 };
 
 /*
