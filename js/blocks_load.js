@@ -7,7 +7,7 @@ var loadImage = function () {
 	if (this.options) {
 		url = this.options['url'];
 	}
-	img.src = url ? url : "file/rmc.jpg";
+	img.src = url ? url : "./files/balls_01.jpg";
 	var maxWidth = 640;
 	var maxHeight = 480;
 	
