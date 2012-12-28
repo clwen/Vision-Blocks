@@ -203,7 +203,11 @@ var pixelization = function () {
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
 	var data = pixels.data;
-    var gsz = parseInt(this.options['gridSize']); // grid_size
+    try {
+        var gsz = parseInt(this.options['gridSize']); // grid_size
+    } catch (ex) {
+        var gsz = 10;
+    }
     var w = canvas.width;
     var h = canvas.height;
     var x = 0, y = 0;
