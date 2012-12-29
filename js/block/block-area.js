@@ -368,49 +368,6 @@ $(document).ready(function() {
                         blockOptions['entry'] = $("#if-popover-entry").val();
                     }
             });
-        } else if (block.hasClass("build-block-draw-region")) { // TODO: not in use anymore? cleanup later
-            block.find(".build-block-2-title-wrapper:first").applyPopover({
-                'popover': {
-                    content: function() {
-                        var html = "<div class='build-block-draw-region-popover'>";
-                        html += "<div class='build-block-draw-region-popover-top'>";
-                        html += "<div>RGB</div> <div><input id='draw-region-popover-color' maxlength='6' class='enter-out-popover'/></div>";
-                        html += "<div>X</div> <div><input id='draw-region-popover-x' maxlength='3' class='enter-out-popover'/></div>";
-                        html += "<div>Y</div> <div><input id='draw-region-popover-y' maxlength='3' class='enter-out-popover'/></div>";
-                        html += "<div>Width</div> <div><input id='draw-region-popover-width' maxlength='3' class='enter-out-popover'/></div>";
-                        html += "<div>Height</div> <div><input id='draw-region-popover-height' maxlength='3' class='enter-out-popover'/></div>";
-                        html += "</div>";
-                        html += "</div>";
-
-                        return html;
-                    }
-                },
-                'block-options': {
-                    'rgb' 	: '000000',
-                    'x'		: 0,
-                    'y'		: 0,
-                    'width' : 320,			
-                    'height': 240
-                },
-                'shown-event': function(blockOptions) {
-                    $("#draw-region-popover-color").val(blockOptions['rgb']);
-                    $("#draw-region-popover-x").val(blockOptions['x']);
-                    $("#draw-region-popover-y").val(blockOptions['y']);
-                    $("#draw-region-popover-width").val(blockOptions['width']);
-                    $("#draw-region-popover-height").val(blockOptions['height']);
-                },
-                'hidden-event': function(blockOptions) {
-                    blockOptions['rgb'] = $("#draw-region-popover-color").val();
-                    blockOptions['x'] = $("#draw-region-popover-x").val();
-                    blockOptions['y'] = $("#draw-region-popover-y").val();
-                    blockOptions['width'] = $("#draw-region-popover-width").val();
-                    blockOptions['height'] = $("#draw-region-popover-height").val();
-
-                    if (blockOptions['rgb']) {
-                        block.find(".build-block-draw-rect-condition-rgb").css("background-color", '#'+blockOptions['rgb']);
-                    }
-                }
-            });
         } else if (block.hasClass("build-block-write-text")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
