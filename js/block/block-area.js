@@ -156,7 +156,7 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'binThreshold' : '128'
+                    'binThreshold': '128'
                 },
                 'shown-event': function(blockOptions) {
                     $("#binarize-popover-threshold").val(blockOptions['binThreshold']);
@@ -180,7 +180,7 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'gridSize' : '10'
+                    'gridSize': '10'
                 },
                 'shown-event': function(blockOptions) {
                     $("#pixelization-popover-size").val(blockOptions['gridSize']);
@@ -206,7 +206,7 @@ $(document).ready(function() {
                 },
                 'block-options': {
                     'hue' : '50',
-                    'colThreshold' : '18',
+                    'colThreshold': '18',
                 },
                 'shown-event': function(blockOptions) {
                     $("#color-detect-popover-hue").val(blockOptions['hue']);
@@ -231,7 +231,7 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'blurSize' : '3'
+                    'blurSize': '3'
                 },
                 'shown-event': function(blockOptions) {
                     $("#blur-popover-size").val(blockOptions['blurSize']);
@@ -296,10 +296,10 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'x' 	 : 50,
-                    'y' 	 : 50,
-                    'width'  : 100,
-                    'height' : 100,
+                    'x': 50,
+                    'y': 50,
+                    'width': 100,
+                    'height': 100,
                     'threshold': 10,
                 },
                 'shown-event': function(blockOptions) {
@@ -347,7 +347,7 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'condition' : ' > 0',
+                    'condition': ' > 0',
                     'entry': 'faces'
                 },
                 'shown-event': function(blockOptions) {
@@ -383,7 +383,7 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'text'		: 'Yay!'
+                    'text': 'Yay!'
                 },
                 'shown-event': function(blockOptions) {
                     $("#write-text-popover-text").val(blockOptions['text']);
@@ -408,8 +408,8 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'rgb' 	: 'FF0000',
-                    'boxes'	: 'faces_array'
+                    'rgb': 'FF0000',
+                    'boxes': 'faces_array'
                 },
                 'shown-event': function(blockOptions) {
                     $("#draw-regions-popover-color").val(blockOptions['rgb']);
