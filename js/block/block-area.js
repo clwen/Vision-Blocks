@@ -81,7 +81,6 @@ $(document).ready(function() {
      * Function called when a block is added
      * */
     var addedBlock = function(block) {
-        console.log(block);
         recalcWidth();
 
         block.find(".icon-remove-block").off("click").on("click", function(){
