@@ -440,7 +440,7 @@
                     </div>
                   </div>
                   <div class="build-block-2-bottom build-block-recalc-width" style="width: 170px;"></div>
-                  </div><div class="build-block build-block-pixelization block-container-vision build-block-2" data-block-name="pixelization" style="top: -28px; left: 12px;">
+                  </div><div id="pixelization" class="build-block build-block-pixelization block-container-vision build-block-2" data-block-name="pixelization" style="top: -28px; left: 12px;">
                   <div class="build-block-2-top build-block-recalc-width" style="width: 170px;"></div>
                   <div class="build-block-2-title-wrapper build-block-recalc-width popover-enable" style="width: 170px;" data-original-title="">
                     <div class="build-block-2-title">
@@ -507,6 +507,34 @@
   <script src="js/block/block-area.js"></script>
   <script src="js/block/drag-and-drop.js"></script>
   <script src="js/block/apply-popover.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $("#pixelization").find(".build-block-2-title-wrapper:first").applyPopover({
+        'popover': {
+          content: function() {
+            var html = "<div class='build-block-pixelization-popover'>";
+              html += "<div class='build-block-pixelization-popover-top'>";
+                html += "<div>Grid size</div> <div><input id='pixelization-popover-size' maxlength='15' class='enter-out-popover'/></div>";
+                html += "</div>";
+              html += "</div>";
+
+            return html;
+          }
+        },
+        'block-options': {
+          'gridSize' : '10'
+        },
+        'shown-event': function(blockOptions) {
+          $("#pixelization-popover-size").val(blockOptions['gridSize']);
+        },
+        'hidden-event': function(blockOptions) {
+          blockOptions['gridSize'] = $("#pixelization-popover-size").val();
+
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>

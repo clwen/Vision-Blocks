@@ -81,6 +81,7 @@ $(document).ready(function() {
      * Function called when a block is added
      * */
     var addedBlock = function(block) {
+        console.log(block);
         recalcWidth();
 
         block.find(".icon-remove-block").off("click").on("click", function(){
@@ -539,12 +540,12 @@ $(document).ready(function() {
         };
 
         parent.find(".build-block").dragAndDrop({
-            move : function(block, posX, posY) {
+            move: function(block, posX, posY) {
                 var blocks = $(".build-area .build-block .build-block:not(.empty-block)").toArray();
 
                 moveDragFitBlock($(".build-area .build-block:eq(0)"), block, posY);
             },
-            end : function(block) {
+            end: function(block) {
                 var emptyBlock = $(".build-area .empty-block");
                 var buildArea = $(".build-area");
                 if (buildArea.children().size() == 0) {
