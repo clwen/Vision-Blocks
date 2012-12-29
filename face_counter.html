@@ -429,7 +429,7 @@
               <div class="build-block-top"></div>
               <div class="content" style="height: 166px;">
                 <div class="build-block-1-leftbar" style="height: 187px;"></div>
-                <div class="build-block build-block-load-image block-container-image build-block-2" data-block-name="loadImage" style="top: -20px; left: 12px;">
+                <div id="block-load-image" class="build-block build-block-load-image block-container-image build-block-2" data-block-name="loadImage" style="top: -20px; left: 12px;">
                   <div class="build-block-2-top build-block-recalc-width" style="width: 182px;"></div>
                   <div class="build-block-2-title-wrapper build-block-recalc-width popover-enable" style="width: 182px;" data-original-title="">
                     <div class="build-block-2-title">
@@ -442,7 +442,8 @@
                     </div>
                   </div>
                   <div class="build-block-2-bottom build-block-recalc-width" style="width: 182px;"></div>
-                  </div><div class="build-block build-block-detect-face block-container-vision build-block-2" data-block-name="faceDetection" style="top: -28px; left: 12px;">
+                  </div>
+                  <div id="block-detect-face" class="build-block build-block-detect-face block-container-vision build-block-2" data-block-name="faceDetection" style="top: -28px; left: 12px;">
                   <div class="build-block-2-top build-block-recalc-width" style="width: 182px;"></div>
                   <div class="build-block-2-title-wrapper build-block-recalc-width popover-enable" style="width: 182px;" data-original-title="">
                     <div class="build-block-2-title">
@@ -452,7 +453,8 @@
                     </div>
                   </div>
                   <div class="build-block-2-bottom build-block-recalc-width" style="width: 182px;"></div>
-                  </div><div class="build-block block-container-logic build-block-if build-block-extra-popover build-block-1 build-block-3" data-block-name="ifBlock" style="top: -36px; left: 12px;">
+                  </div>
+                  <div id="block-if" class="build-block block-container-logic build-block-if build-block-extra-popover build-block-1 build-block-3" data-block-name="ifBlock" style="top: -36px; left: 12px;">
                   <div class="build-block-2-top build-block-recalc-width" style="width: 182px;"></div>
                   <div class="build-block-title-wrapper build-block-recalc-width popover-enable" style="width: 182px;" data-original-title="">
                     <div class="build-block-title">
@@ -469,7 +471,7 @@
                     <div class="build-block-1-leftbar-container">
                       <div class="build-block-1-leftbar" style="height: 41px;"></div>
                     </div>
-                    <div class="build-block build-block-draw-regions block-container-draw build-block-2" data-block-name="drawRegions" style="top: -20px; left: 12px;">
+                    <div id="block-draw-rect" class="build-block build-block-draw-regions block-container-draw build-block-2" data-block-name="drawRegions" style="top: -20px; left: 12px;">
                       <div class="build-block-2-top build-block-recalc-width" style="width: 170px;"></div>
                       <div class="build-block-2-title-wrapper build-block-recalc-width popover-enable" style="width: 170px;" data-original-title="">
                         <div class="build-block-2-title">
@@ -544,6 +546,142 @@
   <script src="js/block/block-area.js"></script>
   <script src="js/block/drag-and-drop.js"></script>
   <script src="js/block/apply-popover.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $("#block-load-image").find(".build-block-2-title-wrapper:first").applyPopover({
+        'popover': {
+          content: function() {
+            var html = "<div>";
+              html += "<div>";
+              html += "<div>URL</div> <div><input id='load-image-url' name='files[]' type='file'/></div>";
+              html += "</div>";
+              html += "</div>";
+
+            return html;
+          }
+        },
+        'hidden-event': function(blockOptions) {
+          var file = document.getElementById("load-image-url").files;
+          if (file && file.length) {
+            file = file[0];
+
+            blockOptions['url'] =  window.URL.createObjectURL(file);
+
+            if (blockOptions['url']) {
+              block.find(".build-block-desc div").text(file.name.substring(0,6));
+            }
+          }
+        }
+      });
+
+      $("#block-detect-face").find(".build-block-2-title-wrapper:first").applyPopover({
+        'popover': {
+          contentFooter: function() {
+            var html = "";
+            html += "<div class='output_element'><span>faces</span></div>";
+            html += "<div class='output_element'><span>faces_array</span></div>";
+            html += "<div class='output_element'><span>faceX</span></div>";
+            html += "<div class='output_element'><span>faceY</span></div>";
+            html += "<div class='output_element'><span>faceW</span></div>";
+            html += "<div class='output_element'><span>faceH</span></div>";
+
+            return html;
+          }
+        },
+        'shown-event': function(blockOptions) {
+          $("#load-image-url").val(blockOptions['url']);
+          $(".popover-footer-content > div").dragAndDrop({
+            end: function(element) {
+              var blockIf = $(".build-area .build-block-if:eq(0)");
+              if (blockIf) {
+                blockIf.data("block-options")['entry'] = element.text();
+                blockIf.find(".build-block-desc:eq(0) span").text(element.text() + " " +blockIf.data("block-options")['condition']);
+              }
+            }
+          });
+        },
+        'hidden-event': function(blockOptions) {
+          blockOptions['url'] = $("#load-image-url").val();
+        }
+      });
+
+      $("#block-if").find(".build-block-title-wrapper:first").applyPopover({
+        'popover': {
+        content: function() {
+          var html = "<div class='build-block-if-popover'>";
+            html += "<div class='build-block-if-popover-top'>";
+              html += "<div>Variable</div> <div><input id='if-popover-entry' value='faces' class='enter-out-popover'/></div>";
+              html += "<br/>";
+              html += "<div>Condition</div> <div><input id='if-popover-condition' value='> 0' class='enter-out-popover'/></div>";
+              html += "</div>";
+            html += "<div class='build-block-if-popover-bottom'>";
+              html += "<div id='if-popover-final-condition'><span></span></div>";
+              html += "</div>";
+            html += "</div>";
+
+          return html;
+        }
+        },
+        'block-options': {
+        'condition': ' > 0',
+        'entry': 'faces'
+        },
+        'shown-event': function(blockOptions) {
+        if (blockOptions['entry'] != null) {
+          $("#if-popover-entry").val(blockOptions['entry']);
+        }
+        if (blockOptions['condition'] != null) {
+          $("#if-popover-condition").val(blockOptions['condition']);
+        }
+        $("#if-popover-condition").change(function(){
+          var ifCondition = blockOptions['entry'] + " " + blockOptions['condition'];
+          $("#if-popover-final-condition span").text(ifCondition);
+          $("#block-if").find(".build-block-desc:eq(0) span").text(ifCondition);
+        });
+        $("#if-popover-condition").change();
+        },
+        'hidden-event': function(blockOptions) {
+        blockOptions['condition'] = $("#if-popover-condition").val();
+        blockOptions['entry'] = $("#if-popover-entry").val();
+      }
+    });
+
+    $("#block-draw-rect").find(".build-block-2-title-wrapper:first").applyPopover({
+      'popover': {
+      content: function() {
+        var html = "<div class='build-block-draw-region-popover'>";
+          html += "<div class='build-block-draw-region-popover-top'>";
+            html += "<div>RGB</div> <div><input id='draw-regions-popover-color' maxlength='6' class='enter-out-popover'/></div>";
+            html += "<div>Boxes</div> <div><input id='draw-regions-popover-boxes' class='enter-out-popover'/></div>";
+            html += "</div>";
+          html += "</div>";
+
+        return html;
+      }
+      },
+      'block-options': {
+      'rgb': 'FF0000',
+      'boxes': 'faces_array'
+      },
+      'shown-event': function(blockOptions) {
+      $("#draw-regions-popover-color").val(blockOptions['rgb']);
+      $("#draw-regions-popover-boxes").val(blockOptions['boxes']);
+      },
+      'hidden-event': function(blockOptions) {
+      blockOptions['rgb'] = $("#draw-regions-popover-color").val();
+      blockOptions['boxes'] = $("#draw-regions-popover-boxes").val();
+
+      if (blockOptions['rgb']) {
+        $("#block-draw-rect").find(".build-block-draw-rect-condition-rgb").css("background-color", '#'+blockOptions['rgb']);
+      }
+    }
+  });
+
+
+
+    });
+  </script>
 
 </body>
 </html>

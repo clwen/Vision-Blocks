@@ -267,9 +267,9 @@ $(document).ready(function() {
                         }
                     });
                 },
-                    'hidden-event': function(blockOptions) {
-                        blockOptions['url'] = $("#load-image-url").val();
-                    }
+                'hidden-event': function(blockOptions) {
+                    blockOptions['url'] = $("#load-image-url").val();
+                }
             });
         } else if (block.hasClass("build-block-detect-intrusion")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
