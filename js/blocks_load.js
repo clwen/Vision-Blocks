@@ -50,7 +50,7 @@ var remoteVideo = function () {
 	
 	var url = null;
 	if (this.options) {
-		url = this.options['url'];
+		url = this.options['remoteVideoUrl'];
 	}
 	
 	url = url ? url : "http://foodcam-proxy.media.mit.edu/~clwen/vblocks/files/fox.mp4";

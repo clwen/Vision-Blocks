@@ -138,6 +138,29 @@ $(document).ready(function() {
                     }
                 }
             });
+        } else if (block.hasClass("build-block-remote-video")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div class='build-block-remote-video-popover'>";
+                        html += "<div class='build-block-remote-video-popover-top'>";
+                        html += "<div>URL</div> <div><input id='remote-video-url' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
+
+                        return html;
+                    }
+                },
+                'block-options': {
+                    'remoteVideoUrl': 'http://foodcam-proxy.media.mit.edu/~clwen/vblocks/files/fox.mp4',
+                },
+                'shown-event': function(blockOptions) {
+                    $("#remote-video-url").val(blockOptions['remoteVideoUrl']);
+                },
+                'hidden-event': function(blockOptions) {
+                    blockOptions['remoteVideoUrl'] = $("#remote-video-url").val();
+                }
+            });
         } else if (block.hasClass("build-block-load-video")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
