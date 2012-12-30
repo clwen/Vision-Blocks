@@ -204,7 +204,7 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'hue' : '50',
+                    'hue': '50',
                     'colThreshold': '18',
                 },
                 'shown-event': function(blockOptions) {
