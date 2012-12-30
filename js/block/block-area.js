@@ -107,7 +107,7 @@ $(document).ready(function() {
                     if (file && file.length) {
                         file = file[0];
 
-                        blockOptions['url'] =  window.URL.createObjectURL(file);
+                        blockOptions['url'] = window.URL.createObjectURL(file);
 
                         if (blockOptions['url']) {
                             block.find(".build-block-desc div").text(file.name.substring(0,6));
