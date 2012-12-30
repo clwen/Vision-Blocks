@@ -1,3 +1,25 @@
+var remoteImage = function () {
+	var thiss = this;
+	var canvas = document.querySelector("#outputCanvas");
+	var context = canvas.getContext('2d');
+	var img = new Image();
+	var url = null;
+	if (this.options) {
+		url = this.options['url'];
+	}
+	img.src = url ? url : "./files/mona_lisa.jpg";
+	var maxWidth = 640;
+	var maxHeight = 480;
+	
+	img.onload = function() {
+		var newSize = resize(img, maxWidth, maxHeight);
+		context.drawImage(img, 0, 0, newSize[0], newSize[1]);
+		VB.interpreter.dictionary["canvas"] = canvas;
+		
+		thiss.executeNext();
+	};	
+};
+
 var loadImage = function () {
 	var thiss = this;
 	var canvas = document.querySelector("#outputCanvas");

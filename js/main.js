@@ -7,6 +7,7 @@ $(document).ready(function(){
 
     /* Blocks declaration */
     base : {
+        'remoteImage' 			: function() {return new vb.Block('Remote Image', remoteImage, true)},
         'loadImage' 			: function() {return new vb.Block('Load Image', loadImage, true)},
         'loadVideo' 			: function() {return new vb.Block('Load Video', loadVideo, true)},
         'loadWebcam' 			: function() {return new vb.Block('Load Webcam', loadWebcam, true)},
