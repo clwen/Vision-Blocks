@@ -5,7 +5,7 @@ var remoteImage = function () {
 	var img = new Image();
 	var url = null;
 	if (this.options) {
-		url = this.options['url'];
+		url = this.options['remoteImgUrl'];
 	}
 	img.src = url ? url : "./files/mona_lisa.jpg";
 	var maxWidth = 640;

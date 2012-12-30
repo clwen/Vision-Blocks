@@ -89,7 +89,30 @@ $(document).ready(function() {
             refreshBlocks();
         });
 
-        if (block.hasClass("build-block-load-image")) {
+        if (block.hasClass("build-block-remote-img")) {
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div class='build-block-remote-img-popover'>";
+                        html += "<div class='build-block-remote-img-popover-top'>";
+                        html += "<div>URL</div> <div><input id='remote-img-url' class='enter-out-popover'/></div>";
+                        html += "</div>";
+                        html += "</div>";
+
+                        return html;
+                    }
+                },
+                'block-options': {
+                    'remoteImgUrl': 'http://foodcam-proxy.media.mit.edu/~clwen/vblocks/files/snsd_01.jpg',
+                },
+                'shown-event': function(blockOptions) {
+                    $("#remote-img-url").val(blockOptions['remoteImgUrl']);
+                },
+                'hidden-event': function(blockOptions) {
+                    blockOptions['remoteImgUrl'] = $("#remote-img-url").val();
+                }
+            });
+        } else if (block.hasClass("build-block-load-image")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
