@@ -42,6 +42,32 @@ var loadImage = function () {
 	};	
 };
 
+var remoteVideo = function () {
+	var thiss = this;
+	var canvas = document.querySelector("#outputCanvas");
+	var context = canvas.getContext('2d');
+	var video = document.getElementById("inputVideo");
+	
+	var url = null;
+	if (this.options) {
+		url = this.options['url'];
+	}
+	
+	url = url ? url : "http://foodcam-proxy.media.mit.edu/~clwen/vblocks/files/fox.mp4";
+	
+	if (video.src.indexOf(url) == -1) {
+		video.src = url;
+	}
+	
+	if (video.paused) {
+		video.play();
+	}
+	
+	context.drawImage(video, 0, 0, canvas.width, canvas.height);
+	VB.interpreter.dictionary["canvas"] = canvas;
+	thiss.executeNext();
+};
+
 var loadVideo = function () {
 	var thiss = this;
 	var canvas = document.querySelector("#outputCanvas");

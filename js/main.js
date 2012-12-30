@@ -9,6 +9,7 @@ $(document).ready(function(){
     base : {
         'remoteImage' 			: function() {return new vb.Block('Remote Image', remoteImage, true)},
         'loadImage' 			: function() {return new vb.Block('Load Image', loadImage, true)},
+        'remoteVideo' 			: function() {return new vb.Block('Remote Video', remoteVideo, true)},
         'loadVideo' 			: function() {return new vb.Block('Load Video', loadVideo, true)},
         'loadWebcam' 			: function() {return new vb.Block('Load Webcam', loadWebcam, true)},
         'loadFoodcam' 			: function() {return new vb.Block('Load Foodcam', loadFoodcam, true)},
