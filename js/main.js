@@ -32,7 +32,7 @@ $(document).ready(function(){
         'skinDetection' 		: function() {return new vb.Block('Skin Detection', skinDetection)},
         'pixelization'     		: function() {return new vb.Block('Pixelization', pixelization)},
         'intrusionDetection' 	: function() {return new vb.Block('Intrusion Detection', intrusionDetection)},
-        'speedDetection' 		: function() {return new vb.Block('Speed Detection', speedDetection)},
+        'opticalFlow' 		    : function() {return new vb.Block('Optical Flow', opticalFlow)},
 
         'ifBlock'				: function() {return new vb.ConditionalFlowBlock('If Block', ifBlock)},
         'play'					: function() {return new vb.FlowBlock('Play', play)},

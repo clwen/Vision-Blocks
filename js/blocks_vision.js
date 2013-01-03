@@ -70,7 +70,111 @@ var intrusionDetection = function () {
     }
 }
 
-var speedDetection = function () {
+var opticalFlow = function () {
 	var canvas = VB.interpreter.dictionary["canvas"];
+	var ctx = canvas.getContext('2d');
 	var pixels = getPixels(canvas);
+	var data = pixels.data;
+
+	if (!VB.interpreter.dictionary["initData"]) {
+		VB.interpreter.dictionary["initData"] = data;
+	}
+
+	var initData = VB.interpreter.dictionary["initData"];
+
+	var winSize = 8;
+	var winStep = winSize * 2 + 1;
+
+	var i,j,k,l,address;
+
+	var gradX, gradY, gradT;
+	var A2, A1B2, B1, C1, C2;
+	var u, v, uu, vv, n;
+	
+	uu = vv = n = 0;
+	
+	var width = VB.interpreter.dictionary["workingArea"].width;
+	var height = VB.interpreter.dictionary["workingArea"].height;
+
+	var wmax = width - winSize - 1;
+	var hmax = height - winSize - 1;
+
+	for (i = winSize + 1; i < hmax; i += winStep) {
+		for (j = winSize + 1; j < wmax; j += winStep) {
+			
+			A2 = A1B2 = B1 = C1 = C2 = 0;
+
+			for (k = -winSize; k <= winSize; k++) {
+				for (l = -winSize; l <= winSize; l++) {
+					address = (i + k) * width + j + l;
+
+					gradX = (data[address - 1] & 0xff) - (data[address + 1] & 0xff);
+					gradY = (data[address - width] & 0xff) - (data[address + width] & 0xff);
+					gradT = (initData[address] & 0xff) - (data[address] & 0xff);
+
+					A2 += gradX * gradX;
+					A1B2 += gradX * gradY;
+					B1 += gradY * gradY;
+					C2 += gradX * gradT;
+					C1 += gradY * gradT;
+				}
+			}
+			var delta = (A1B2 * A1B2 - A2 * B1);
+
+			if (delta) {
+					/* system is not singular - solving by Kramer method */
+					var deltaX, deltaY;
+					var Idelta = 8 / delta;
+
+					deltaX = -(C1 * A1B2 - C2 * B1);
+					deltaY = -(A1B2 * C2 - A2 * C1);
+
+					u = deltaX * Idelta;
+					v = deltaY * Idelta;
+				} else {
+					/* singular system - find optical flow in gradient direction */
+					var Norm = (A1B2 + A2) * (A1B2 + A2) + (B1 + A1B2) * (B1 + A1B2);
+
+					if (Norm) {
+						var IGradNorm = 8 / Norm;
+						var temp = -(C1 + C2) * IGradNorm;
+						u = (A1B2 + A2) * temp;
+						v = (B1 + A1B2) * temp;
+					} else {
+						u = v = 0;
+					}
+				}
+
+			if (-winStep < u && u < winStep && -winStep < v && v < winStep) {
+				uu += u;
+				vv += v;
+				n++;
+			}
+		}
+	}
+	uu /= n;
+	vv /= n;
+	
+	//Not completed
+	var scaleX = scaleY = Math.sqrt(uu * uu + vv * vv) * 10;
+	var toDegree = 180 / Math.PI;
+	var rotation = Math.atan2(vv, uu) * toDegree + 360;
+	ctx.strokeRect(0,0,160,80);
+	ctx.moveTo(80,40);
+
+	ctx.lineTo(scaleX, scaleY);
+	ctx.stroke();
+
 }
+
+/*
+so-called mask.. 
+The thing is, you get the RGB value all in one integer, with one byte for each component.. 
+Something like 0xAARRGGBB (alpha, red, green, blue). By and-ing with 0xFF, you keep just the last part, 
+which is blue. For other channels, you'd use:
+
+int alpha = (rgb >>> 24) & 0xFF;
+int red   = (rgb >>> 16) & 0xFF;
+int green = (rgb >>>  8) & 0xFF;
+int blue  = (rgb >>>  0) & 0xFF;
+*/
