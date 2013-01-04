@@ -83,7 +83,7 @@ var opticalFlow = function () {
 	var initData = VB.interpreter.dictionary["initData"];
 
 	var winSize = 8;
-	var winStep = winSize * 2 + 1;
+	var winStep = winSize * 8 + 1;
 
 	var i,j,k,l,address;
 
@@ -150,31 +150,28 @@ var opticalFlow = function () {
 				vv += v;
 				n++;
 			}
+			var scaleX = scaleY = Math.sqrt(u * u + v * v) * 2;
+			var toDegree = 180 / Math.PI;
+			var rotation = Math.atan2(v, u) * toDegree + 360;
+			
+			ctx.strokeRect(j-20,i-20,40,40);
+			
+			ctx.moveTo(j,i);
+
+			ctx.lineTo(j+scaleX*Math.cos(rotation), i+scaleY*Math.sin(rotation));
+			ctx.stroke();
 		}
 	}
 	uu /= n;
 	vv /= n;
 	
 	//Not completed
-	var scaleX = scaleY = Math.sqrt(uu * uu + vv * vv) * 10;
-	var toDegree = 180 / Math.PI;
-	var rotation = Math.atan2(vv, uu) * toDegree + 360;
-	ctx.strokeRect(0,0,160,80);
-	ctx.moveTo(80,40);
+	// var scaleX = scaleY = Math.sqrt(uu * uu + vv * vv) * 10;
+	// var toDegree = 180 / Math.PI;
+	// var rotation = Math.atan2(vv, uu) * toDegree + 360;
+	// ctx.strokeRect(0,0,160,80);
+	// ctx.moveTo(80,40);
 
-	ctx.lineTo(scaleX, scaleY);
-	ctx.stroke();
-
+	// ctx.lineTo(scaleX*Math.cos(rotation), scaleY*Math.sin(rotation));
+	// ctx.stroke();
 }
-
-/*
-so-called mask.. 
-The thing is, you get the RGB value all in one integer, with one byte for each component.. 
-Something like 0xAARRGGBB (alpha, red, green, blue). By and-ing with 0xFF, you keep just the last part, 
-which is blue. For other channels, you'd use:
-
-int alpha = (rgb >>> 24) & 0xFF;
-int red   = (rgb >>> 16) & 0xFF;
-int green = (rgb >>>  8) & 0xFF;
-int blue  = (rgb >>>  0) & 0xFF;
-*/
