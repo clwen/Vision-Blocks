@@ -75,9 +75,6 @@ var opticalFlow = function () {
 	var ctx = canvas.getContext('2d');	
 	var pixels = getPixels(canvas);
 	var data = pixels.data;
-	
-	ctx.strokeStyle = '#ff0000';
-	ctx.beginPath();
 
 	if (!VB.interpreter.dictionary["initData"]) {
 		VB.interpreter.dictionary["initData"] = data;
@@ -86,7 +83,7 @@ var opticalFlow = function () {
 	var initData = VB.interpreter.dictionary["initData"];
 	VB.interpreter.dictionary["initData"] = data;
 
-	var winSize = 8;
+	var winSize = 16;
 	var winStep = winSize * 2 + 1;
 
 	var i,j,k,l,address;
@@ -149,20 +146,18 @@ var opticalFlow = function () {
 					}
 				}
 
-			if (-winStep < u && u < winStep && -winStep < v && v < winStep) {
-				uu += u;
-				vv += v;
-				n++;
-			}
-
 			/*Magical Number*/
-			var scaleX = scaleY = Math.sqrt(u * u + v * v)/10;
+			var scaleX = scaleY = Math.sqrt(u * u + v * v);
 			var toDegree = 180 / Math.PI;
-			var rotation = Math.atan2(v, u) * toDegree + 360;
-			
-			ctx.moveTo((j-1)/4 ,i);
+			var rotation = Math.atan2(v, u);
+			var rgb = 'rgb('+((v/scaleX)*128+128)+','+((u/scaleY)*128+128)+',0)';
+			ctx.strokeStyle = rgb;
+
+			ctx.beginPath();
+			ctx.moveTo((j-1)/4 , i);
 			ctx.lineTo(((j-1)/4)+scaleX*Math.cos(rotation), i+scaleY*Math.sin(rotation));
+			
+			ctx.stroke();
 		}
 	}
-	ctx.stroke();
 }
