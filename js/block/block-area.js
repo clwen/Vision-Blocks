@@ -103,7 +103,7 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'remoteImgUrl': 'http://foodcam-proxy.media.mit.edu/~clwen/vblocks/files/snsd_01.jpg',
+                    'remoteImgUrl': 'http://foodcam-proxy.media.mit.edu/~clwen/vblocks/files/mona_lisa.jpg',
                 },
                 'shown-event': function(blockOptions) {
                     $("#remote-img-url").val(blockOptions['remoteImgUrl']);

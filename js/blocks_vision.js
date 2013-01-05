@@ -83,7 +83,7 @@ var opticalFlow = function () {
 	var initData = VB.interpreter.dictionary["initData"];
 	VB.interpreter.dictionary["initData"] = data;
 
-	var winSize = 16;
+	var winSize = 4;
 	var winStep = winSize * 2 + 1;
 
 	var i,j,k,l,address;
@@ -151,7 +151,7 @@ var opticalFlow = function () {
 			var toDegree = 180 / Math.PI;
 			var rotation = Math.atan2(v, u);
 			var rgb = 'rgb('+((v/scaleX)*128+128)+','+((u/scaleY)*128+128)+',0)';
-			ctx.strokeStyle = rgb;
+			ctx.strokeStyle = '#ff0000';
 
 			ctx.beginPath();
 			ctx.moveTo((j-1)/4 , i);
