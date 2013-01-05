@@ -72,44 +72,48 @@ var intrusionDetection = function () {
 
 var opticalFlow = function () {
 	var canvas = VB.interpreter.dictionary["canvas"];
-	var ctx = canvas.getContext('2d');
+	var ctx = canvas.getContext('2d');	
 	var pixels = getPixels(canvas);
 	var data = pixels.data;
+	
+	ctx.strokeStyle = '#ff0000';
+	ctx.beginPath();
 
 	if (!VB.interpreter.dictionary["initData"]) {
 		VB.interpreter.dictionary["initData"] = data;
 	}
 
 	var initData = VB.interpreter.dictionary["initData"];
+	VB.interpreter.dictionary["initData"] = data;
 
 	var winSize = 8;
-	var winStep = winSize * 8 + 1;
+	var winStep = winSize * 2 + 1;
 
 	var i,j,k,l,address;
 
 	var gradX, gradY, gradT;
 	var A2, A1B2, B1, C1, C2;
-	var u, v, uu, vv, n;
+	var uu, v, uu, vv, n;
 	
 	uu = vv = n = 0;
 	
 	var width = VB.interpreter.dictionary["workingArea"].width;
 	var height = VB.interpreter.dictionary["workingArea"].height;
 
-	var wmax = width - winSize - 1;
+	var wmax = (width*4) - (winSize*4) - 4;
 	var hmax = height - winSize - 1;
 
-	for (i = winSize + 1; i < hmax; i += winStep) {
-		for (j = winSize + 1; j < wmax; j += winStep) {
-			
+	for (i = winSize + 1; i < hmax; i+=winStep) {
+		for (j = (winSize*4) + 1; j < wmax; j += (winStep*4)) {
 			A2 = A1B2 = B1 = C1 = C2 = 0;
 
 			for (k = -winSize; k <= winSize; k++) {
-				for (l = -winSize; l <= winSize; l++) {
-					address = (i + k) * width + j + l;
-
-					gradX = (data[address - 1] & 0xff) - (data[address + 1] & 0xff);
-					gradY = (data[address - width] & 0xff) - (data[address + width] & 0xff);
+				for (l = -(winSize*4); l <= winSize*4; l+=4) {
+					
+					address = (i + k) * (width*4) + j + l;
+					
+					gradX = (data[address - 4] & 0xff) - (data[address + 4] & 0xff);
+					gradY = (data[address - (width*4)] & 0xff) - (data[address + (width*4)] & 0xff);
 					gradT = (initData[address] & 0xff) - (data[address] & 0xff);
 
 					A2 += gradX * gradX;
@@ -150,28 +154,15 @@ var opticalFlow = function () {
 				vv += v;
 				n++;
 			}
-			var scaleX = scaleY = Math.sqrt(u * u + v * v) * 2;
+
+			/*Magical Number*/
+			var scaleX = scaleY = Math.sqrt(u * u + v * v)/10;
 			var toDegree = 180 / Math.PI;
 			var rotation = Math.atan2(v, u) * toDegree + 360;
 			
-			ctx.strokeRect(j-20,i-20,40,40);
-			
-			ctx.moveTo(j,i);
-
-			ctx.lineTo(j+scaleX*Math.cos(rotation), i+scaleY*Math.sin(rotation));
-			ctx.stroke();
+			ctx.moveTo((j-1)/4 ,i);
+			ctx.lineTo(((j-1)/4)+scaleX*Math.cos(rotation), i+scaleY*Math.sin(rotation));
 		}
 	}
-	uu /= n;
-	vv /= n;
-	
-	//Not completed
-	// var scaleX = scaleY = Math.sqrt(uu * uu + vv * vv) * 10;
-	// var toDegree = 180 / Math.PI;
-	// var rotation = Math.atan2(vv, uu) * toDegree + 360;
-	// ctx.strokeRect(0,0,160,80);
-	// ctx.moveTo(80,40);
-
-	// ctx.lineTo(scaleX*Math.cos(rotation), scaleY*Math.sin(rotation));
-	// ctx.stroke();
+	ctx.stroke();
 }
