@@ -13,6 +13,7 @@ $(document).ready(function(){
         'loadVideo' 			: function() {return new vb.Block('Load Video', loadVideo, true)},
         'loadWebcam' 			: function() {return new vb.Block('Load Webcam', loadWebcam, true)},
         'loadFoodcam' 			: function() {return new vb.Block('Load Foodcam', loadFoodcam, true)},
+        'loadPortcam' 			: function() {return new vb.Block('Load Portcam', loadPortcam, true)},
 
         'sobelFilter' 			: function() {return new vb.Block('Sobel', sobel)},
         'invertFilter' 			: function() {return new vb.Block('Invert Filter', invert)},

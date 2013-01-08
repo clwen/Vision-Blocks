@@ -124,3 +124,19 @@ var loadFoodcam = function () {
     VB.interpreter.dictionary["canvas"] = canvas;
     thiss.executeNext();
 };
+
+var loadPortcam = function () {
+	var thiss = this;
+	var canvas = document.querySelector("#outputCanvas");
+	var context = canvas.getContext('2d');
+	var video = document.getElementById("inputVideoCam");
+
+    var mjpeg = new MjpegCanvas({
+        host : 'mbp.media.mit.edu',
+        topic : '/nphMotionJpeg?Resolution=640x480',
+        canvasID : 'outputCanvas',
+    });
+
+    VB.interpreter.dictionary["canvas"] = canvas;
+    thiss.executeNext();
+};
