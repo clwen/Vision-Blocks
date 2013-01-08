@@ -14,6 +14,7 @@ $(document).ready(function(){
         'loadWebcam' 			: function() {return new vb.Block('Load Webcam', loadWebcam, true)},
         'loadFoodcam' 			: function() {return new vb.Block('Load Foodcam', loadFoodcam, true)},
         'loadPortcam' 			: function() {return new vb.Block('Load Portcam', loadPortcam, true)},
+        'loadParkingcam'		: function() {return new vb.Block('Load Parkingcam', loadParkingcam, true)},
 
         'sobelFilter' 			: function() {return new vb.Block('Sobel', sobel)},
         'invertFilter' 			: function() {return new vb.Block('Invert Filter', invert)},

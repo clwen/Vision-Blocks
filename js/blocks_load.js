@@ -112,8 +112,6 @@ var loadWebcam = function () {
 var loadFoodcam = function () {
 	var thiss = this;
 	var canvas = document.querySelector("#outputCanvas");
-	var context = canvas.getContext('2d');
-	var video = document.getElementById("inputVideoCam");
 
     var mjpeg = new MjpegCanvas({
         host : 'foodcam-proxy.media.mit.edu',
@@ -128,12 +126,24 @@ var loadFoodcam = function () {
 var loadPortcam = function () {
 	var thiss = this;
 	var canvas = document.querySelector("#outputCanvas");
-	var context = canvas.getContext('2d');
-	var video = document.getElementById("inputVideoCam");
 
     var mjpeg = new MjpegCanvas({
         host : 'mbp.media.mit.edu',
         topic : '/nphMotionJpeg?Resolution=640x480',
+        canvasID : 'outputCanvas',
+    });
+
+    VB.interpreter.dictionary["canvas"] = canvas;
+    thiss.executeNext();
+};
+
+var loadParkingcam = function () {
+	var thiss = this;
+	var canvas = document.querySelector("#outputCanvas");
+
+    var mjpeg = new MjpegCanvas({
+        host : 'mbp.media.mit.edu',
+        topic : '/top/nphMotionJpeg?Resolution=640x480',
         canvasID : 'outputCanvas',
     });
 
