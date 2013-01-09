@@ -90,9 +90,7 @@ var opticalFlow = function () {
 
 	var gradX, gradY, gradT;
 	var A2, A1B2, B1, C1, C2;
-	var uu, v, uu, vv, n;
-	
-	uu = vv = n = 0;
+	var u, v;
 	
 	var width = VB.interpreter.dictionary["workingArea"].width;
 	var height = VB.interpreter.dictionary["workingArea"].height;
@@ -100,8 +98,9 @@ var opticalFlow = function () {
 	var wmax = (width*4) - (winSize*4) - 4;
 	var hmax = height - winSize - 1;
 
+	// http://www.mathworks.com/help/vision/ref/vision.opticalflowclass.html
 	for (i = winSize + 1; i < hmax; i+=winStep) {
-		for (j = (winSize*4) + 1; j < wmax; j += (winStep*4)) {
+		for (j = (winSize*4); j < wmax; j += (winStep*4)) {
 			A2 = A1B2 = B1 = C1 = C2 = 0;
 
 			for (k = -winSize; k <= winSize; k++) {
@@ -146,14 +145,27 @@ var opticalFlow = function () {
 					}
 				}
 
-			/*Magical Number*/
 			var scaleX = scaleY = Math.sqrt(u * u + v * v);
+
+			if (scaleY > winSize) {
+				scaleY = winSize;
+			}
+
+			if (scaleX > winSize) {
+				scaleX = winSize;
+			}
+
 			var toDegree = 180 / Math.PI;
 			var rotation = Math.atan2(v, u);
-			var rgb = 'rgb('+((v/scaleX)*128+128)+','+((u/scaleY)*128+128)+',0)';
-			ctx.strokeStyle = '#ff0000';
+			// var rgb = 'rgb('+((v/scaleX)*128+128)+','+((u/scaleY)*128+128)+',0)';
+			// ctx.strokeStyle = rgb;
 
 			ctx.beginPath();
+
+			// var y = i-winSize;
+			// var x = (j/4)-winSize;
+			// ctx.rect( x, y, winSize*2, winSize*2 );
+
 			ctx.moveTo((j-1)/4 , i);
 			ctx.lineTo(((j-1)/4)+scaleX*Math.cos(rotation), i+scaleY*Math.sin(rotation));
 			
