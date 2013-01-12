@@ -13,9 +13,12 @@ $(document).ready(function(){
         'loadVideo' 			: function() {return new vb.Block('Load Video', loadVideo, true)},
         'loadWebcam' 			: function() {return new vb.Block('Load Webcam', loadWebcam, true)},
         'loadFoodcam' 			: function() {return new vb.Block('Load Foodcam', loadFoodcam, true)},
+        'loadTrafficcam' 		: function() {return new vb.Block('Load Trafficcam', loadTrafficcam, true)},
+        'loadParkingcam'		: function() {return new vb.Block('Load Parkingcam', loadParkingcam, true)},
         'loadLaundrocam' 		: function() {return new vb.Block('Load Laundrocam', loadLaundrocam, true)},
         'loadPortcam' 			: function() {return new vb.Block('Load Portcam', loadPortcam, true)},
-        'loadParkingcam'		: function() {return new vb.Block('Load Parkingcam', loadParkingcam, true)},
+        'loadStorecamA'  		: function() {return new vb.Block('Load StorecamA', loadStorecamA, true)},
+        'loadStorecamB'  		: function() {return new vb.Block('Load StorecamB', loadStorecamB, true)},
 
         'sobelFilter' 			: function() {return new vb.Block('Sobel', sobel)},
         'invertFilter' 			: function() {return new vb.Block('Invert Filter', invert)},
