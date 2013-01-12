@@ -115,7 +115,7 @@ var loadFoodcam = function () {
 
     var mjpeg = new MjpegCanvas({
         host : 'vblocks.media.mit.edu',
-        topic : '/axis-cgi/mjpg/video.cgi?',
+        topic : '/proxy/foodcam/video.cgi?',
         canvasID : 'outputCanvas',
     });
 
@@ -129,7 +129,7 @@ var loadPortcam = function () {
 
     var mjpeg = new MjpegCanvas({
         host : 'vblocks.media.mit.edu',
-        topic : '/nphMotionJpeg?Resolution=640x480',
+        topic : '/proxy/port/nphMotionJpeg?Resolution=640x480',
         canvasID : 'outputCanvas',
     });
 
@@ -143,7 +143,7 @@ var loadParkingcam = function () {
 
     var mjpeg = new MjpegCanvas({
         host : 'vblocks.media.mit.edu',
-        topic : '/top/nphMotionJpeg?Resolution=640x480',
+        topic : '/proxy/parking/nphMotionJpeg?Resolution=640x480',
         canvasID : 'outputCanvas',
     });
 
