@@ -123,6 +123,20 @@ var loadFoodcam = function () {
     thiss.executeNext();
 };
 
+var loadLaundrocam = function () {
+	var thiss = this;
+	var canvas = document.querySelector("#outputCanvas");
+
+    var mjpeg = new MjpegCanvas({
+        host : 'vblocks.media.mit.edu',
+        topic : '/proxy/laundro/nphMotionJpeg?Resolution=640x480',
+        canvasID : 'outputCanvas',
+    });
+
+    VB.interpreter.dictionary["canvas"] = canvas;
+    thiss.executeNext();
+};
+
 var loadPortcam = function () {
 	var thiss = this;
 	var canvas = document.querySelector("#outputCanvas");
