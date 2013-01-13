@@ -19,6 +19,7 @@ $(document).ready(function(){
         'loadPortcam' 			: function() {return new vb.Block('Load Portcam', loadPortcam, true)},
         'loadStorecamA'  		: function() {return new vb.Block('Load StorecamA', loadStorecamA, true)},
         'loadStorecamB'  		: function() {return new vb.Block('Load StorecamB', loadStorecamB, true)},
+        'loadBirdcam' 			: function() {return new vb.Block('Load Birdcam', loadBirdcam, true)},
 
         'sobelFilter' 			: function() {return new vb.Block('Sobel', sobel)},
         'invertFilter' 			: function() {return new vb.Block('Invert Filter', invert)},

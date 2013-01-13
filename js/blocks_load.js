@@ -206,3 +206,18 @@ var loadStorecamB = function () {
     VB.interpreter.dictionary["canvas"] = canvas;
     thiss.executeNext();
 };
+
+var loadBirdcam = function () {
+	var thiss = this;
+	var canvas = document.querySelector("#outputCanvas");
+
+    var mjpeg = new MjpegCanvas({
+        host : 'vblocks.media.mit.edu',
+        topic : '/proxy/bird/nphMotionJpeg?Resolution=640x480',
+        canvasID : 'outputCanvas',
+    });
+
+    VB.interpreter.dictionary["canvas"] = canvas;
+    thiss.executeNext();
+};
+
