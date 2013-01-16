@@ -71,127 +71,120 @@ var intrusionDetection = function () {
 }
 
 var opticalFlow = function () {
-	var canvas = VB.interpreter.dictionary["canvas"];
-	var ctx = canvas.getContext('2d');	
-	var pixels = getPixels(canvas);
-	var data = pixels.data;
+    var canvas = VB.interpreter.dictionary["canvas"];
+    var ctx = canvas.getContext('2d');	
+    var pixels = getPixels(canvas);
+    var curr = pixels.data;
 
-	if (!VB.interpreter.dictionary["initData"]) {
-		VB.interpreter.dictionary["initData"] = data;
-	}
+    if (!VB.interpreter.dictionary["prevData"]) {
+        VB.interpreter.dictionary["prevData"] = curr;
+    }
 
-	var initData = VB.interpreter.dictionary["initData"];
-	VB.interpreter.dictionary["initData"] = data;
+    var prev = VB.interpreter.dictionary["prevData"];
+    VB.interpreter.dictionary["prevData"] = curr;
 
-	var winSize = 10;
-	var winStep = winSize * 2 + 1;
+    var winSize = 8;
+    var winStep = winSize * 2 + 1;
 
-	var i,j,k,l,address;
+    var i, j, k, l, add; // add: address
+    var gradX, gradY, gradT;
+    var A2, A1B2, B1, C1, C2;
+    var u, v, uu, vv, n;
 
-	var gradX, gradY, gradT;
-	var A2, A1B2, B1, C1, C2;
-	var u, v, uu, vv, n;
+    var width = VB.interpreter.dictionary["workingArea"].width;
+    var height = VB.interpreter.dictionary["workingArea"].height;
 
-	uu = vv = n = 0;
-	
-	var width = VB.interpreter.dictionary["workingArea"].width;
-	var height = VB.interpreter.dictionary["workingArea"].height;
+    var wmax = (width*4) - (winSize*4) - 4;
+    var hmax = height - winSize - 1;
 
-	var wmax = (width*4) - (winSize*4) - 4;
-	var hmax = height - winSize - 1;
+    uu = vv = n = 0;
 
-	var pVX, nVX, pVY, nVY, pVT, nVT;
-	// http://www.mathworks.com/help/vision/ref/vision.opticalflowclass.html
-	for (i = winSize + 1; i < hmax; i+=winStep) {
-		for (j = (winSize*4); j < wmax; j += (winStep*4)) {
-			A2 = A1B2 = B1 = C1 = C2 = 0;
+    for (i = winSize + 1; i < hmax; i+=winStep) {
+        for (j = (winSize*4) + 4; j < wmax; j += (winStep*4)) {
+            A2 = A1B2 = B1 = C1 = C2 = 0;
 
-			for (k = -winSize; k <= winSize; k++) {
-				for (l = -(winSize*4); l <= winSize*4; l+=4) {
-					
-					address = (i + k) * (width*4) + j + l;
+            for (k = -winSize; k <= winSize; k++) {
+                for (l = -(winSize*4); l <= winSize*4; l+=4) {
 
-					pVX = Math.max(data[address-4],data[address-3],data[address-2]);
-					nVX = Math.max(data[address+4],data[address+5],data[address+6]);
+                    add = (i + k) * (width*4) + j + l;
 
-					pVY = Math.max(data[address-(width*4)],data[address-(width*4)+1],data[address-(width*4)+2]);
-					nVY = Math.max(data[address+(width*4)],data[address+(width*4)+1],data[address+(width*4)+2]);
+                    gradX = ((curr[add+4] - curr[add-4]) +      // R
+                            (curr[add+5] - curr[add-3]) +       // G 
+                            (curr[add+6] - curr[add-2])) / 3;   // B
 
-					pVT = Math.max(initData[address], initData[address+1], initData[address+2]);
-					nVT = Math.max(data[address], data[address+1], data[address+2]);
+                    gradY = ((curr[add + width*4] - curr[add - width*4]) +              // R
+                             (curr[add + width*4 + 1] - curr[add - width*4 + 1]) +      // G
+                             (curr[add + width*4 + 2] - curr[add - width*4 + 2])) / 3 ; // B
 
-					gradX = (pVX & 0xff) - (nVX & 0xff);
-					gradY = (pVY & 0xff) - (nVY & 0xff);
-					gradT = (pVT & 0xff) - (nVT & 0xff);
+                    gradT = ((curr[add] - prev[add]) +          // R
+                            (curr[add+1] - prev[add+1]) +       // G
+                            (curr[add+2] - prev[add+2])) / 3;   // B
 
-					A2 += gradX * gradX;
-					A1B2 += gradX * gradY;
-					B1 += gradY * gradY;
-					C2 += gradX * gradT;
-					C1 += gradY * gradT;
-				}
-			}
-			var delta = (A1B2 * A1B2 - A2 * B1);
+                    A2 += gradX * gradX;
+                    A1B2 += gradX * gradY;
+                    B1 += gradY * gradY;
+                    C2 += gradX * gradT;
+                    C1 += gradY * gradT;
+                }
+            }
+            var delta = (A1B2 * A1B2 - A2 * B1);
 
-			if (delta) {
-				/* system is not singular - solving by Kramer method */
-				var deltaX, deltaY;
-				var Idelta = 8 / delta;
+            if (delta) {
+                /* system is not singular - solving by Kramer method */
+                var deltaX, deltaY;
+                var Idelta = 8 / delta;
 
-				deltaX = -(C1 * A1B2 - C2 * B1);
-				deltaY = -(A1B2 * C2 - A2 * C1);
+                deltaX = -(C1 * A1B2 - C2 * B1);
+                deltaY = -(A1B2 * C2 - A2 * C1);
 
-				u = deltaX * Idelta;
-				v = deltaY * Idelta;
-			} else {
-				/* singular system - find optical flow in gradient direction */
-				var Norm = (A1B2 + A2) * (A1B2 + A2) + (B1 + A1B2) * (B1 + A1B2);
+                u = deltaX * Idelta;
+                v = deltaY * Idelta;
+            } else {
+                /* singular system - find optical flow in gradient direction */
+                var Norm = (A1B2 + A2) * (A1B2 + A2) + (B1 + A1B2) * (B1 + A1B2);
 
-				if (Norm) {
-					var IGradNorm = 8 / Norm;
-					var temp = -(C1 + C2) * IGradNorm;
-					u = (A1B2 + A2) * temp;
-					v = (B1 + A1B2) * temp;
-				} else {
-					u = v = 0;
-				}
-			}
+                if (Norm) {
+                    var IGradNorm = 8 / Norm;
+                    var temp = -(C1 + C2) * IGradNorm;
+                    u = (A1B2 + A2) * temp;
+                    v = (B1 + A1B2) * temp;
+                } else {
+                    u = v = 0;
+                }
+            }
 
-			var scaleX = scaleY = Math.sqrt(u * u + v * v);
+            if (-winStep < u && u < winStep && -winStep < v && v < winStep) {
+                // draw line for current point
+                var rotation = Math.atan2(v, u);
+                var toDegree = 180 / Math.PI;
+                var hue = rotation * toDegree + 180;
+                ctx.beginPath();
+                ctx.strokeStyle = "hsl(" + hue + ", 80%, 50%)";
+                ctx.lineWidth = 1;
+                ctx.moveTo((j-1)/4, i);
+                ctx.lineTo((j-1)/4 + u*3, i + v*3);
+                ctx.stroke();
 
-			if (scaleY > winSize) {
-				scaleY = winSize;
-			}
+                // save u, v for the aggregated arrow
+                uu += u;
+                vv += v;
+                n++;
+            }
+        } // end of inner-for (j for x)
+    } // end of outer-for (i for y)
 
-			if (scaleX > winSize) {
-				scaleX = winSize;
-			}
+    // draw the aggregated arrow
+    uu /= n;
+    vv /= n;
+    var scale = Math.sqrt(uu*uu + vv*vv) * 36;
+    var rotation = Math.atan2(vv, uu);
+    var toDegree = 180 / Math.PI;
+    var hue = rotation * toDegree + 180;
 
-			var toDegree = 180 / Math.PI;
-			var rotation = Math.atan2(v, u);
-			ctx.beginPath();
-			ctx.moveTo((j-1)/4 , i);
-			ctx.lineTo(((j-1)/4)+scaleX*Math.cos(rotation), i+scaleY*Math.sin(rotation));
-			ctx.strokeStyle = "#000000"
-			ctx.lineWidth = 1;
-			ctx.stroke();
-			if (-winStep < u && u < winStep && -winStep < v && v < winStep) {
-				uu += u;
-				vv += v;
-				n++;
-			}
-		}
-	}
-	uu /= n;
-	vv /= n;
-	var scale = Math.sqrt(uu*uu+vv*vv)*25; 
-	var toDegree = 180 / Math.PI;
-	var rotation = Math.atan2(vv, uu);
-	ctx.beginPath();
-	ctx.moveTo(width/2, height/2);
-	ctx.lineTo((width/2)+scale*Math.cos(rotation), (height/2)+scale*Math.sin(rotation));
-	ctx.lineWidth = 5;
-	ctx.strokeStyle = "#ff0000";
-	ctx.stroke();
-
+    ctx.beginPath();
+    ctx.strokeStyle = "hsl(" + hue + ", 80%, 50%)";
+    ctx.lineWidth = 5;
+    ctx.moveTo(width/2, height/2);
+    ctx.lineTo((width/2) + scale*Math.cos(rotation), (height/2) + scale*Math.sin(rotation));
+    ctx.stroke();
 }
