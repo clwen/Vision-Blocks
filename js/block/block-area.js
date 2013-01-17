@@ -110,7 +110,7 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'remoteImgUrl': 'http://foodcam-proxy.media.mit.edu/~clwen/vblocks/files/mona_lisa.jpg',
+                    'remoteImgUrl': 'http://vblocks.media.mit.edu/files/mona_lisa.jpg',
                 },
                 'shown-event': function(blockOptions) {
                     $("#remote-img-url").val(blockOptions['remoteImgUrl']);
@@ -159,7 +159,7 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'remoteVideoUrl': 'http://foodcam-proxy.media.mit.edu/~clwen/vblocks/files/fox.mp4',
+                    'remoteVideoUrl': 'http://vblocks.media.mit.edu/files/fox.mp4',
                 },
                 'shown-event': function(blockOptions) {
                     $("#remote-video-url").val(blockOptions['remoteVideoUrl']);
