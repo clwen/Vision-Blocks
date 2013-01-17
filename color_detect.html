@@ -46,7 +46,6 @@
                 <li><a href="http://scratch.mit.edu/">Inspired by Scratch</a></li>
               </ul>
             </li>
-            <li><a href="#" onclick="javascript:performExecute();">Execute</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -67,7 +66,7 @@
                 
                 <div class="block-container-content">
                   
-                  <div class="build-block block-container-start build-block-1" data-block-name="play" >
+                  <div id="block-play" class="build-block block-container-start build-block-1" data-block-name="play" >
                     <div class="build-block-title-wrapper build-block-recalc-width">
                       <div class="build-block-title">
                         <div class="icon1-build-block icon1-play"></div>
@@ -546,7 +545,7 @@
           }
         },
         'block-options': {
-          'remoteImgUrl': 'http://vblocks.media.mit.edu/~clwen/vblocks/files/cell.gif',
+          'remoteImgUrl': 'http://vblocks.media.mit.edu/files/cell.gif',
         },
         'shown-event': function(blockOptions) {
           $("#remote-img-url").val(blockOptions['remoteImgUrl']);

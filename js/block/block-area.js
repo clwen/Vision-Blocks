@@ -25,8 +25,15 @@ $(document).ready(function() {
      * When user clicks out a popover, visible popovers are closed
      * */
     $("html").on("click", "body", function(e){
-        var test = $(e.target);
-        if (!test.is(".popover") && test.parents(".popover:first").size() == 0) {
+        var $tgt = $(e.target);
+
+        $tgt.parents().each(function() {
+            if ($(this).is("#block-play-forever") || $(this).is("#block-play")) {
+                performExecute();
+            }
+        });
+
+        if (!$tgt.is(".popover") && $tgt.parents(".popover:first").size() == 0) {
             hidePopoverActive();
         }
     });
