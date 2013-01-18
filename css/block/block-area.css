@@ -549,3 +549,9 @@ Building blocks v2
   width: 40px;
   margin: 2px;
 }
+
+#drag-draw-ctn {
+  width: 200px;
+  text-align: center;
+  margin: 8px auto 8px auto;
+}

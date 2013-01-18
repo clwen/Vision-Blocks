@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    var drag_draw_btn = false;
+
     /*
      * Hides visible popovers
      * */
@@ -21,9 +23,6 @@ $(document).ready(function() {
         }
     };
 
-    /*
-     * When user clicks out a popover, visible popovers are closed
-     * */
     $("html").on("click", "body", function(e){
         var $tgt = $(e.target);
 
@@ -33,6 +32,11 @@ $(document).ready(function() {
             }
         });
 
+        if ($tgt.is("#drag-draw-btn")) {
+            drag_draw_btn = true;
+        }
+
+         // When user clicks out a popover, visible popovers are closed
         if (!$tgt.is(".popover") && $tgt.parents(".popover:first").size() == 0) {
             hidePopoverActive();
         }
@@ -336,6 +340,7 @@ $(document).ready(function() {
                         html += "<span>Width</span> <span><input id='detect-intrusion-popover-w' maxlength='3' class='intrusion-popover-input'/></span>";
                         html += "<span>Height</span> <span><input id='detect-intrusion-popover-h' maxlength='3' class='intrusion-popover-input'/></span>";
                         html += "<br/>";
+                        html += "<div id='drag-draw-ctn'><button id='drag-draw-btn' type='button'>Drag region</button></div>";
                         html += "<span>Threshold</span> <span><input id='detect-intrusion-popover-thresh' maxlength='3' class='intrusion-popover-input'/></span>";
                         html += "</div>";
                         html += "</div>";
