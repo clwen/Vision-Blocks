@@ -373,14 +373,14 @@ $(document).ready(function() {
                     content : function() {
                         var html = "<div class='build-block-detect-intrusion-popover'>";
                         html += "<div class='build-block-detect-intrusion-popover-top'>";
-                        html += "<span>Start X</span> <span><input id='detect-intrusion-popover-x' maxlength='3' class='intrusion-popover-input'/></span>";
-                        html += "<span>Start Y</span> <span><input id='detect-intrusion-popover-y' maxlength='3' class='intrusion-popover-input'/></span>";
+                        html += "<span>Start X</span> <span><input id='detect-intrusion-popover-x' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
+                        html += "<span>Start Y</span> <span><input id='detect-intrusion-popover-y' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
                         html += "<br/>";
-                        html += "<span>Width</span> <span><input id='detect-intrusion-popover-w' maxlength='3' class='intrusion-popover-input'/></span>";
-                        html += "<span>Height</span> <span><input id='detect-intrusion-popover-h' maxlength='3' class='intrusion-popover-input'/></span>";
+                        html += "<span>Width</span> <span><input id='detect-intrusion-popover-w' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
+                        html += "<span>Height</span> <span><input id='detect-intrusion-popover-h' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
                         html += "<br/>";
                         html += "<div id='drag-draw-ctn'><button id='drag-draw-btn' type='button'>Drag region</button></div>";
-                        html += "<span>Threshold</span> <span><input id='detect-intrusion-popover-thresh' maxlength='3' class='intrusion-popover-input'/></span>";
+                        html += "<span>Threshold</span> <span><input id='detect-intrusion-popover-thresh' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
                         html += "</div>";
                         html += "</div>";
                         return html;
