@@ -1,10 +1,12 @@
 $(document).ready(function() {
 
+    var canvas = $("#outputCanvas")[0];
+    var ctx = canvas.getContext('2d');
+    var rect = {};
+    var drag = false;
     var drag_draw_btn = false;
 
-    /*
-     * Hides visible popovers
-     * */
+     // Hides visible popovers
     var hidePopoverActive = function() {
         if ($(".popover.in").size() > 0) {
             var $popover = null;
@@ -22,6 +24,37 @@ $(document).ready(function() {
             }
         }
     };
+
+    var cvsMouseDown = function(e) {
+        if (!drag_draw_btn) { return; }
+
+        rect.startX = e.pageX - this.offsetLeft;
+        rect.startY = e.pageY - this.offsetTop;
+        drag = true;
+    };
+
+    var cvsMouseUp = function(e) {
+        drag = false;
+        drag_draw_btn = false;
+    };
+
+    var drawRect = function() {
+        ctx.strokeStyle = "#F00";
+        ctx.strokeRect(rect.startX, rect.startY, rect.w, rect.h);
+    };
+
+    var cvsMouseMove = function(e) {
+        if (drag) {
+            rect.w = (e.pageX - this.offsetLeft) - rect.startX;
+            rect.h = (e.pageY - this.offsetTop) - rect.startY;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawRect();
+        }
+    };
+
+    $("#outputCanvas").bind('mousedown', cvsMouseDown);
+    $("#outputCanvas").bind('mouseup', cvsMouseUp);
+    $("#outputCanvas").bind('mousemove', cvsMouseMove);
 
     $("html").on("click", "body", function(e){
         var $tgt = $(e.target);
