@@ -28,14 +28,6 @@ var drawRegions = function() {
 	}
 };
 
-var selectRegion = function() {
-	VB.interpreter.dictionary["workingArea"].x = this.options['x'];
-	VB.interpreter.dictionary["workingArea"].y = this.options['y'];
-	VB.interpreter.dictionary["workingArea"].width = this.options['width'];
-	VB.interpreter.dictionary["workingArea"].height = this.options['height'];
-	draw(VB.interpreter.dictionary["workingArea"], "FF0000");
-};
-
 var intrusionDetection = function () {
 	VB.interpreter.dictionary["intrusion"] = false;
 	VB.interpreter.dictionary["workingArea"].x = this.options['x'];
