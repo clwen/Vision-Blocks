@@ -36,6 +36,12 @@ $(document).ready(function() {
     var cvsMouseUp = function(e) {
         drag = false;
         drag_draw_btn = false;
+
+        // update x, y, w, h to popover panel
+        $("#detect-intrusion-popover-x").val(rect.startX);
+        $("#detect-intrusion-popover-y").val(rect.startY);
+        $("#detect-intrusion-popover-w").val(rect.w);
+        $("#detect-intrusion-popover-h").val(rect.h);
     };
 
     var drawRect = function() {
