@@ -38,10 +38,10 @@ $(document).ready(function() {
         drag_draw_btn = false;
 
         // update x, y, w, h to popover panel
-        $("#detect-intrusion-popover-x").val(rect.startX);
-        $("#detect-intrusion-popover-y").val(rect.startY);
-        $("#detect-intrusion-popover-w").val(rect.w);
-        $("#detect-intrusion-popover-h").val(rect.h);
+        $("#detect-motion-pop-x").val(rect.startX);
+        $("#detect-motion-pop-y").val(rect.startY);
+        $("#detect-motion-pop-w").val(rect.w);
+        $("#detect-motion-pop-h").val(rect.h);
     };
 
     var drawRect = function() {
@@ -371,16 +371,16 @@ $(document).ready(function() {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content : function() {
-                        var html = "<div class='build-block-detect-intrusion-popover'>";
-                        html += "<div class='build-block-detect-intrusion-popover-top'>";
-                        html += "<span>Start X</span> <span><input id='detect-intrusion-popover-x' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
-                        html += "<span>Start Y</span> <span><input id='detect-intrusion-popover-y' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
+                        var html = "<div class='build-block-detect-motion-pop'>";
+                        html += "<div class='build-block-detect-motion-pop-top'>";
+                        html += "<span>Start X</span> <span><input id='detect-motion-pop-x' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
+                        html += "<span>Start Y</span> <span><input id='detect-motion-pop-y' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
                         html += "<br/>";
-                        html += "<span>Width</span> <span><input id='detect-intrusion-popover-w' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
-                        html += "<span>Height</span> <span><input id='detect-intrusion-popover-h' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
+                        html += "<span>Width</span> <span><input id='detect-motion-pop-w' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
+                        html += "<span>Height</span> <span><input id='detect-motion-pop-h' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
                         html += "<br/>";
                         html += "<div id='drag-draw-ctn'><button id='drag-draw-btn' type='button'>Drag region</button></div>";
-                        html += "<span>Threshold</span> <span><input id='detect-intrusion-popover-thresh' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
+                        html += "<span>Threshold</span> <span><input id='detect-motion-pop-thresh' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
                         html += "</div>";
                         html += "</div>";
                         return html;
@@ -409,19 +409,19 @@ $(document).ready(function() {
                             }
                         }
                     });
-                    $("#detect-intrusion-popover-x").val(blockOptions['x']);
-                    $("#detect-intrusion-popover-y").val(blockOptions['y']);
-                    $("#detect-intrusion-popover-w").val(blockOptions['width']);
-                    $("#detect-intrusion-popover-h").val(blockOptions['height']);
-                    $("#detect-intrusion-popover-thresh").val(blockOptions['threshold']);
+                    $("#detect-motion-pop-x").val(blockOptions['x']);
+                    $("#detect-motion-pop-y").val(blockOptions['y']);
+                    $("#detect-motion-pop-w").val(blockOptions['width']);
+                    $("#detect-motion-pop-h").val(blockOptions['height']);
+                    $("#detect-motion-pop-thresh").val(blockOptions['threshold']);
                 },
                 'hidden-event': function(blockOptions) {
                     blockOptions['url'] = $("#load-image-url").val();
-                    blockOptions['x'] = $("#detect-intrusion-popover-x").val();
-                    blockOptions['y'] = $("#detect-intrusion-popover-y").val();
-                    blockOptions['width'] = $("#detect-intrusion-popover-w").val();
-                    blockOptions['height'] = $("#detect-intrusion-popover-h").val();
-                    blockOptions['threshold'] = $("#detect-intrusion-popover-thresh").val();
+                    blockOptions['x'] = $("#detect-motion-pop-x").val();
+                    blockOptions['y'] = $("#detect-motion-pop-y").val();
+                    blockOptions['width'] = $("#detect-motion-pop-w").val();
+                    blockOptions['height'] = $("#detect-motion-pop-h").val();
+                    blockOptions['threshold'] = $("#detect-motion-pop-thresh").val();
                 }
             });
         } else if (block.hasClass("build-block-if")) {
