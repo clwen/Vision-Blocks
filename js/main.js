@@ -27,6 +27,10 @@ $(document).ready(function(){
         'colorRearrangement'	: function() {return new vb.Block('Color Rearrangement', colorRearrangement)},
         'grayscaleFilter' 		: function() {return new vb.Block('Gray Scale', grayscale)},
         'distortionFilter' 		: function() {return new vb.Block('Distortion Filter', distortion)},
+        'swirlFilter'           : function() {return new vb.Block('Twirl', swirl)},
+        'spherize'              : function() {return new vb.Block('Spherize', spherize)},
+        'swimFilter'            : function() {return new vb.Block('Swim Filter', swimFilter)},
+        'mirror'                : function() {return new vb.Block('Mirror', mirror)},
         'colorDetection' 		: function() {return new vb.Block('Color Detection', colorDetection)},
         'blurFilter'     		: function() {return new vb.Block('Blur Filter', bluring)},
 
