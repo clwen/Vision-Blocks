@@ -105,34 +105,6 @@ var sobel = function() {
 	updateCanvas(outputPixels);
 };
 
-var distortion = function(args) {
-	var canvas = VB.interpreter.dictionary["canvas"]
-	var pixels = getPixels(canvas);
-	var data = pixels.data;
-	var dPixels = getPixels(canvas);
-	var dData = dPixels.data;
-	var width = VB.interpreter.dictionary["workingArea"].width;
-	var height = VB.interpreter.dictionary["workingArea"].height;
-	var centerX = Math.floor(width/2);
-	var centerY = Math.floor(height/2);
-	var radius = 0.5;
-	var aux, dx, dy, sx, sy, newI;
-	var i;
-
-	for (i=0; i<data.length; i+=4) {
-		aux = i/4;
-		dx = aux % width;
-		dy = Math.floor(aux / width);
-		sx = Math.floor(dx + abs(centerX-dx) * radius);
-		sy = Math.floor(dy + abs(centerY -dy) * radius);
-		newI = (sy * width + sx) * 4;
-		dData[i] = data[newI];
-		dData[i+1] = data[newI+1];
-		dData[i+2] = data[newI+2];
-		dData[i+3] = data[newI+3];
-	}
-	updateCanvas(dPixels);
-};
 
 var mirror = function(args) {
     var canvas = VB.interpreter.dictionary["canvas"]
@@ -239,63 +211,7 @@ var spherize = function(args) {
     updateCanvas(dPixels);
 };
 
-var swimFilter = function(args) {
-    var canvas = VB.interpreter.dictionary["canvas"]
-    var pixels = getPixels(canvas);
-    var data = pixels.data;
-    var dPixels = getPixels(canvas);
-    var dData = dPixels.data;
-    var width = VB.interpreter.dictionary["workingArea"].width;
-    var height = VB.interpreter.dictionary["workingArea"].height;
-    var centerX = Math.floor(width/2);
-    var centerY = Math.floor(height/2);
-    var radius = 0.5;
-    var aux, dx, dy, sx, sy, newI;
-    var i;
-    var refractionIndex=0.5
-    for (i=0; i<data.length; i+=4) {
-        aux = i/4;
-        var x = aux % width;
-        var y = Math.floor(aux / width);
-        var a=centerX
-        var b=centerY
-        var a2=a*a
-        var b2=b*b
-        dx = dx-centerX;
-        dy = dy-centerY;
-        var x2 = dx*dx;
-        var y2 = dy*dy;
-        if (y2 >= (b2 - (b2*x2)/a2)) {
-            sx = x;
-            sy = y;
-        } else {
-            var rRefraction = 1.0 / refractionIndex;
-            var z = Math.sqrt((1.0 - x2/a2 - y2/b2) * (a*b));
-            var z2 = z*z;
-            var xAngle = Math.acos(dx / Math.sqrt(x2+z2));
-            var angle1 = Math.PI/2 - xAngle;
-            var angle2 = Math.asin(Math.sin(angle1)*rRefraction);
-            angle2 = Math.PI/2- xAngle - angle2;
-            sx = x - Math.tan(angle2)*z;
 
-            var yAngle = Math.acos(dy / Math.sqrt(y2+z2));
-            angle1 = Math.PI/2 - yAngle;
-            angle2 = Math.asin(Math.sin(angle1)*rRefraction);
-            angle2 = Math.PI/2 - yAngle - angle2;
-            sy= y - Math.tan(angle2)*z;
-        }
-        
-        
-        newI = (sy* width + sx) * 4;
-       
-       
-        dData[i] = data[newI];
-        dData[i+1] = data[newI+1];
-        dData[i+2] = data[newI+2];
-        dData[i+3] = data[newI+3];
-    }
-    updateCanvas(dPixels);
-};
 
 
 var rgb_to_h = function(r, g, b) {
