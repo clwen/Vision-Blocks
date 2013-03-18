@@ -105,34 +105,114 @@ var sobel = function() {
 	updateCanvas(outputPixels);
 };
 
-var distortion = function(args) {
-	var canvas = VB.interpreter.dictionary["canvas"]
-	var pixels = getPixels(canvas);
-	var data = pixels.data;
-	var dPixels = getPixels(canvas);
-	var dData = dPixels.data;
-	var width = VB.interpreter.dictionary["workingArea"].width;
-	var height = VB.interpreter.dictionary["workingArea"].height;
-	var centerX = Math.floor(width/2);
-	var centerY = Math.floor(height/2);
-	var radius = 0.35;
-	var aux, dx, dy, sx, sy, newI;
-	var i;
 
-	for (i=0; i<data.length; i+=4) {
-		aux = i/4;
-		dx = aux % width;
-		dy = Math.floor(aux / width);
-		sx = Math.floor(dx + Math.abs(centerX - dx) * radius);
-		sy = Math.floor(dy + Math.abs(centerY - dy) * radius);
-		newI = (sy * width + sx) * 4;
-		dData[i] = data[newI];
-		dData[i+1] = data[newI+1];
-		dData[i+2] = data[newI+2];
-		dData[i+3] = data[newI+3];
-	}
-	updateCanvas(dPixels);
+var mirror = function(args) {
+    var canvas = VB.interpreter.dictionary["canvas"]
+    var pixels = getPixels(canvas);
+    var data = pixels.data;
+    var dPixels = getPixels(canvas);
+    var dData = dPixels.data;
+    var width = VB.interpreter.dictionary["workingArea"].width;
+    var height = VB.interpreter.dictionary["workingArea"].height;
+    var centerX = Math.floor(width/2);
+    var centerY = Math.floor(height/2);
+    var radius = 0.5;
+    var aux, dx, dy, sx, sy, newI;
+    var i;
+
+    for (i=0; i<data.length; i+=4) {
+        aux = i/4;
+        dx = aux % width;
+        dy = Math.floor(aux / width);
+        if (dx<centerX) {dx=width-dx}        
+        newI = (dy * width + dx) * 4;
+        dData[i] = data[newI];
+        dData[i+1] = data[newI+1];
+        dData[i+2] = data[newI+2];
+        dData[i+3] = data[newI+3];
+    }
+    updateCanvas(dPixels);
 };
+
+var swirl = function(args) {
+    var canvas = VB.interpreter.dictionary["canvas"]
+    var pixels = getPixels(canvas);
+    var data = pixels.data;
+    var dPixels = getPixels(canvas);
+    var dData = dPixels.data;
+    var width = VB.interpreter.dictionary["workingArea"].width;
+    var height = VB.interpreter.dictionary["workingArea"].height;
+    var centerX = Math.floor(width/2);
+    var centerY = Math.floor(height/2);
+    var radius = 0.5;
+    var aux, dx, dy, sx, sy, newI;
+    var i;
+
+    for (i=0; i<data.length; i+=4) {
+        aux = i/4;
+        dx = aux % width-centerX;
+        dy = Math.floor(aux / width)-centerY;
+
+        var r = Math.sqrt(dx*dx+dy*dy);
+        var a=Math.atan2(dy,dx);
+        var maxr = Math.sqrt(width*width+height*height)/2;
+        if (r<maxr) {
+        a += 1-r/maxr
+        } else {a+=1-maxr/r}
+        sx = Math.floor(Math.cos(a)*r)+centerX;
+        sy = Math.floor(Math.sin(a)*r)+2*centerY/2; 
+        
+        newI = (sy* width + sx) * 4;
+       
+       
+        dData[i] = data[newI];
+        dData[i+1] = data[newI+1];
+        dData[i+2] = data[newI+2];
+        dData[i+3] = data[newI+3];
+    }
+    updateCanvas(dPixels);
+};
+
+var spherize = function(args) {
+    var canvas = VB.interpreter.dictionary["canvas"]
+    var pixels = getPixels(canvas);
+    var data = pixels.data;
+    var dPixels = getPixels(canvas);
+    var dData = dPixels.data;
+    var width = VB.interpreter.dictionary["workingArea"].width;
+    var height = VB.interpreter.dictionary["workingArea"].height;
+    var centerX = Math.floor(width/2);
+    var centerY = Math.floor(height/2);
+    var radius = 0.5;
+    var aux, dx, dy, sx, sy, newI;
+    var i;
+
+    for (i=0; i<data.length; i+=4) {
+        aux = i/4;
+        dx = aux % width-centerX;
+        dy = Math.floor(aux / width)-centerY;
+
+        var r = Math.sqrt(dx*dx+dy*dy);
+        var a=Math.atan2(dy,dx);
+        var maxr = Math.sqrt(width*width+height*height)/2;
+        var k=r*r/maxr/maxr*0.5+0.5
+        
+        sx = Math.floor(Math.cos(a)*r*k)+centerX;
+        sy = Math.floor(Math.sin(a)*r*k)+centerY; 
+        
+        newI = (sy* width + sx) * 4;
+       
+       
+        dData[i] = data[newI];
+        dData[i+1] = data[newI+1];
+        dData[i+2] = data[newI+2];
+        dData[i+3] = data[newI+3];
+    }
+    updateCanvas(dPixels);
+};
+
+
+
 
 var rgb_to_h = function(r, g, b) {
     var h;

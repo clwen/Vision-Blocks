@@ -26,7 +26,9 @@ $(document).ready(function(){
         'binarizeFilter'    	: function() {return new vb.Block('Binarize Filter', binarize)},
         'colorRearrangement'	: function() {return new vb.Block('Color Rearrangement', colorRearrangement)},
         'grayscaleFilter' 		: function() {return new vb.Block('Gray Scale', grayscale)},
-        'distortionFilter' 		: function() {return new vb.Block('Distortion Filter', distortion)},
+        'swirlFilter'           : function() {return new vb.Block('Twirl', swirl)},
+        'spherize'              : function() {return new vb.Block('Spherize', spherize)},
+        'mirror'                : function() {return new vb.Block('Mirror', mirror)},
         'colorDetection' 		: function() {return new vb.Block('Color Detection', colorDetection)},
         'blurFilter'     		: function() {return new vb.Block('Blur Filter', bluring)},
 

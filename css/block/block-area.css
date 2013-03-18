@@ -95,6 +95,18 @@
 	border-left-color: #be1e2d;
 }
 
+.block-container-filters {
+	border-left-color: #E685C1;
+}
+.block-container-filters .build-block-title-wrapper,
+.block-container-filters .build-block-bottom,
+.block-container-filters .build-block-1-bottom-fill,
+.block-container-filters .build-block-2-top,
+.block-container-filters .build-block-2-title-wrapper,
+.block-container-filters .build-block-2-content {
+	border-right-color: #E685C1;
+}
+
 .block-container-vision .build-block-title-wrapper,
 .block-container-vision .build-block-bottom,
 .block-container-vision .build-block-1-bottom-fill,
