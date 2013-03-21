@@ -431,7 +431,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
                   
-                  <div id="block-motion-detect" class="build-block build-block-detect-intrusion block-container-vision build-block-2" data-block-name="intrusionDetection">
+                  <div class="build-block build-block-detect-intrusion block-container-vision build-block-2" data-block-name="intrusionDetection">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -709,6 +709,62 @@
 
   <script>
     $(document).ready(function() {
+
+      $("#block-motion-detect").find(".build-block-2-title-wrapper:first").applyPopover({
+        'popover': {
+          content : function() {
+            var html = "<div class='build-block-detect-intrusion-popover'>";
+              html += "<div class='build-block-detect-intrusion-popover-top'>";
+              html += "<div>Start X</div> <div><input id='detect-intrusion-popover-x' maxlength='3' class='enter-out-popover'/></div>";
+              html += "<div>Start Y</div> <div><input id='detect-intrusion-popover-y' maxlength='3' class='enter-out-popover'/></div>";
+              html += "<br/>";
+              html += "<div>Width</div> <div><input id='detect-intrusion-popover-w' maxlength='3' class='enter-out-popover'/></div>";
+              html += "<div>Height</div> <div><input id='detect-intrusion-popover-h' maxlength='3' class='enter-out-popover'/></div>";
+              html += "<br/>";
+              html += "<div>Threshold</div> <div><input id='detect-intrusion-popover-thresh' maxlength='3' class='enter-out-popover'/></div>";
+              html += "</div>";
+              html += "</div>";
+            return html;
+          },
+          contentFooter: function() {
+            var html = "";
+            html += "<div class='output_element'><span>intrusion</span></div>";
+            return html;
+          }
+        },
+        'block-options': {
+          'x': 325,
+          'y': 145,
+          'width': 165,
+          'height': 155,
+          'threshold': 130,
+        },
+        'shown-event': function(blockOptions) {
+          $("#load-image-url").val(blockOptions['url']);
+          $(".popover-footer-content > div").dragAndDrop({
+            end: function(element) {
+              var blockIf = $(".build-area .build-block-if:eq(0)");
+              if (blockIf) {
+                blockIf.data("block-options")['entry'] = element.text();
+                blockIf.find(".build-block-desc:eq(0) span").text(element.text() + " " +blockIf.data("block-options")['condition']);
+              }
+            }
+          });
+          $("#detect-intrusion-popover-x").val(blockOptions['x']);
+          $("#detect-intrusion-popover-y").val(blockOptions['y']);
+          $("#detect-intrusion-popover-w").val(blockOptions['width']);
+          $("#detect-intrusion-popover-h").val(blockOptions['height']);
+          $("#detect-intrusion-popover-thresh").val(blockOptions['threshold']);
+        },
+        'hidden-event': function(blockOptions) {
+          blockOptions['url'] = $("#load-image-url").val();
+          blockOptions['x'] = $("#detect-intrusion-popover-x").val();
+          blockOptions['y'] = $("#detect-intrusion-popover-y").val();
+          blockOptions['width'] = $("#detect-intrusion-popover-w").val();
+          blockOptions['height'] = $("#detect-intrusion-popover-h").val();
+          blockOptions['threshold'] = $("#detect-intrusion-popover-thresh").val();
+        }
+      });
 
       $("#block-if").find(".build-block-title-wrapper:first").applyPopover({
         'popover': {
