@@ -29,7 +29,6 @@ var drawRegions = function() {
 };
 
 var intrusionDetection = function () {
-    console.log.
 	VB.interpreter.dictionary["intrusion"] = false;
 	VB.interpreter.dictionary["workingArea"].x = this.options['x'];
 	VB.interpreter.dictionary["workingArea"].y = this.options['y'];
@@ -58,8 +57,6 @@ var intrusionDetection = function () {
 	}
     var avg_diff = diff_sum / (data.length * 0.75); // only three channels calculated
     var threshold = this.options['threshold'];
-    console.log("avg_diff=" + avg_diff);
-    console.log("threshold=" + threshold);
     if (avg_diff > threshold) {
         VB.interpreter.dictionary["intrusion"] = true;
     }
