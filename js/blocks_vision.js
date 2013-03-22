@@ -29,6 +29,7 @@ var drawRegions = function() {
 };
 
 var intrusionDetection = function () {
+    console.log.
 	VB.interpreter.dictionary["intrusion"] = false;
 	VB.interpreter.dictionary["workingArea"].x = this.options['x'];
 	VB.interpreter.dictionary["workingArea"].y = this.options['y'];
