@@ -562,6 +562,17 @@
   <script src="js/block/drag-and-drop.js"></script>
   <script src="js/block/apply-popover.js"></script>
 
+  <script type="text/javascript">
+    $(document).ready(function() {
+      console.clear()
+      var blocks=$(".build-area").find('.build-block')
+      for (var i=0; i<blocks.length;i++)
+      {
+        addedBlock($(blocks[i]))
+      }
+    })
+  </script>
+  
   <script>
     $(document).ready(function() {
       $("#block-remote-img").find(".build-block-2-title-wrapper:first").applyPopover({

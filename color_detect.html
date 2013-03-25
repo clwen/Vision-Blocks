@@ -12,7 +12,8 @@
   <link rel="stylesheet" href="css/block/block-area.css">
 </head>
 
-<body>
+<body> 
+
   <div class="wrapper">
 
   <div class="navbar navbar-inverse navbar-fixed-top">
@@ -531,6 +532,17 @@
   <script src="js/block/block-area.js"></script>
   <script src="js/block/drag-and-drop.js"></script>
   <script src="js/block/apply-popover.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      console.clear()
+      var blocks=$(".build-area").find('.build-block')
+      for (var i=0; i<blocks.length;i++)
+      {
+        addedBlock($(blocks[i]))
+      }
+    })
+  </script>
 
   <script>
     $(document).ready(function() {

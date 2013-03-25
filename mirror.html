@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -73,7 +72,7 @@
                     <div class="build-block-title-wrapper build-block-recalc-width">
                       <div class="build-block-title">
                         <div class="icon1-build-block icon1-play"></div>
-                        <span>Play</span>
+                        <span class="play-title">Play</span>
                         <div class="icon-remove-block"></div>
                       </div>
                     </div>
@@ -89,7 +88,7 @@
                     <div class="build-block-title-wrapper build-block-recalc-width">
                       <div class="build-block-title">
                         <div class="icon1-build-block icon1-play-forever"></div>
-                        <span>Play Forever</span>
+                        <span class="play-title">Play Forever</span>
                         <div class="icon-remove-block"></div>
                       </div>
                     </div>
@@ -269,12 +268,14 @@
                 </div>
                 
               </div>
-              <div class="block-container block-container-vision" data-title="Vision">
+              
+
+              <div class="block-container block-container-filters" data-title="Filters">
                 <div class="icon icon-vision"></div>
-                
+
                 <div class="block-container-content">
-                  
-                  <div id="block-invert-color" class="build-block block-container-vision build-block-2" data-block-name="invertFilter">
+
+                  <div id="block-invert-color" class="build-block block-container-filters build-block-2" data-block-name="invertFilter">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -286,7 +287,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-                  <div id="block-binarize" class="build-block build-block-binarize block-container-vision build-block-2" data-block-name="binarizeFilter">
+                  <div id="block-binarize" class="build-block build-block-binarize block-container-filters build-block-2" data-block-name="binarizeFilter">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -298,7 +299,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
                   
-                  <div id="block-grayscale" class="build-block block-container-vision build-block-2" data-block-name="grayscaleFilter">
+                  <div id="block-grayscale" class="build-block block-container-filters build-block-2" data-block-name="grayscaleFilter">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -310,7 +311,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
                   
-                  <div id="block-pixelization" class="build-block build-block-pixelization block-container-vision build-block-2" data-block-name="pixelization">
+                  <div id="block-pixelization" class="build-block build-block-pixelization block-container-filters build-block-2" data-block-name="pixelization">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -321,6 +322,76 @@
                     </div>
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
+
+                  <div id="block-blur" class="build-block build-block-blur block-container-filters build-block-2" data-block-name="blurFilter">
+                    <div class="build-block-2-top build-block-recalc-width"></div>
+                    <div class="build-block-2-title-wrapper build-block-recalc-width">
+                      <div class="build-block-2-title">
+                        <div class="icon1-build-block icon1-distortion"></div>
+                        <span>Blur</span>
+                        <div class="icon-remove-block"></div>
+                      </div>
+                    </div>
+                    <div class="build-block-2-bottom build-block-recalc-width"></div>
+                  </div>
+                  
+                 
+
+                  <div id="block-swirl" class="build-block block-container-filters build-block-2" data-block-name="swirlFilter">
+                    <div class="build-block-2-top build-block-recalc-width"></div>
+                    <div class="build-block-2-title-wrapper build-block-recalc-width">
+                      <div class="build-block-2-title">
+                        <div class="icon1-build-block icon1-distortion"></div>
+                        <span>Twirl</span>
+                        <div class="icon-remove-block"></div>
+                      </div>
+                    </div>
+                    <div class="build-block-2-bottom build-block-recalc-width"></div>
+                  </div>
+
+                 
+
+                  <div id="block-mirror" class="build-block block-container-filters build-block-2" data-block-name="mirror">
+                    <div class="build-block-2-top build-block-recalc-width"></div>
+                    <div class="build-block-2-title-wrapper build-block-recalc-width">
+                      <div class="build-block-2-title">
+                        <div class="icon1-build-block icon1-distortion"></div>
+                        <span>Mirror</span>
+                        <div class="icon-remove-block"></div>
+                      </div>
+                    </div>
+                    <div class="build-block-2-bottom build-block-recalc-width"></div>
+                  </div>
+
+
+                   <div id="block-spherize" class="build-block block-container-filters build-block-2" data-block-name="spherize">
+                    <div class="build-block-2-top build-block-recalc-width"></div>
+                    <div class="build-block-2-title-wrapper build-block-recalc-width">
+                      <div class="build-block-2-title">
+                        <div class="icon1-build-block icon1-distortion"></div>
+                        <span>Spherize</span>
+                        <div class="icon-remove-block"></div>
+                      </div>
+                    </div>
+                    <div class="build-block-2-bottom build-block-recalc-width"></div>
+                  </div>
+
+                </div>
+                
+               </div>
+
+
+
+
+
+
+
+              <div class="block-container block-container-vision" data-title="Vision">
+                <div class="icon icon-vision"></div>
+                
+                <div class="block-container-content">
+                  
+                  
 
                   <div id="block-color-detect" class="build-block build-block-color-detect block-container-vision build-block-2" data-block-name="colorDetection">
                     <div class="build-block-2-top build-block-recalc-width"></div>
@@ -334,29 +405,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-                  <div id="block-blur" class="build-block build-block-blur block-container-vision build-block-2" data-block-name="blurFilter">
-                    <div class="build-block-2-top build-block-recalc-width"></div>
-                    <div class="build-block-2-title-wrapper build-block-recalc-width">
-                      <div class="build-block-2-title">
-                        <div class="icon1-build-block icon1-distortion"></div>
-                        <span>Blur</span>
-                        <div class="icon-remove-block"></div>
-                      </div>
-                    </div>
-                    <div class="build-block-2-bottom build-block-recalc-width"></div>
-                  </div>
                   
-                  <div id="block-distortion" class="build-block block-container-vision build-block-2" data-block-name="distortionFilter">
-                    <div class="build-block-2-top build-block-recalc-width"></div>
-                    <div class="build-block-2-title-wrapper build-block-recalc-width">
-                      <div class="build-block-2-title">
-                        <div class="icon1-build-block icon1-distortion"></div>
-                        <span>Distortion</span>
-                        <div class="icon-remove-block"></div>
-                      </div>
-                    </div>
-                    <div class="build-block-2-bottom build-block-recalc-width"></div>
-                  </div>
                   
                   <div id="block-skin-detect" class="build-block build-block-skin-detection block-container-vision build-block-2" data-block-name="skinDetection">
                     <div class="build-block-2-top build-block-recalc-width"></div>
@@ -555,12 +604,12 @@
                     </div>
                   </div>
                   <div class="build-block-2-bottom build-block-recalc-width" style="width: 170px;"></div>
-                  </div><div id="block-optical-flow" class="build-block build-block-optical-flow block-container-vision build-block-2" data-block-name="opticalFlow" style="top: -28px; left: 12px;">
+                  </div><div id="block-mirror" class="build-block block-container-filters build-block-2" data-block-name="mirror" style="top: -28px; left: 12px;">
                   <div class="build-block-2-top build-block-recalc-width" style="width: 170px;"></div>
                   <div class="build-block-2-title-wrapper build-block-recalc-width" style="width: 170px;">
                     <div class="build-block-2-title">
-                      <div class="icon1-build-block icon1-detect-face"></div>
-                      <span>Optical Flow</span>
+                      <div class="icon1-build-block icon1-distortion"></div>
+                      <span>Mirror</span>
                       <div class="icon-remove-block"></div>
                     </div>
                   </div>
@@ -568,8 +617,7 @@
               </div></div>
               <div class="build-block-bottom build-block-recalc-width" style="width: 182px;"></div>
               <div class="build-block-1-bottom-fill build-block-recalc-width" style="width: 182px;"></div>
-            </div>
-          </div>
+          </div></div>
 
           <div class="span1">
             <div class="row-fluid">
@@ -623,8 +671,9 @@
   <script src="js/block/drag-and-drop.js"></script>
   <script src="js/block/apply-popover.js"></script>
 
-  <script type="text/javascript">
+   <script type="text/javascript">
     $(document).ready(function() {
+      console.clear()
       var blocks=$(".build-area").find('.build-block')
       for (var i=0; i<blocks.length;i++)
       {

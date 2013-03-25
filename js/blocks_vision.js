@@ -64,7 +64,7 @@ var intrusionDetection = function () {
 
 var opticalFlow = function () {
     var canvas = VB.interpreter.dictionary["canvas"];
-    var ctx = canvas.getContext('2d');	
+    var ctx = canvas.getContext('2d');
     var pixels = getPixels(canvas);
     var curr = pixels.data;
 

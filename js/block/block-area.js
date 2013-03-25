@@ -1,5 +1,3 @@
-$(document).ready(function() {
-
     var canvas = $("#outputCanvas")[0];
     var ctx = canvas.getContext('2d');
     var rect = {};
@@ -132,7 +130,7 @@ $(document).ready(function() {
      * */
     var addedBlock = function(block) {
         recalcWidth();
-
+        console.log(block);
         block.find(".icon-remove-block").off("click").on("click", function(){
             block.trigger("block-remove");
             block.remove();
@@ -658,7 +656,7 @@ $(document).ready(function() {
             }
         });
     };
-
+$(document).ready(function() {
     $(".block-container:not(.block-container-more)").click(function(){
         var $this = $(this);
         var blockClassActive = "block-container-active";
@@ -672,5 +670,5 @@ $(document).ready(function() {
                 $(this).slideDown();
             }
         });
-    });	
-});
+    }); 
+ });
