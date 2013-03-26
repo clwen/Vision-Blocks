@@ -8,12 +8,17 @@ var play = function (stack) {
 
 var playForever = function (stack) {
 	var executeLoop = function() {
-		if (executingLoopInterval) {
+		if (executingLoopInterval)  {
 			stack.execute();
-			setTimeout(executeLoop, 100);
+			setTimeout(executeLoop, 100)
 		}
-	};
-	
-	executingLoopInterval = true;
-	executeLoop();
+	}; 
+	executingLoopInterval=false
+
+	var start = function() {
+		executingLoopInterval=true
+		executeLoop()
+	}
+	setTimeout(start,102)
+
 };
