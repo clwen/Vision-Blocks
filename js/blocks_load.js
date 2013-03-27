@@ -7,7 +7,7 @@ var remoteImage = function () {
 	if (this.options) {
 		url = this.options['remoteImgUrl'];
 	}
-	img.src = url ? url : "./files/mona_lisa.jpg";
+	img.src = url ? url : "./files/cell.gif";
 	var maxWidth = 640;
 	var maxHeight = 480;
 	
@@ -29,7 +29,7 @@ var loadImage = function () {
 	if (this.options) {
 		url = this.options['url'];
 	}
-	img.src = url ? url : "./files/mona_lisa.jpg";
+	img.src = url ? url : "./files/cell.gif";
 	var maxWidth = 640;
 	var maxHeight = 480;
 	

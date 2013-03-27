@@ -13,7 +13,6 @@
 </head>
 
 <body>
-	<div class="wrapper">
 		<div class="navbar navbar-inverse navbar-fixed-top">
 	    <div class="navbar-inner">
 	      <div class="container">
@@ -514,15 +513,7 @@
   </div> <!-- /body-area -->
   <div class="push"></div>
 
-	</div> <!--/wrapper-->
-
-  <div class="footer">
-    <div class="footer-content">
-      Best viewed with the latest <a href"https://www.google.com/intl/en/chrome/browser/">Google Chrome</a>.
-    </div>
-  </div>
-
-    <!-- JAVASCRIPT -->
+  <!-- JAVASCRIPT -->
   <script src="js/libs/jquery-1.8.3.js"></script>
   <script src="js/libs/bootstrap.js"></script>
   <script src="js/libs/bootstrap-popover.js"></script>
@@ -583,10 +574,10 @@
         },
         'block-options': {
           'x': 50,
-          'y': 150,
-          'width': 540,
-          'height': 280,
-          'threshold': 130,
+          'y': 50,
+          'width': 100,
+          'height': 100,
+          'threshold': 100,
         },
         'shown-event': function(blockOptions) {
           $("#load-image-url").val(blockOptions['url']);
@@ -671,7 +662,7 @@
         },
         'block-options': {
         'notifTitle': 'Vision Blocks',
-        'notifMsg': 'Come and get some food!',
+        'notifMsg': 'Your cookie is in danger!',
         },
         'shown-event': function(blockOptions) {
         $("#os-alert-popover-title").val(blockOptions['notifTitle']);
