@@ -153,7 +153,7 @@ $(document).ready(function() {
                     }
                 },
                 'block-options': {
-                    'remoteImgUrl': 'http://vblocks.media.mit.edu/files/mona_lisa.jpg',
+                    'remoteImgUrl': 'http://vblocks.media.mit.edu/files/cell.gif',
                 },
                 'shown-event': function(blockOptions) {
                     $("#remote-img-url").val(blockOptions['remoteImgUrl']);
