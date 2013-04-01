@@ -3,7 +3,7 @@
     var rect = {};
     var drag = false;
     var drag_draw_btn = false;
-
+    var type={ 'intrusion':'boolean', 'faces': 'numerical' }
      // Hides visible popovers
     var hidePopoverActive = function() {
         if ($(".popover.in").size() > 0) {
@@ -429,6 +429,19 @@
                 }
             });
         } else if (block.hasClass("build-block-if")) {
+            var dropdownNumerial='<select id="if-popover-condition-select" name="condition" style=" width:55px">'
+                dropdownNumerial+='<option class="operator" value="&gt;" selected>&gt; </option>'
+                dropdownNumerial+='<option  class="operator" value="&lt;">&lt; </option>'
+                dropdownNumerial+='<option   class="operator" value="=" >=</option>'                       
+                dropdownNumerial+='</select>'
+
+            var dropdownBoolean='<select id="if-popover-condition-select" name="condition" style=" width:70px">'
+                dropdownBoolean+='<option  class="operator" value="true" selected> true </option>'
+                dropdownBoolean+='<option  class="operator" value="false"> false </option>'                       
+                dropdownBoolean+='</select>'
+
+            var input="<input id='if-popover-value' value='0' class='enter-out-popover'/></div>"
+           
             var thisOptions={
                     'condition': '>',
                     'value':'0',
@@ -442,37 +455,100 @@
                 'popover': {
                     content: function() {
                         var html = "<div class='build-block-if-popover'>";
-                        html += "<div class='build-block-if-popover-top'>";
-                        html += "<div>Variable</div> <div><input id='if-popover-entry' value='faces' class='enter-out-popover'/></div>";
-                        html += "<br/>";
-                        html += "<div>Condition</div> <div><input id='if-popover-condition' value='> 0' class='enter-out-popover'/></div>";
-                        html += "</div>";
-                        html += "<div class='build-block-if-popover-bottom'>";
-                        html += "<div id='if-popover-final-condition'><span></span></div>";
-                        html += "</div>";
-                        html += "</div>";
+                            html += "<div class='build-block-if-popover-top'>";
+                            html += "<div>Variable</div> <div><input id='if-popover-entry' value='faces' class='enter-out-popover'/></div>";
+                            html += "<br/>";
+                            html += "<div>Condition</div> <span id='conditionBoolean'></span> <div>"+dropdownNumerial+"</div><div  id='numericalValue'>"+input+"</div>";
+                            html += "</div>";
+                            html += "<div class='build-block-if-popover-bottom'>";
+                            html += "<div id='if-popover-final-condition'><span>faces >0</span></div>";
+                            html += "</div>";
+                            html += "</div>";
 
                         return html;
                     }
                 },
                 'block-options': thisOptions,
                 'shown-event': function(blockOptions) {
+                    var UpdateFinalCondition=function(){
+                        var ifCondition = blockOptions['entry'] + " " + blockOptions['condition'] + " " + blockOptions['value']
+                        $("#if-popover-final-condition span").text(ifCondition)
+                        block.find(".build-block-desc:eq(0) span").text(ifCondition)
+                    }
+                    
+                    var CheckType= function(){
+                        if (type[blockOptions['entry']]=='boolean') {
+                            $('#numericalValue').html('')
+                            $('#conditionBoolean').html('is')
+                            if (typeof eval(blockOptions['value'])!="boolean") {
+                                blockOptions['condition']='=='
+                                blockOptions['value']='true'
+                            }
+                            $('#if-popover-condition-select').replaceWith(dropdownBoolean)
+                            $("#if-popover-condition-select").val(blockOptions['value'])
+
+                            
+                        } else {
+                            $('#numericalValue').html(input)
+                            $('#conditionBoolean').html('')
+                            if (typeof eval(blockOptions['value'])!="number") {
+                                blockOptions['condition']='>'
+                                console.log('not number')
+                                blockOptions['value']='0'
+                            }
+                            $('#if-popover-condition-select').replaceWith(dropdownNumerial)
+                            $("#if-popover-condition-select").val(blockOptions['condition'])
+                            console.log(blockOptions.value)
+                            $("#if-popover-value").val(blockOptions['value'])
+                        
+                        }
+                        
+                        UpdateFinalCondition()  
+                    }
+                    CheckType()
                     if (blockOptions['entry'] != null) {
                         $("#if-popover-entry").val(blockOptions['entry']);
                     }
                     if (blockOptions['condition'] != null) {
-                        $("#if-popover-condition").val(blockOptions['condition']);
-                    }
-                    $("#if-popover-condition").change(function(){
-                        var ifCondition = blockOptions['entry'] + " " + blockOptions['condition'];
-                        $("#if-popover-final-condition span").text(ifCondition);
-                        block.find(".build-block-desc:eq(0) span").text(ifCondition);
-                    });
-                    $("#if-popover-condition").change();
+                        if (type[blockOptions['entry']]=='boolean') {
+                            $("#if-popover-condition-select").val(blockOptions['value'])
+                        } else {
+                            $("#if-popover-condition-select").val(blockOptions['condition'])
+                            $("#if-popover-value").val(blockOptions['value'])
+
+                        }}
+
+                    $("#if-popover-entry").live('change keyup focus',function(){
+                        blockOptions['entry'] = $("#if-popover-entry").val();
+                        CheckType()
+                    }) 
+
+                    $("#if-popover-condition-select").live('change keyup focus',function(){ 
+                         
+                        if (type[blockOptions['entry']]=='boolean') {
+                            blockOptions['condition']='=='
+                            blockOptions['value']=$("#if-popover-condition-select").val()
+                        } else{
+                            blockOptions['condition']=$("#if-popover-condition-select").val()
+                            blockOptions['value']=$("#if-popover-value").val()                            
+                        }
+                        UpdateFinalCondition()
+                    });  
+
+                    $("#if-popover-value").live('change keyup focus',function(){ 
+                        blockOptions['value']=$("#if-popover-value").val()                            
+                        UpdateFinalCondition()
+                    });   
                 },
                     'hidden-event': function(blockOptions) {
-                        blockOptions['condition'] = $("#if-popover-condition").val();
-                        blockOptions['entry'] = $("#if-popover-entry").val();
+                        blockOptions['entry'] = $("#if-popover-entry").val()
+                        if (type[blockOptions['entry']]=='boolean') {
+                            blockOptions['condition']='=='
+                            blockOptions['value']=$("#if-popover-condition-select").val()
+                        } else{
+                            blockOptions['condition']=$("#if-popover-condition-select").val()
+                            blockOptions['value']=$("#if-popover-value").val()                            
+                        }
                     }
             });
         } else if (block.hasClass("build-block-write-text")) {
