@@ -5223,11 +5223,20 @@ input[type="submit"].btn.btn-mini {
 }
 
 .tooltip.top {
+
+  background-color: #991111;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
   margin-top: -3px;
+  font-size: 15px;
+  opacity: 0.9;
+  filter: alpha(opacity=100);
 }
 
 .tooltip.right {
   margin-left: 3px;
+  
 }
 
 .tooltip.bottom {
@@ -5244,7 +5253,7 @@ input[type="submit"].btn.btn-mini {
   color: #ffffff;
   text-align: center;
   text-decoration: none;
-  background-color: #000000;
+  background-color: #991111;
   -webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
@@ -5262,6 +5271,7 @@ input[type="submit"].btn.btn-mini {
   bottom: 0;
   left: 50%;
   margin-left: -5px;
+  
   border-top-color: #000000;
   border-width: 5px 5px 0;
 }
