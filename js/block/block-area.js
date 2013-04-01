@@ -138,6 +138,12 @@
         });
 
         if (block.hasClass("build-block-remote-img")) {
+            var thisOptions={'remoteImgUrl': 'http://vblocks.media.mit.edu/files/cell.gif'}
+            if (typeof blockSettings!== 'undefined') {
+                if (typeof blockSettings.remoteImg!== 'undefined')
+                {thisOptions=blockSettings.remoteImg
+                }
+            } 
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -150,9 +156,7 @@
                         return html;
                     }
                 },
-                'block-options': {
-                    'remoteImgUrl': 'http://vblocks.media.mit.edu/files/cell.gif',
-                },
+                'block-options': thisOptions,
                 'shown-event': function(blockOptions) {
                     $("#remote-img-url").val(blockOptions['remoteImgUrl']);
                 },
@@ -187,6 +191,12 @@
                 }
             });
         } else if (block.hasClass("build-block-remote-video")) {
+            var thisOptions={'remoteVideoUrl': 'http://vblocks.media.mit.edu/files/fox.mp4'}
+            if (typeof blockSettings!== 'undefined') {
+                if (typeof blockSettings.remoteVideo!== 'undefined')
+                {thisOptions=blockSettings.remoteVideo
+                }
+            } 
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -199,9 +209,7 @@
                         return html;
                     }
                 },
-                'block-options': {
-                    'remoteVideoUrl': 'http://vblocks.media.mit.edu/files/fox.mp4',
-                },
+                'block-options': thisOptions,
                 'shown-event': function(blockOptions) {
                     $("#remote-video-url").val(blockOptions['remoteVideoUrl']);
                 },
@@ -236,6 +244,12 @@
                 }
             });
         } else if (block.hasClass("build-block-binarize")) {
+            var thisOptions={'binThreshold': '128'}
+            if (typeof blockSettings!== 'undefined') {
+                if (typeof blockSettings.binarize!== 'undefined')
+                {thisOptions=blockSettings.binarize
+                }
+            }
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -248,9 +262,7 @@
                         return html;
                     }
                 },
-                'block-options': {
-                    'binThreshold': '128'
-                },
+                'block-options': thisOptions,
                 'shown-event': function(blockOptions) {
                     $("#binarize-popover-threshold").val(blockOptions['binThreshold']);
                 },
@@ -260,6 +272,14 @@
                 }
             });
         } else if (block.hasClass("build-block-pixelization")) {
+            var thisOptions={
+                    'gridSize': '10'
+                    }
+            if (typeof blockSettings!== 'undefined') {
+                if (typeof blockSettings.pixelization!== 'undefined')
+                {thisOptions=blockSettings.pixelization
+                }
+            }
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -272,9 +292,7 @@
                         return html;
                     }
                 },
-                'block-options': {
-                    'gridSize': '10'
-                },
+                'block-options': thisOptions,
                 'shown-event': function(blockOptions) {
                     $("#pixelization-popover-size").val(blockOptions['gridSize']);
                 },
@@ -284,6 +302,15 @@
                 }
             });
         } else if (block.hasClass("build-block-color-detect")) {
+            var thisOptions={
+                    'hue': '50',
+                    'colThreshold': '18',
+                }
+            if (typeof blockSettings!== 'undefined') {
+                if (typeof blockSettings.colorDetection!== 'undefined')
+                {thisOptions=blockSettings.colorDetection
+                }
+            } 
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -297,10 +324,7 @@
                         return html;
                     }
                 },
-                'block-options': {
-                    'hue': '50',
-                    'colThreshold': '18',
-                },
+                'block-options': thisOptions,
                 'shown-event': function(blockOptions) {
                     $("#color-detect-popover-hue").val(blockOptions['hue']);
                     $("#color-detect-popover-thresh").val(blockOptions['colThreshold']);
@@ -552,6 +576,14 @@
                     }
             });
         } else if (block.hasClass("build-block-write-text")) {
+            var thisOptions={
+                    'text': 'Yay!'
+                }
+            if (typeof blockSettings!== 'undefined') {
+                if (typeof blockSettings.text!== 'undefined')
+                {thisOptions=blockSettings.text
+                }
+            }
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -564,9 +596,7 @@
                         return html;
                     }
                 },
-                'block-options': {
-                    'text': 'Yay!'
-                },
+                'block-options': thisOptions,
                 'shown-event': function(blockOptions) {
                     $("#write-text-popover-text").val(blockOptions['text']);
                 },
@@ -576,6 +606,15 @@
                 }
             });
         } else if (block.hasClass("build-block-draw-regions")) {
+            var thisOptions={
+                  'rgb': 'FF0000',
+                  'boxes': 'faces_array'
+                }
+            if (typeof blockSettings!== 'undefined') {
+                if (typeof blockSettings.drawRect!== 'undefined')
+                {thisOptions=blockSettings.drawRect
+                }
+            } 
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -589,10 +628,7 @@
                         return html;
                     }
                 },
-                'block-options': {
-                    'rgb': 'FF0000',
-                    'boxes': 'faces_array'
-                },
+                'block-options': thisOptions,
                 'shown-event': function(blockOptions) {
                     $("#draw-regions-popover-color").val(blockOptions['rgb']);
                     $("#draw-regions-popover-boxes").val(blockOptions['boxes']);
@@ -607,6 +643,15 @@
                 }
             });
         } else if (block.hasClass("build-block-os-alert")) {
+            var thisOptions={
+                    'notifTitle': 'Vision Blocks',
+                    'notifMsg': 'Come and get some food!',
+                }
+            if (typeof blockSettings!== 'undefined') {
+                if (typeof blockSettings.notify!== 'undefined')
+                {thisOptions=blockSettings.notify
+                }
+            }
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -620,10 +665,7 @@
                         return html;
                     }
                 },
-                'block-options': {
-                    'notifTitle': 'Vision Blocks',
-                    'notifMsg': 'Come and get some food!',
-                },
+                'block-options': thisOptions,
                 'shown-event': function(blockOptions) {
                     $("#os-alert-popover-title").val(blockOptions['notifTitle']);
                     $("#os-alert-popover-msg").val(blockOptions['notifMsg']);

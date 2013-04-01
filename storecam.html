@@ -709,15 +709,28 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
+      console.clear()
       var blocks=$(".build-area").find('.build-block')
+      var BlockSettings=new Object()
+      BlockSettings.ifblock={'condition': '==',
+                              'entry':'intrusion',
+                              'value':'true'}
+      BlockSettings.motionDetection= {
+                                      'x': 325,
+                                      'y': 145,
+                                      'width': 165,
+                                      'height': 155,
+                                      'threshold': 130,
+                                    }
       for (var i=0; i<blocks.length;i++)
       {
-        addedBlock($(blocks[i]))
-      }
+        addedBlock($(blocks[i]), BlockSettings)
+      } 
+
     })
   </script>
 
-  <script>
+  <script> /*
     $(document).ready(function() {
 
       $("#block-motion-detect").find(".build-block-2-title-wrapper:first").applyPopover({
@@ -743,13 +756,7 @@
             return html;
           }
         },
-        'block-options': {
-          'x': 325,
-          'y': 145,
-          'width': 165,
-          'height': 155,
-          'threshold': 130,
-        },
+        'block-options': ,
         'shown-event': function(blockOptions) {
           $("#load-image-url").val(blockOptions['url']);
           $(".popover-footer-content > div").dragAndDrop({
