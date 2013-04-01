@@ -128,7 +128,7 @@
     /*
      * Function called when a block is added
      * */
-    var addedBlock = function(block) {
+    var addedBlock = function(block, blockSettings) {
         recalcWidth();
         console.log(block);
         block.find(".icon-remove-block").off("click").on("click", function(){
@@ -366,6 +366,18 @@
                 }
             });
         } else if (block.hasClass("build-block-detect-intrusion")) {
+            var thisOptions={
+                    'x': 50,
+                    'y': 50,
+                    'width': 100,
+                    'height': 100,
+                    'threshold': 10,
+                }
+            if (typeof blockSettings!== 'undefined') {
+                if (typeof blockSettings.motionDetection!== 'undefined')
+                {thisOptions=blockSettings.motionDetection
+                }
+            } 
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content : function() {
@@ -389,13 +401,7 @@
                         return html;
                     }
                 },
-                'block-options': {
-                    'x': 50,
-                    'y': 50,
-                    'width': 100,
-                    'height': 100,
-                    'threshold': 10,
-                },
+                'block-options': thisOptions,
                 'shown-event': function(blockOptions) {
                     $("#load-image-url").val(blockOptions['url']);
                     $(".popover-footer-content > div").dragAndDrop({
@@ -423,6 +429,15 @@
                 }
             });
         } else if (block.hasClass("build-block-if")) {
+            var thisOptions={
+                    'condition': '>',
+                    'value':'0',
+                    'entry': 'faces'}
+            if (typeof blockSettings!== 'undefined') {
+                if (typeof blockSettings.ifblock!== 'undefined')
+                {thisOptions=blockSettings.ifblock
+                }
+            } 
             block.find(".build-block-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -440,10 +455,7 @@
                         return html;
                     }
                 },
-                'block-options': {
-                    'condition': ' > 0',
-                    'entry': 'faces'
-                },
+                'block-options': thisOptions,
                 'shown-event': function(blockOptions) {
                     if (blockOptions['entry'] != null) {
                         $("#if-popover-entry").val(blockOptions['entry']);

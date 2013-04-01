@@ -536,18 +536,31 @@
   <script src="js/block/drag-and-drop.js"></script>
   <script src="js/block/apply-popover.js"></script>
 
-  <script type="text/javascript">
+ <script type="text/javascript">
     $(document).ready(function() {
       console.clear()
       var blocks=$(".build-area").find('.build-block')
+      var BlockSettings=new Object()
+      BlockSettings.ifblock={'condition': '==true',
+                              'entry':'intrusion',
+                              'value':'true'}
+      BlockSettings.motionDetection= {'x': 50,
+                                      'y': 150,
+                                      'width': 540,
+                                      'height': 280,
+                                      'threshold': 130,
+                                    }
       for (var i=0; i<blocks.length;i++)
       {
-        addedBlock($(blocks[i]))
-      }
+        addedBlock($(blocks[i]), BlockSettings)
+      } 
+
     })
   </script>
 
+
   <script>
+   /*
   	$(document).ready(function() {
       $("#block-detect-intrusion").find(".build-block-2-title-wrapper:first").applyPopover({
         'popover': {
@@ -675,7 +688,7 @@
     });
 
 
-    });
+    }); */
   </script>
 
 
