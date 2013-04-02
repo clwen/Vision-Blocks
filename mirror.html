@@ -673,6 +673,9 @@
 
    <script type="text/javascript">
     $(document).ready(function() {
+      $(".build-area").find('.play-title').html('<span id="playpopover" data-trigger="manual" data-toggle="tooltip" data-placement="top" data-original-title="Click to start!" >Play Forever</span>')      
+      $('#playpopover').tooltip('show')
+       $(".build-area").find('#block-play-forever').click(function(){$('#playpopover').tooltip('hide')})
       console.clear()
       var blocks=$(".build-area").find('.build-block')
       for (var i=0; i<blocks.length;i++)
