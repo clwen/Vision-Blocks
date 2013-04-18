@@ -138,7 +138,7 @@
         });
 
         if (block.hasClass("build-block-remote-img")) {
-            var thisOptions={'remoteImgUrl': 'http://vblocks.media.mit.edu/files/cell.gif'}
+            var thisOptions = {'remoteImgUrl': 'http://vblocks.media.mit.edu/files/cell.gif'};
             if (typeof blockSettings !== 'undefined') {
                 if (typeof blockSettings.remoteImg !== 'undefined') {
                     thisOptions = blockSettings.remoteImg;

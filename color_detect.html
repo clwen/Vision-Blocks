@@ -535,18 +535,15 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
-      console.clear()
-      var blocks=$(".build-area").find('.build-block')
-      var BlockSettings=new Object()
-      BlockSettings.colorDetect={
-                              'hue': '125',
-                              'colThreshold': '46',
-                            }
-      for (var i=0; i<blocks.length;i++)
-      {
-        addedBlock($(blocks[i]), BlockSettings)
+      var blocks=$(".build-area").find('.build-block');
+      var BlockSettings = new Object();
+      BlockSettings.colorDetect = {
+        'hue': '125',
+        'colThreshold': '46',
+      };
+      for (var i=0; i<blocks.length;i++) {
+        addedBlock($(blocks[i]), BlockSettings);
       } 
-
     })
   </script>
 

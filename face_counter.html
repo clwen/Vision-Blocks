@@ -564,154 +564,24 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
-      console.clear()
-      var blocks=$(".build-area").find('.build-block')
-      var BlockSettings=new Object()
-      BlockSettings.ifblock={'condition': '>',
-                              'entry':'faces',
-                              'value':'0'}
-      BlockSettings.drawRectangle= {
-          'rgb': 'FF0000',
-          'boxes': 'faces_array'
-        }
-      for (var i=0; i<blocks.length;i++)
-      {
-        addedBlock($(blocks[i]), BlockSettings)
+      var blocks = $(".build-area").find('.build-block');
+      var BlockSettings = new Object();
+      BlockSettings.ifblock = {
+        'condition': '>',
+        'entry':'faces',
+        'value':'0'
+      };
+      BlockSettings.drawRectangle = {
+        'rgb': 'FF0000',
+        'boxes': 'faces_array'
+      };
+      BlockSettings.remoteImg = {
+        "remoteImgUrl": "http://vblocks.media.mit.edu/files/mona_lisa.jpg",
+      };
+      for (var i=0; i<blocks.length;i++) {
+        addedBlock($(blocks[i]), BlockSettings);
       } 
-
     })
   </script>
-  
-  <script> /*
-    $(document).ready(function() {
-      $("#block-remote-img").find(".build-block-2-title-wrapper:first").applyPopover({
-        'popover': {
-          content: function() {
-            var html = "<div class='build-block-remote-img-popover'>";
-              html += "<div class='build-block-remote-img-popover-top'>";
-              html += "<div>URL</div> <div><input id='remote-img-url' class='enter-out-popover'/></div>";
-              html += "</div>";
-              html += "</div>";
-
-            return html;
-          }
-        },
-        'block-options': {
-          'remoteImgUrl': 'http://vblocks.media.mit.edu/files/mona_lisa.jpg',
-        },
-        'shown-event': function(blockOptions) {
-          $("#remote-img-url").val(blockOptions['remoteImgUrl']);
-        },
-        'hidden-event': function(blockOptions) {
-          blockOptions['remoteImgUrl'] = $("#remote-img-url").val();
-        }
-      });
-
-      $("#block-face-detect").find(".build-block-2-title-wrapper:first").applyPopover({
-        'popover': {
-          contentFooter: function() {
-            var html = "";
-            html += "<div class='output_element'><span>faces</span></div>";
-            html += "<div class='output_element'><span>faces_array</span></div>";
-            html += "<div class='output_element'><span>faceX</span></div>";
-            html += "<div class='output_element'><span>faceY</span></div>";
-            html += "<div class='output_element'><span>faceW</span></div>";
-            html += "<div class='output_element'><span>faceH</span></div>";
-
-            return html;
-          }
-        },
-        'shown-event': function(blockOptions) {
-          $("#load-image-url").val(blockOptions['url']);
-          $(".popover-footer-content > div").dragAndDrop({
-            end: function(element) {
-              var blockIf = $(".build-area .build-block-if:eq(0)");
-              if (blockIf) {
-                blockIf.data("block-options")['entry'] = element.text();
-                blockIf.find(".build-block-desc:eq(0) span").text(element.text() + " " +blockIf.data("block-options")['condition']);
-              }
-            }
-          });
-        },
-        'hidden-event': function(blockOptions) {
-          blockOptions['url'] = $("#load-image-url").val();
-        }
-      });
-
-      $("#block-if").find(".build-block-title-wrapper:first").applyPopover({
-        'popover': {
-          content: function() {
-            var html = "<div class='build-block-if-popover'>";
-              html += "<div class='build-block-if-popover-top'>";
-              html += "<div>Variable</div> <div><input id='if-popover-entry' value='faces' class='enter-out-popover'/></div>";
-              html += "<br/>";
-              html += "<div>Condition</div> <div><input id='if-popover-condition' value='> 0' class='enter-out-popover'/></div>";
-              html += "</div>";
-              html += "<div class='build-block-if-popover-bottom'>";
-              html += "<div id='if-popover-final-condition'><span></span></div>";
-              html += "</div>";
-              html += "</div>";
-
-            return html;
-          }
-        },
-        'block-options': {
-          'condition': ' > 0',
-          'entry': 'faces'
-        },
-        'shown-event': function(blockOptions) {
-          if (blockOptions['entry'] != null) {
-            $("#if-popover-entry").val(blockOptions['entry']);
-          }
-          if (blockOptions['condition'] != null) {
-            $("#if-popover-condition").val(blockOptions['condition']);
-          }
-          $("#if-popover-condition").change(function(){
-            var ifCondition = blockOptions['entry'] + " " + blockOptions['condition'];
-            $("#if-popover-final-condition span").text(ifCondition);
-            $("#block-if").find(".build-block-desc:eq(0) span").text(ifCondition);
-          });
-          $("#if-popover-condition").change();
-        },
-        'hidden-event': function(blockOptions) {
-          blockOptions['condition'] = $("#if-popover-condition").val();
-          blockOptions['entry'] = $("#if-popover-entry").val();
-        }
-      });
-
-      $("#block-draw-rect").find(".build-block-2-title-wrapper:first").applyPopover({
-        'popover': {
-          content: function() {
-            var html = "<div class='build-block-draw-region-popover'>";
-              html += "<div class='build-block-draw-region-popover-top'>";
-                html += "<div>RGB</div> <div><input id='draw-regions-popover-color' maxlength='6' class='enter-out-popover'/></div>";
-                html += "<div>Boxes</div> <div><input id='draw-regions-popover-boxes' class='enter-out-popover'/></div>";
-                html += "</div>";
-              html += "</div>";
-
-            return html;
-          }
-        },
-        'block-options': {
-          'rgb': 'FF0000',
-          'boxes': 'faces_array'
-        },
-        'shown-event': function(blockOptions) {
-          $("#draw-regions-popover-color").val(blockOptions['rgb']);
-          $("#draw-regions-popover-boxes").val(blockOptions['boxes']);
-        },
-        'hidden-event': function(blockOptions) {
-          blockOptions['rgb'] = $("#draw-regions-popover-color").val();
-          blockOptions['boxes'] = $("#draw-regions-popover-boxes").val();
-
-          if (blockOptions['rgb']) {
-            $("#block-draw-rect").find(".build-block-draw-rect-condition-rgb").css("background-color", '#'+blockOptions['rgb']);
-          }
-        }
-      });
-
-    }); */
-  </script>
-
 </body>
 </html>
