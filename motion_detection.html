@@ -538,23 +538,24 @@
 
  <script type="text/javascript">
     $(document).ready(function() {
-      console.clear()
-      var blocks=$(".build-area").find('.build-block')
-      var BlockSettings=new Object()
-      BlockSettings.ifblock={'condition': '==',
-                              'entry':'intrusion',
-                              'value':'true'}
-      BlockSettings.motionDetection= {'x': 50,
-                                      'y': 150,
-                                      'width': 540,
-                                      'height': 280,
-                                      'threshold': 130,
-                                    }
-      for (var i=0; i<blocks.length;i++)
-      {
-        addedBlock($(blocks[i]), BlockSettings)
+      console.clear();
+      var blocks = $(".build-area").find('.build-block');
+      var BlockSettings = new Object();
+      BlockSettings.ifblock = {
+        'condition': '==',
+        'entry':'intrusion',
+        'value':'true'
+        };
+      BlockSettings.motionDetection = {
+        'x': 50,
+        'y': 50,
+        'width': 100,
+        'height': 100,
+        'threshold': 130,
+        };
+      for (var i=0; i<blocks.length;i++) {
+        addedBlock($(blocks[i]), BlockSettings);
       } 
-
     })
   </script>
 </body>
