@@ -648,8 +648,8 @@
                     'notifMsg': 'Come and get some food!',
                 }
             if (typeof blockSettings !== 'undefined') {
-                if (typeof blockSettings.notify !== 'undefined') {
-                    thisOptions = blockSettings.notify;
+                if (typeof blockSettings.osAlert !== 'undefined') {
+                    thisOptions = blockSettings.osAlert;
                 }
             }
             block.find(".build-block-2-title-wrapper:first").applyPopover({

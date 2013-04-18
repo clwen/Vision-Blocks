@@ -545,14 +545,18 @@
         'condition': '==',
         'entry':'intrusion',
         'value':'true'
-        };
+      };
       BlockSettings.motionDetection = {
         'x': 50,
         'y': 50,
         'width': 100,
         'height': 100,
         'threshold': 130,
-        };
+      };
+      BlockSettings.osAlert = {
+        "notifTitle": "VisionBlocks",
+        "notifMsg": "Cookie monster detected!",
+      };
       for (var i=0; i<blocks.length;i++) {
         addedBlock($(blocks[i]), BlockSettings);
       } 
