@@ -130,7 +130,6 @@
      * */
     var addedBlock = function(block, blockSettings) {
         recalcWidth();
-        console.log(block);
         block.find(".icon-remove-block").off("click").on("click", function(){
             block.trigger("block-remove");
             block.remove();
