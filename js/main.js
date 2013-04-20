@@ -90,4 +90,9 @@ $(document).ready(function() {
         width: 640,
         height: 480
     };
+
+    // while on click, trigger intro.js
+    $(".block-container-move").click(function() {
+        introJs().start();
+    });
 }); // end of document.ready
