@@ -3,10 +3,10 @@ var VB = null;
 
 $(document).ready(function() {
     VB = {
-        interpreter : new vb.Interpreter(),
+        interpreter: new vb.Interpreter(),
 
         /* Blocks declaration */
-        base : {
+        base: {
             'remoteImage' 			: function() {return new vb.Block('Remote Image', remoteImage, true)},
             'loadImage' 			: function() {return new vb.Block('Load Image', loadImage, true)},
             'remoteVideo' 			: function() {return new vb.Block('Remote Video', remoteVideo, true)},
@@ -56,7 +56,7 @@ $(document).ready(function() {
          *  - options  : Options on popover
          *  - children : Blocks dragged inside
          * */
-        execute : function() {
+        execute: function() {
             var mainBlockInfo = getBlockInfoChain();
 
             var mainBlock = VB.base[mainBlockInfo.name]();
@@ -92,7 +92,7 @@ $(document).ready(function() {
     };
 
     // while on click, trigger intro.js
-    $(".block-container-move").click(function() {
+    $(".block-container-move").click(function(e) {
         introJs().start();
     });
 }); // end of document.ready
