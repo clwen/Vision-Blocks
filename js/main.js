@@ -92,7 +92,7 @@ $(document).ready(function() {
     };
 
     // while on click, trigger intro.js
-    $(".block-container-move").click(function(e) {
+    $(".block-container-help").click(function(e) {
         introJs().start();
     });
 }); // end of document.ready

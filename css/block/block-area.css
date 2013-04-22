@@ -142,16 +142,16 @@
 	border-right-color: #e15b2a;
 }
 
-.block-container-move {
+.block-container-help {
 	border-left-color: #6abb45;
 }
 
-.block-container-move .build-block-title-wrapper,
-.block-container-move .build-block-bottom,
-.block-container-move .build-block-1-bottom-fill,
-.block-container-move .build-block-2-top,
-.block-container-move .build-block-2-title-wrapper,
-.block-container-move .build-block-2-content {
+.block-container-help .build-block-title-wrapper,
+.block-container-help .build-block-bottom,
+.block-container-help .build-block-1-bottom-fill,
+.block-container-help .build-block-2-top,
+.block-container-help .build-block-2-title-wrapper,
+.block-container-help .build-block-2-content {
 	border-right-color: #6abb45;
 }
 
@@ -204,7 +204,7 @@ Icons for menu
 	background-position: -120px 0;
 }
 
-.icon-move {
+.icon-help {
 	background-position: -311px 0;
 }
 
