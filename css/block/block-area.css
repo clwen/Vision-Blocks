@@ -204,8 +204,8 @@ Icons for menu
 	background-position: -120px 0;
 }
 
-.icon-help {
-	background-position: -311px 0;
+.icon-move {
+	background-position: -160px 0;
 }
 
 .icon-draw {
@@ -216,9 +216,14 @@ Icons for menu
 	background-position: -240px 0;
 }
 
+.icon-help {
+	background-position: -311px 0;
+}
+
 .icon-more {
 	background-position: -280px 0;
 }
+
 
 /*
  local to construction
