@@ -185,8 +185,8 @@ var opticalFlow = function () {
 var opticalIntrusion = function(){
 	//Setting up the variable
 	VB.interpreter.dictionary["intrusion"] = false;
-
 	//Setting up the region to draw
+	
 	VB.interpreter.dictionary["workingArea"].x = this.options['x'];
 	VB.interpreter.dictionary["workingArea"].y = this.options['y'];
 	VB.interpreter.dictionary["workingArea"].width = this.options['width'];
