@@ -13,7 +13,6 @@
 </head>
 
 <body>
-  <div class="wrapper">
 
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
@@ -53,7 +52,6 @@
       </div>
     </div>
   </div>
-
 
   <div class="body-area">
 
@@ -479,14 +477,6 @@
       </div>
     </div>
   </div> <!-- /body-area -->
-  <div class="push"></div>
-  </div> <!-- /wrapper -->
-
-  <div class="footer">
-    <div class="footer-content">
-      Best viewed with the latest <a href"https://www.google.com/intl/en/chrome/browser/">Google Chrome</a>.
-    </div>
-  </div>
 
   <!-- JAVASCRIPT -->
   <script src="js/libs/jquery-1.8.3.js"></script>
@@ -514,43 +504,15 @@
   <script type="text/javascript">
     $(document).ready(function() {
         
-      var blocks=$(".build-area").find('.build-block')
-      var BlockSettings=new Object()
+      var blocks=$(".build-area").find('.build-block');
+      var BlockSettings = new Object();
       BlockSettings.pixelization={
-          'gridSize': '10'
-        }
-      for (var i=0; i<blocks.length;i++)
-      {
-        addedBlock($(blocks[i]), BlockSettings)
+          'gridSize': '10',
+      };
+      for (var i=0; i<blocks.length; i++) {
+        addedBlock($(blocks[i]), BlockSettings);
       } 
-
     })
-  </script>
-
-  <script>
-    $(document).ready(function() {
-      $("#block-pixelization").find(".build-block-2-title-wrapper:first").applyPopover({
-        'popover': {
-          content: function() {
-            var html = "<div class='build-block-pixelization-popover'>";
-              html += "<div class='build-block-pixelization-popover-top'>";
-              html += "<div>Grid size</div> <div><input id='pixelization-popover-size' maxlength='15' class='enter-out-popover'/></div>";
-              html += "</div>";
-              html += "</div>";
-
-            return html;
-          }
-        },
-        'block-options': ,
-        'shown-event': function(blockOptions) {
-          $("#pixelization-popover-size").val(blockOptions['gridSize']);
-        },
-        'hidden-event': function(blockOptions) {
-          blockOptions['gridSize'] = $("#pixelization-popover-size").val();
-
-        }
-      });
-    });
   </script>
 
 </body>
