@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <div id="screenshotFull"> <canvas id="screenshotFull-canvas" widht="640" height="480"> </canvas></div>
 		<div class="navbar navbar-inverse navbar-fixed-top">
 	    <div class="navbar-inner">
 	      <div class="container">
@@ -502,9 +503,17 @@
                     <video id="inputVideoCam" width="640" height="480"></video>
                     <video id="inputVideo" width="640" height="480"></video>
                     <canvas id="outputCanvas" width="640" height="480"></canvas>
-                  </div>
+                  </div>                                    
                 </div>
-              </div>
+                <div id="imageOutput">
+                      <canvas class="screenshot" width="120" height="90"></canvas>
+                      <canvas class="screenshot" width="120" height="90"></canvas>
+                      <canvas class="screenshot" width="120" height="90"></canvas>
+                      <canvas class="screenshot" width="120" height="90"></canvas>
+                      <canvas class="screenshot" width="120" height="90"></canvas>
+                </div>  
+                </div>      
+              
             </div>
           </div>
         </div>
@@ -538,11 +547,16 @@
 
  <script type="text/javascript">
     $(document).ready(function() {
-      $(".build-area").find('.play-title').html('<span id="playpopover" data-trigger="manual" data-toggle="tooltip" data-placement="top" data-original-title="Click to start!" >Play Forever</span>')      
-      $('#playpopover').tooltip('show')
-       $(".build-area").find('#block-play-forever').click(function(){$('#playpopover').tooltip('hide')})
-      
-      console.clear()
+        /* $('.screenshot').live('click', function(){
+            if ($(this).css("cursor")=='pointer') {
+              var index=$(this).index()
+              $("#screenshotFull").css("display","inline")
+              console.log(index+' '+imageURI[index])
+              $("#screenshotFull-canvas")[0].getContext('2d').putImageData(imageURI[index],0,0)
+              
+            }
+          }) */
+        
       var blocks=$(".build-area").find('.build-block')
       var BlockSettings=new Object()
       BlockSettings.ifblock={'condition': '==',

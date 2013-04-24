@@ -396,6 +396,7 @@
                 }
             });
         } else if (block.hasClass("build-block-detect-intrusion")) {
+            window.imageURI=[]
             var thisOptions={
                     'x': 50,
                     'y': 50,

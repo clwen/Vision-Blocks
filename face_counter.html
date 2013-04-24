@@ -564,10 +564,6 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
-      $(".build-area").find('.play-title').html('<span id="playpopover" data-trigger="manual" data-toggle="tooltip" data-placement="top" data-original-title="Click to start!" >Play </span>')      
-      $('#playpopover').tooltip('show')
-       $(".build-area").find('#block-play').click(function(){$('#playpopover').tooltip('hide')})
-      console.clear()
       var blocks=$(".build-area").find('.build-block')
       var BlockSettings=new Object()
       BlockSettings.ifblock={'condition': '>',

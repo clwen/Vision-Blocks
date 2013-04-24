@@ -511,6 +511,13 @@
               </div>
             </div>
           </div>
+          <div id="imageOutput">
+            <div class="screenshot" width="120" height="90"></div>
+            <div class="screenshot" width="120" height="90"></div>
+            <div class="screenshot" width="120" height="90"></div>
+            <div class="screenshot" width="120" height="90"></div>
+            <div class="screenshot" width="120" height="90"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -550,11 +557,8 @@
   
   <script type="text/javascript">
     $(document).ready(function() {
-    
-      $(".build-area").find('.play-title').html('<span id="playpopover" data-trigger="manual" data-toggle="tooltip" data-placement="top" data-original-title="Click to start!" >Play Forever</span>')      
-      $('#playpopover').tooltip('show')
-       $(".build-area").find('#block-play-forever').click(function(){$('#playpopover').tooltip('hide')})
-      console.clear()
+      $("#inputVideoCam").hide()
+      $("#inputVideo").hide()
       var blocks=$(".build-area").find('.build-block')
       var BlockSettings=new Object()
       BlockSettings.ifblock={'condition': '==',

@@ -3,6 +3,14 @@ html, body {
 	height: 100%;	
 }
 
+#screenshotFull{
+  position: fixed;
+  left: 100px;
+  top:100px;
+  display: none;
+  width: 640px;
+}
+
 .body-area {
   margin-top: 85px;
 	margin-left: 20px;
@@ -41,6 +49,15 @@ html, body {
 
 * {
   margin: 0;
+}
+
+.screenshot{
+   float: left;
+   margin: 4px;
+}
+
+#imageOutput{
+  width: 640px;
 }
 
 .wrapper {
