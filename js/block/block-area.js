@@ -130,7 +130,6 @@
      * */
     var addedBlock = function(block, blockSettings) {
         recalcWidth();
-        console.log(block);
         block.find(".icon-remove-block").off("click").on("click", function(){
             block.trigger("block-remove");
             block.remove();
@@ -138,10 +137,10 @@
         });
 
         if (block.hasClass("build-block-remote-img")) {
-            var thisOptions={'remoteImgUrl': 'http://vblocks.media.mit.edu/files/cell.gif'}
-            if (typeof blockSettings!== 'undefined') {
-                if (typeof blockSettings.remoteImg!== 'undefined')
-                {thisOptions=blockSettings.remoteImg
+            var thisOptions = {'remoteImgUrl': 'http://vblocks.media.mit.edu/files/cell.gif'};
+            if (typeof blockSettings !== 'undefined') {
+                if (typeof blockSettings.remoteImg !== 'undefined') {
+                    thisOptions = blockSettings.remoteImg;
                 }
             } 
             block.find(".build-block-2-title-wrapper:first").applyPopover({
@@ -192,9 +191,9 @@
             });
         } else if (block.hasClass("build-block-remote-video")) {
             var thisOptions={'remoteVideoUrl': 'http://vblocks.media.mit.edu/files/fox.mp4'}
-            if (typeof blockSettings!== 'undefined') {
-                if (typeof blockSettings.remoteVideo!== 'undefined')
-                {thisOptions=blockSettings.remoteVideo
+            if (typeof blockSettings !== 'undefined') {
+                if (typeof blockSettings.remoteVideo !== 'undefined') {
+                    thisOptions = blockSettings.remoteVideo;
                 }
             } 
             block.find(".build-block-2-title-wrapper:first").applyPopover({
@@ -245,9 +244,9 @@
             });
         } else if (block.hasClass("build-block-binarize")) {
             var thisOptions={'binThreshold': '128'}
-            if (typeof blockSettings!== 'undefined') {
-                if (typeof blockSettings.binarize!== 'undefined')
-                {thisOptions=blockSettings.binarize
+            if (typeof blockSettings !== 'undefined') {
+                if (typeof blockSettings.binarize !== 'undefined') {
+                    thisOptions = blockSettings.binarize;
                 }
             }
             block.find(".build-block-2-title-wrapper:first").applyPopover({
@@ -275,9 +274,9 @@
             var thisOptions={
                     'gridSize': '10'
                     }
-            if (typeof blockSettings!== 'undefined') {
-                if (typeof blockSettings.pixelization!== 'undefined')
-                {thisOptions=blockSettings.pixelization
+            if (typeof blockSettings !== 'undefined') {
+                if (typeof blockSettings.pixelization !== 'undefined') {
+                    thisOptions = blockSettings.pixelization;
                 }
             }
             block.find(".build-block-2-title-wrapper:first").applyPopover({
@@ -306,9 +305,9 @@
                     'hue': '50',
                     'colThreshold': '18',
                 }
-            if (typeof blockSettings!== 'undefined') {
-                if (typeof blockSettings.colorDetection!== 'undefined')
-                {thisOptions=blockSettings.colorDetection
+            if (typeof blockSettings !== 'undefined') {
+                if (typeof blockSettings.colorDetection !== 'undefined') {
+                    thisOptions = blockSettings.colorDetection;
                 }
             } 
             block.find(".build-block-2-title-wrapper:first").applyPopover({
@@ -404,9 +403,9 @@
                     'height': 100,
                     'threshold': 10,
                 }
-            if (typeof blockSettings!== 'undefined') {
-                if (typeof blockSettings.motionDetection!== 'undefined')
-                {thisOptions=blockSettings.motionDetection
+            if (typeof blockSettings !== 'undefined') {
+                if (typeof blockSettings.motionDetection !== 'undefined') {
+                    thisOptions = blockSettings.motionDetection;
                 }
             } 
             block.find(".build-block-2-title-wrapper:first").applyPopover({
@@ -477,9 +476,9 @@
                     'condition': '>',
                     'value':'0',
                     'entry': 'faces'}
-            if (typeof blockSettings!== 'undefined') {
-                if (typeof blockSettings.ifblock!== 'undefined')
-                {thisOptions=blockSettings.ifblock
+            if (typeof blockSettings !== 'undefined') {
+                if (typeof blockSettings.ifblock !== 'undefined') {
+                    thisOptions = blockSettings.ifblock;
                 }
             } 
             block.find(".build-block-title-wrapper:first").applyPopover({
@@ -587,8 +586,8 @@
                     'text': 'Yay!'
                 }
             if (typeof blockSettings!== 'undefined') {
-                if (typeof blockSettings.text!== 'undefined')
-                {thisOptions=blockSettings.text
+                if (typeof blockSettings.text !== 'undefined') {
+                    thisOptions = blockSettings.text;
                 }
             }
             block.find(".build-block-2-title-wrapper:first").applyPopover({
@@ -617,9 +616,9 @@
                   'rgb': 'FF0000',
                   'boxes': 'faces_array'
                 }
-            if (typeof blockSettings!== 'undefined') {
-                if (typeof blockSettings.drawRect!== 'undefined')
-                {thisOptions=blockSettings.drawRect
+            if (typeof blockSettings !== 'undefined') {
+                if (typeof blockSettings.drawRect !== 'undefined') {
+                    thisOptions = blockSettings.drawRect;
                 }
             } 
             block.find(".build-block-2-title-wrapper:first").applyPopover({
@@ -654,9 +653,9 @@
                     'notifTitle': 'Vision Blocks',
                     'notifMsg': 'Come and get some food!',
                 }
-            if (typeof blockSettings!== 'undefined') {
-                if (typeof blockSettings.notify!== 'undefined')
-                {thisOptions=blockSettings.notify
+            if (typeof blockSettings !== 'undefined') {
+                if (typeof blockSettings.osAlert !== 'undefined') {
+                    thisOptions = blockSettings.osAlert;
                 }
             }
             block.find(".build-block-2-title-wrapper:first").applyPopover({

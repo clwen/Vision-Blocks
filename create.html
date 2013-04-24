@@ -8,12 +8,12 @@
   <link rel="shortcut icon" href="./img/favicon.png">
   <link rel="stylesheet" href="css/bootstrap.css">
   <link rel="stylesheet" href="css/bootstrap-responsive.css">
+  <link rel="stylesheet" href="css/introjs.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/block/block-area.css">
 </head>
 
 <body>
-  <div class="wrapper">
 
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
@@ -62,13 +62,13 @@
         <div class="row">
 
           <div class="span4 block-area">
-            <div class="block-area-container">
-              <div class="block-container block-container-start" data-title="Start" >
+            <div class="block-area-container" data-intro="Here goes blocks we can use to compose applications. Grouped by their funcitons." data-step="1">
+              <div class="block-container block-container-start" data-title="Start" data-intro="It usually starts with a play block to control the executation flow. Play forever is for video; Play is for image." data-step="3">
                 <div class="icon icon-start"></div>
                 
                 <div class="block-container-content">
                   
-                  <div id="block-play" class="build-block block-container-start build-block-1" data-block-name="play" >
+                  <div id="block-play" class="build-block block-container-start build-block-1" data-block-name="play">
                     <div class="build-block-title-wrapper build-block-recalc-width">
                       <div class="build-block-title">
                         <div class="icon1-build-block icon1-play"></div>
@@ -104,7 +104,7 @@
                 </div>
                 
               </div>
-              <div class="block-container block-container-source" data-title="Source" >
+              <div class="block-container block-container-source" data-title="Source" data-intro="Use source blocks to specify the image/video source we want to use." data-step="4">
                 <div class="icon icon-video"></div>
                 
                 <div class="block-container-content">
@@ -264,15 +264,11 @@
                     </div>
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
-
                 </div>
-                
               </div>
-              
 
-              <div class="block-container block-container-filters" data-title="Filters">
+              <div class="block-container block-container-filters" data-title="Filters" data-intro="Alternatively, we can also apply some pixel-wise operations." data-step="6">
                 <div class="icon icon-vision"></div>
-
                 <div class="block-container-content">
 
                   <div id="block-invert-color" class="build-block block-container-filters build-block-2" data-block-name="invertFilter">
@@ -334,8 +330,6 @@
                     </div>
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
-                  
-                 
 
                   <div id="block-swirl" class="build-block block-container-filters build-block-2" data-block-name="swirlFilter">
                     <div class="build-block-2-top build-block-recalc-width"></div>
@@ -349,8 +343,6 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-                 
-
                   <div id="block-mirror" class="build-block block-container-filters build-block-2" data-block-name="mirror">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
@@ -363,7 +355,6 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-
                    <div id="block-spherize" class="build-block block-container-filters build-block-2" data-block-name="spherize">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
@@ -375,24 +366,12 @@
                     </div>
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
-
                 </div>
-                
                </div>
 
-
-
-
-
-
-
-              <div class="block-container block-container-vision" data-title="Vision">
+              <div class="block-container block-container-vision" data-title="Vision" data-intro="Then specify the vision algorithms we want to apply." data-step="5">
                 <div class="icon icon-vision"></div>
-                
                 <div class="block-container-content">
-                  
-                  
-
                   <div id="block-color-detect" class="build-block build-block-color-detect block-container-vision build-block-2" data-block-name="colorDetection">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
@@ -404,8 +383,6 @@
                     </div>
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
-
-                  
                   
                   <div id="block-skin-detect" class="build-block build-block-skin-detection block-container-vision build-block-2" data-block-name="skinDetection">
                     <div class="build-block-2-top build-block-recalc-width"></div>
@@ -454,11 +431,10 @@
                     </div>
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
-                  
                 </div>
-                
               </div>
-              <div class="block-container block-container-logic" data-title="Logic" >
+
+              <div class="block-container block-container-logic" data-title="Logic" data-intro="In some applications, it is required to specify conditional events. It can be done by IF blocks." data-step="7">
                 <div class="icon icon-logic"></div>
                 
                 <div class="block-container-content">
@@ -487,10 +463,8 @@
                 </div>
                 
               </div>
-              <div class="block-container block-container-move" data-title="Move" >
-                <div class="icon icon-move"></div>
-              </div>
-              <div class="block-container block-container-draw" data-title="Draw" >
+
+              <div class="block-container block-container-draw" data-title="Draw" data-intro="For conditional events, we can draw something on the output image/video." data-step="8">
                 <div class="icon icon-draw"></div>
                 
                 <div class="block-container-content">
@@ -531,7 +505,7 @@
                 </div>
                 
               </div>
-              <div class="block-container block-container-alert" data-title="Alert" >
+              <div class="block-container block-container-alert" data-title="Alert" data-intro="Alternatively, alerts can be sent." data-step="9">
                 <div class="icon icon-alert"></div>
 
                 <div class="block-container-content">
@@ -573,21 +547,27 @@
                 </div>
 
               </div>
+
+              <div class="block-container block-container-help" data-title="Help" >
+                <div class="icon icon-help"></div>
+              </div>
+
               <div class="block-container block-container-more" data-title="More">
                 <div class="icon icon-more"></div>
               </div>
+
             </div>
             <div class="block-area-options" style="display: none">
             </div>
           </div>
 
-          <div class="span5 build-area">
+          <div class="span5 build-area" data-intro="Drag these blocks to this build area. Vision Blocks is that simple." data-step="2">
           </div>
 
           <div class="span1">
             <div class="row-fluid">
               <div class="span12">
-                <div class="well output-area">
+                <div class="well output-area" data-intro="After the application is triggered, the result will be shown in output area in real-time. That's it! If you are new to Vision Blocks you can check some interesting preloaded applications in the homepage to get some ideas!" data-step="10">
                   <div id="canvas-title">
                     <h5>Output</h5>
                   </div>
@@ -604,14 +584,6 @@
       </div>
     </div>
   </div> <!-- /body-area -->
-  <div class="push"></div>
-  </div> <!-- /wrapper -->
-
-  <div class="footer">
-    <div class="footer-content">
-      Best viewed with the latest <a href"https://www.google.com/intl/en/chrome/browser/">Google Chrome</a>.
-    </div>
-  </div>
 
   <!-- JAVASCRIPT -->
   <script src="js/libs/jquery-1.8.3.js"></script>
@@ -622,6 +594,7 @@
   <script src="js/libs/cascades/haarcascade_frontalface_alt.js"></script>
   <script src="js/libs/eventemitter2.js"></script>
   <script src="js/libs/mjpegcanvas.js"></script>
+  <script src="js/libs/intro.js"></script>
 
   <script src="js/auxiliary.js"></script>
   <script src="js/main.js"></script>
