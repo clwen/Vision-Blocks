@@ -40,6 +40,11 @@
         $("#detect-motion-pop-y").val(rect.startY);
         $("#detect-motion-pop-w").val(rect.w);
         $("#detect-motion-pop-h").val(rect.h);
+
+        $("#optical-intrusion-pop-x").val(rect.startX);
+        $("#optical-intrusion-pop-y").val(rect.startY);
+        $("#optical-intrusion-pop-w").val(rect.w);
+        $("#optical-intrusion-pop-h").val(rect.h);
     };
 
     var drawRect = function() {
