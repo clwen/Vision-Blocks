@@ -31,6 +31,38 @@ var getPixels = function (canvas) {
   		);
 };
 
+
+
+var updateImages=function(){
+	VB.interpreter.dictionary["workingArea"].x = 0
+    VB.interpreter.dictionary["workingArea"].y = 0
+    VB.interpreter.dictionary["workingArea"].width = 640
+    VB.interpreter.dictionary["workingArea"].height = 480
+    var canvas = VB.interpreter.dictionary["canvas"]
+   	ctx = canvas.getContext('2d')
+    var images=$(".screenshot") // div's containing images
+    for (i=4; i>0; i--){ 
+    	console.log(i)
+    	images[i].getContext('2d').drawImage(images[i-1],0,0,120,90,0,0,120,90)   	
+    	imageURI[i]=imageURI[i-1]
+    	$(images[i]).css('cursor', $(images[i-1]).css("cursor"))
+    	/*temp=imageURI[i-1]
+    	if (temp!= null) {
+    		$(images[i]).html('<img class="screenshotImage" width="120" height="90" src="'+temp+'">')
+    		//move the previous screenshot to the right 
+    	//	console.log(i+temp)
+    		 imageURI[i]=temp   		
+    	} */
+    	 //save the URI in local storage   	
+    }
+    images[0].getContext('2d').drawImage(canvas,0,0,640,480,0,0,120,90)   
+    $(images[0]).css("cursor",'pointer')	
+    imageURI[i]=canvas.getContext('2d').getImageData(0,0,640,480)
+   // temp=canvas.toDataURL('image/png') // get current screenshot's URI
+   // imageURI[0]=temp // save it 
+   // $(images[0]).html('<img class="screenshotImage" width="120" height="90" src="'+temp+'">') //display this image 		
+}  
+
 /* Concolves the information inside a given canvas element with
 	a given kernel */
 var convolve = function (canvas, kernel, opaque) {

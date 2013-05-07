@@ -316,6 +316,7 @@
                         var html = "<div class='build-block-color-detect-popover'>";
                         html += "<div class='build-block-color-detect-popover-top'>";
                         html += "<div>Hue</div> <div><input id='color-detect-popover-hue' class='enter-out-popover' type='range' min='1' max='360' /></div>";
+                        html +="<div id='colorRect' style='width:207px; height:15px; background-color:hsl(120,100%,50%)'> </div>"
                         html += "<div>Threshold</div> <div><input id='color-detect-popover-thresh' maxlength='15' class='enter-out-popover'/></div>";
                         html += "</div>";
                         html += "</div>";
@@ -325,8 +326,13 @@
                 },
                 'block-options': thisOptions,
                 'shown-event': function(blockOptions) {
-                    $("#color-detect-popover-hue").val(blockOptions['hue']);
-                    $("#color-detect-popover-thresh").val(blockOptions['colThreshold']);
+                    $("#color-detect-popover-hue").val(blockOptions['hue'])
+                    $('#colorRect').css('background-color','hsl('+blockOptions.hue+',100%,50%)')
+                    $("#color-detect-popover-thresh").val(blockOptions['colThreshold'])
+                    $("#color-detect-popover-hue").live('change keyup focus',function(){
+                        blockOptions['hue'] = $("#color-detect-popover-hue").val();
+                        $('#colorRect').css('background-color','hsl('+blockOptions.hue+',100%,50%)')
+                    })
                 },
                 'hidden-event': function(blockOptions) {
                     blockOptions['hue'] = $("#color-detect-popover-hue").val();
@@ -389,6 +395,7 @@
                 }
             });
         } else if (block.hasClass("build-block-detect-intrusion")) {
+            window.imageURI=[]
             var thisOptions={
                     'x': 50,
                     'y': 50,

@@ -57,10 +57,11 @@ var intrusionDetection = function () {
 	}
     var avg_diff = diff_sum / (data.length * 0.75); // only three channels calculated
     var threshold = this.options['threshold'];
-    console.log(VB.interpreter.dictionary['intrusion'])
     if (avg_diff > threshold) {
-        VB.interpreter.dictionary["intrusion"] = true;
+        VB.interpreter.dictionary["intrusion"] = true
+        updateImages()
     }
+
 }
 
 var opticalFlow = function () {

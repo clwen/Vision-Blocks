@@ -15,8 +15,6 @@
 
 <body> 
 
-  <div class="wrapper">
-
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
@@ -64,8 +62,8 @@
         <div class="row">
 
           <div class="span4 block-area">
-            <div class="block-area-container" data-intro="Here goes blocks we can use to compose applications. Grouped by their funcitons." data-step="1">
-              <div class="block-container block-container-start" data-title="Start" data-intro="It usually starts with a play block to control the executation flow. Play forever is for video; Play is for image." data-step="3">
+            <div class="block-area-container">
+              <div class="block-container block-container-start" data-title="Start">
                 <div class="icon icon-start"></div>
 
                 <div class="block-container-content">
@@ -106,7 +104,7 @@
                 </div>
 
               </div>
-              <div class="block-container block-container-source" data-title="Source" data-intro="Use source blocks to specify the image/video source we want to use." data-step="4">
+              <div class="block-container block-container-source" data-title="Source">
                 <div class="icon icon-video"></div>
 
                 <div class="block-container-content">
@@ -269,7 +267,7 @@
                 </div>
               </div>
 
-              <div class="block-container block-container-filters" data-title="Filters" data-intro="Alternatively, we can also apply some pixel-wise operations." data-step="6">
+              <div class="block-container block-container-filters" data-title="Filters">
                 <div class="icon icon-vision"></div>
                 <div class="block-container-content">
 
@@ -371,7 +369,7 @@
                 </div>
               </div>
 
-              <div class="block-container block-container-vision" data-title="Vision" data-intro="Then specify the vision algorithms we want to apply." data-step="5">
+              <div class="block-container block-container-vision" data-title="Vision">
                 <div class="icon icon-vision"></div>
                 <div class="block-container-content">
                   <div id="block-color-detect" class="build-block build-block-color-detect block-container-vision build-block-2" data-block-name="colorDetection">
@@ -436,7 +434,7 @@
                 </div>
               </div>
 
-              <div class="block-container block-container-logic" data-title="Logic" data-intro="In some applications, it is required to specify conditional events. It can be done by IF blocks." data-step="7">
+              <div class="block-container block-container-logic" data-title="Logic">
                 <div class="icon icon-logic"></div>
 
                 <div class="block-container-content">
@@ -466,7 +464,7 @@
 
               </div>
 
-              <div class="block-container block-container-draw" data-title="Draw" data-intro="For conditional events, we can draw something on the output image/video." data-step="8">
+              <div class="block-container block-container-draw" data-title="Draw">
                 <div class="icon icon-draw"></div>
 
                 <div class="block-container-content">
@@ -507,7 +505,7 @@
                 </div>
 
               </div>
-              <div class="block-container block-container-alert" data-title="Alert" data-intro="Alternatively, alerts can be sent." data-step="9">
+              <div class="block-container block-container-alert" data-title="Alert">
                 <div class="icon icon-alert"></div>
 
                 <div class="block-container-content">
@@ -568,7 +566,7 @@
               <div class="build-block-title-wrapper build-block-recalc-width" style="width: 182px;">
                 <div class="build-block-title">
                   <div class="icon1-build-block icon1-play"></div>
-                  <span class="play-title">Play</span>
+                  <span class="play-title" data-intro="Click here to start the program!" data-step="1">Play</span>
                   <div class="icon-remove-block"></div>
                 </div>
               </div>
@@ -605,7 +603,7 @@
           <div class="span1">
             <div class="row-fluid">
               <div class="span12">
-                <div class="well output-area">
+                <div class="well output-area" data-intro="After the application is triggered, the result will be shown in output area in real-time." data-step="2">
                   <div id="canvas-title">
                     <h5>Output</h5>
                   </div>
@@ -622,14 +620,6 @@
       </div>
     </div>
   </div> <!-- /body-area -->
-  <div class="push"></div>
-  </div> <!-- /wrapper -->
-
-  <div class="footer">
-    <div class="footer-content">
-      Best viewed with the latest <a href"https://www.google.com/intl/en/chrome/browser/">Google Chrome</a>.
-    </div>
-  </div>
 
   <!-- JAVASCRIPT -->
   <script src="js/libs/jquery-1.8.3.js"></script>
@@ -657,13 +647,13 @@
 
   <script type="text/javascript">
     $(document).ready(function() {
-      var blocks=$(".build-area").find('.build-block');
+      var blocks = $(".build-area").find('.build-block');
       var BlockSettings = new Object();
       BlockSettings.colorDetect = {
         'hue': '125',
         'colThreshold': '46',
       };
-      for (var i=0; i<blocks.length;i++) {
+      for (var i=0; i<blocks.length; i++) {
         addedBlock($(blocks[i]), BlockSettings);
       } 
     })
