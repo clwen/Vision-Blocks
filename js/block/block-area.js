@@ -41,6 +41,7 @@
         $("#detect-motion-pop-w").val(rect.w);
         $("#detect-motion-pop-h").val(rect.h);
 
+        //has to be done for this block as well
         $("#optical-intrusion-pop-x").val(rect.startX);
         $("#optical-intrusion-pop-y").val(rect.startY);
         $("#optical-intrusion-pop-w").val(rect.w);
@@ -468,14 +469,15 @@
                 }
             });
         } else if (block.hasClass("build-block-optical-intrusion")){
-            window.imageURI = []
+            window.imageURI = [];
             var thisOptions = {
                 'x':50,
                 'y':50,
                 'width':100,
-                'height':100
-            }
-            //what is this variable?
+                'height':100,
+                'threshold':80
+            };
+
             if (typeof blockSettings !== 'undefined') {
                 if (typeof blockSettings.motionDetection !== 'undefined') {
                     thisOptions = blockSettings.opticalIntrusion;
@@ -486,13 +488,14 @@
                     content: function(){
                         var html = "<div class='build-block-detect-motion-pop'>";
                         html += "<div class='build-block-optical-intrusion-pop-top'>";
-                        html += "<span>Start X</span> <span><input id='optical-intrusion-pop-x' maxlength='3' class='enter-out-popover optical-intrusion-popover-input'/></span>";
-                        html += "<span>Start Y</span> <span><input id='optical-intrusion-pop-y' maxlength='3' class='enter-out-popover optical-intrusion-popover-input'/></span>";
+                        html += "<span>Start X</span> <span><input id='optical-intrusion-pop-x' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
+                        html += "<span>Start Y</span> <span><input id='optical-intrusion-pop-y' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
                         html += "<br/>";
-                        html += "<span>Width</span> <span><input id='optical-intrusion-pop-w' maxlength='3' class='enter-out-popover optical-intrusion-popover-input'/></span>";
-                        html += "<span>Height</span> <span><input id='optical-intrusion-pop-h' maxlength='3' class='enter-out-popover optical-intrusion-popover-input'/></span>";
+                        html += "<span>Width</span> <span><input id='optical-intrusion-pop-w' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
+                        html += "<span>Height</span> <span><input id='optical-intrusion-pop-h' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
                         html += "<br/>";
                         html += "<div id='drag-draw-ctn'><button id='drag-draw-btn' type='button'>Drag region</button></div>";
+                        html += "<span>Threshold</span> <span><input id='optical-intrusion-pop-thresh' maxlength='3' class='enter-out-popover intrusion-popover-input'/></span>";
                         html += "</div>";
                         html += "</div>";
                         return html;
@@ -519,6 +522,7 @@
                     $("#optical-intrusion-pop-y").val(blockOptions['y']);
                     $("#optical-intrusion-pop-w").val(blockOptions['width']);
                     $("#optical-intrusion-pop-h").val(blockOptions['height']);
+                    $("#optical-intrusion-pop-thresh").val(blockOptions['threshold']);
                 },
                 'hidden-event': function(blockOptions){
                     blockOptions['url'] = $("#load-image-url").val();
@@ -526,6 +530,7 @@
                     blockOptions['y'] = $("#optical-intrusion-pop-y").val();
                     blockOptions['width'] = $("#optical-intrusion-pop-w").val();
                     blockOptions['height'] = $("#optical-intrusion-pop-h").val();
+                    blockOptions['threshold'] = $("#optical-intrusion-pop-thresh").val();
                 }
             });
         } else if (block.hasClass("build-block-if")) {
