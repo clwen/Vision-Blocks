@@ -395,7 +395,9 @@
                 }
             });
         } else if (block.hasClass("build-block-detect-intrusion")) {
+            //window thing
             window.imageURI=[]
+            //options to default with
             var thisOptions={
                     'x': 50,
                     'y': 50,
@@ -403,6 +405,8 @@
                     'height': 100,
                     'threshold': 10,
                 }
+
+            //what is this variable?
             if (typeof blockSettings !== 'undefined') {
                 if (typeof blockSettings.motionDetection !== 'undefined') {
                     thisOptions = blockSettings.motionDetection;
@@ -456,6 +460,67 @@
                     blockOptions['width'] = $("#detect-motion-pop-w").val();
                     blockOptions['height'] = $("#detect-motion-pop-h").val();
                     blockOptions['threshold'] = $("#detect-motion-pop-thresh").val();
+                }
+            });
+        } else if(block.hasClass("build-block-optical-intrusion")){
+            window.imageURI = []
+            var thisOptions = {
+                'x':50,
+                'y':50,
+                'width':100,
+                'height':100
+            }
+            //what is this variable?
+            if (typeof blockSettings !== 'undefined') {
+                if (typeof blockSettings.motionDetection !== 'undefined') {
+                    thisOptions = blockSettings.opticalIntrusion;
+                }
+            }
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function(){
+                        var html = "<div class='build-block-detect-motion-pop'>";
+                        html += "<div class='build-block-optical-intrusion-pop-top'>";
+                        html += "<span>Start X</span> <span><input id='optical-intrusion-pop-x' maxlength='3' class='enter-out-popover optical-intrusion-popover-input'/></span>";
+                        html += "<span>Start Y</span> <span><input id='optical-intrusion-pop-y' maxlength='3' class='enter-out-popover optical-intrusion-popover-input'/></span>";
+                        html += "<br/>";
+                        html += "<span>Width</span> <span><input id='optical-intrusion-pop-w' maxlength='3' class='enter-out-popover optical-intrusion-popover-input'/></span>";
+                        html += "<span>Height</span> <span><input id='optical-intrusion-pop-h' maxlength='3' class='enter-out-popover optical-intrusion-popover-input'/></span>";
+                        html += "<br/>";
+                        html += "<div id='drag-draw-ctn'><button id='drag-draw-btn' type='button'>Drag region</button></div>";
+                        html += "</div>";
+                        html += "</div>";
+                        return html;
+                    },
+                    contentFooter: function(){
+                        var html = "";
+                        html += "<div class='output_element'><span>intrusion</span></div>";
+                        return html;
+                    }
+                },
+                'block-options': thisOptions,
+                'shown-event': function(blockOptions){
+                    $("#load-image-url").val(blockOptions['url']);
+                    $(".popover-footer-content > div").dragAndDrop({
+                        end: function(element) {
+                            var blockIf = $(".build-area .build-block-if:eq(0)");
+                            if (blockIf) {
+                                blockIf.data("block-options")['entry'] = element.text();
+                                blockIf.find(".build-block-desc:eq(0) span").text(element.text() + " " +blockIf.data("block-options")['condition']);
+                            }
+                        }
+                    });
+                    $("#optical-intrusion-pop-x").val(blockOptions['x']);
+                    $("#optical-intrusion-pop-y").val(blockOptions['y']);
+                    $("#optical-intrusion-pop-w").val(blockOptions['width']);
+                    $("#optical-intrusion-pop-h").val(blockOptions['height']);
+                },
+                'hidden-event': function(blockOptions){
+                    blockOptions['url'] = $("#load-image-url").val();
+                    blockOptions['x'] = $("#optical-intrusion-pop-x").val();
+                    blockOptions['y'] = $("#optical-intrusion-pop-y").val();
+                    blockOptions['width'] = $("#optical-intrusion-pop-w").val();
+                    blockOptions['height'] = $("#optical-intrusion-pop-h").val();
                 }
             });
         } else if (block.hasClass("build-block-if")) {
