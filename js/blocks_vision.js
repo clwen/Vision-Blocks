@@ -199,20 +199,20 @@ var opticalIntrusion = function(){
 	//Getting the canvas
 	var canvas = VB.interpreter.dictionary["canvas"];
 	var pixels = getPixels(canvas);
-	var currentData = pixels.data;
+	var curr = pixels.data;
 
 	//Checking for previous data
     if (!VB.interpreter.dictionary["prevData"]) {
-        VB.interpreter.dictionary["prevData"] = currentData;
+        VB.interpreter.dictionary["prevData"] = curr;
     }
 
     //Initialization data?
 	if (!VB.interpreter.dictionary["initData"]) {
-		VB.interpreter.dictionary["initData"] = currentData;
+		VB.interpreter.dictionary["initData"] = curr;
 	}
 
     var prev = VB.interpreter.dictionary["prevData"];
-    VB.interpreter.dictionary["prevData"] = currentData;
+    VB.interpreter.dictionary["prevData"] = curr;
 
     var winSize = 8;
     var winStep = winSize * 2 + 1;
