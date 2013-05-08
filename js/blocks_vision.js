@@ -304,8 +304,6 @@ var opticalIntrusion = function(){
     uu /= n;
     vv /= n;
     var scale = Math.sqrt(uu*uu + vv*vv) * 36;
-    console.log("threshold=" + threshold);
-    console.log("scale=" + scale);
     if(scale >= threshold){
         VB.interpreter.dictionary["intrusion"] = true;
     }

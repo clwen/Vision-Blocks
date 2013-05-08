@@ -412,7 +412,6 @@
                     'threshold': 10,
                 }
 
-            //what is this variable?
             if (typeof blockSettings !== 'undefined') {
                 if (typeof blockSettings.motionDetection !== 'undefined') {
                     thisOptions = blockSettings.motionDetection;
@@ -479,7 +478,7 @@
             };
 
             if (typeof blockSettings !== 'undefined') {
-                if (typeof blockSettings.motionDetection !== 'undefined') {
+                if (typeof blockSettings.opticalIntrusion !== 'undefined') {
                     thisOptions = blockSettings.opticalIntrusion;
                 }
             }
