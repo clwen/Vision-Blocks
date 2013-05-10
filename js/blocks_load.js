@@ -105,7 +105,7 @@ var loadWebcam = function () {
 		VB.interpreter.dictionary["canvas"] = canvas;
 		thiss.executeNext();
 	} else {
-        camLoad();
+        askWebcamPermission();
 	}
 };
 

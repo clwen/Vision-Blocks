@@ -31,8 +31,6 @@ var getPixels = function (canvas) {
   		);
 };
 
-
-
 var updateImages=function(){
 	VB.interpreter.dictionary["workingArea"].x = 0
     VB.interpreter.dictionary["workingArea"].y = 0
@@ -114,21 +112,27 @@ var updateCanvas = function(imgData) {
 };
 
 var reload = function() {
-	
 	window.location = window.location.href.replace(/#/,'');
 };
 
 /* Ask permission to load user's webcam*/
-var camLoad = function(){
+var askWebcamPermission = function(){
 	window.URL = window.URL || window.webkitURL;
 	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 	
 	var video = document.querySelector('#inputVideoCam');
   	
-    // TODO: show error msg if can't load webcam
-  	navigator.getUserMedia({video: true}, function(stream) {
-    	video.src = window.URL.createObjectURL(stream);
-  	});
+  	navigator.getUserMedia(
+        {video: true}, 
+        
+        function(stream) {
+            video.src = window.URL.createObjectURL(stream);
+        },
+
+        function(err) {
+            console.log("Failed to load webcam.");
+        }
+    );
 };
 
 /* Select the region to work with the blocks */
@@ -224,6 +228,7 @@ var reset = function() {
 	var inputVideoCam = document.getElementById("inputVideoCam");
 	inputVideoCam.pause();	
 };
+
 var performExecute = function() {
 	reset();
 	VB.execute()
