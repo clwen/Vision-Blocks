@@ -314,9 +314,10 @@ var opticalIntrusion = function(){
         */
         //Printing to the image!
         video = document.querySelector('#inputVideoCam');
+        image = document.querySelector('#image0');
         canvas.getContext('2d').drawImage(video, 0, 0, 120, 90);
         var shot = canvas.toDataURL('image/png');
-        $("#image0").setAttribute('src', shot);
+        image.setAttribute('src', shot);
         VB.interpreter.dictionary["intrusion"] = true;
     }
 
