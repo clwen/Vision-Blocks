@@ -105,7 +105,7 @@ var loadWebcam = function () {
 		VB.interpreter.dictionary["canvas"] = canvas;
 		thiss.executeNext();
 	} else {
-		console.error("Can't access webcam...");
+        camLoad();
 	}
 };
 

@@ -121,16 +121,15 @@ var reload = function() {
 /* Ask permission to load user's webcam*/
 var camLoad = function(){
 	window.URL = window.URL || window.webkitURL;
-	navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 	
 	var video = document.querySelector('#inputVideoCam');
   	
+    // TODO: show error msg if can't load webcam
   	navigator.getUserMedia({video: true}, function(stream) {
     	video.src = window.URL.createObjectURL(stream);
   	});
 };
-/* Bad practice . . .*/
-camLoad();
 
 /* Select the region to work with the blocks */
 var draw = function(box, color) {
