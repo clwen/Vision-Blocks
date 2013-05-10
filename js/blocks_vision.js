@@ -314,7 +314,25 @@ var opticalIntrusion = function(){
         */
         //Printing to the image!
         video = document.querySelector('#inputVideoCam');
-        image = document.querySelector('#image0');
+        var selector;
+        if(VB.interpreter.dictionary["count"] < 4){
+            selector = '#image' + VB.interpreter.dictionary["count"].toString();
+            VB.interpreter.dictionary["count"]  = VB.interpreter.dictionary["count"] + 1;
+        }else{
+            selector = '#image4';
+            src = $('#image1').attr('src');
+            $('#image0').attr('src', src);
+
+            src = $('#image2').attr('src');
+            $('#image1').attr('src', src);
+
+            src = $('#image3').attr('src');
+            $('#image2').attr('src', src);
+
+            src = $('#image4').attr('src');
+            $('#image3').attr('src', src);
+        }
+        image = document.querySelector(selector);
         canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
         var shot = canvas.toDataURL('image/png');
         image.setAttribute('src', shot);

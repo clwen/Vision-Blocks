@@ -61,7 +61,8 @@ vb.Interpreter = function () {
 	this.isLoaded = false;
 	
 	this.dictionary = {
-		"canvas" : ""
+		"canvas" : "",
+		"count": 0
 	};
 
 	/* The interpreter execute function is responsible to call the first
