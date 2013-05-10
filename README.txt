@@ -5,3 +5,5 @@ Dev version is constantly updated on http://vblocks.media.mit.edu/. Please use l
 Brought to you by Camera Culture Group at the MIT Media Lab <http://cameraculture.media.mit.edu>.
 
 Feedbacks and collaboration welcomed.
+
+Released under MIT License.
