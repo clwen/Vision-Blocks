@@ -305,6 +305,18 @@ var opticalIntrusion = function(){
     vv /= n;
     var scale = Math.sqrt(uu*uu + vv*vv) * 36;
     if(scale >= threshold){
+        /*
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext('2d').drawImage(video, 0, 0, width, height);
+        var data = canvas.toDataURL('image/png');
+        photo.setAttribute('src', data);
+        */
+        //Printing to the image!
+        video = document.querySelector('#inputVideoCam');
+        canvas.getContext('2d').drawImage(video, 0, 0, 120, 90);
+        var shot = canvas.toDataURL('image/png');
+        $("#image0").setAttribute('src', shot);
         VB.interpreter.dictionary["intrusion"] = true;
     }
 
