@@ -70,7 +70,7 @@
         var $tgt = $(e.target);
 
         $tgt.parents().each(function() {
-            if ($(this).is("#block-play-forever") || $(this).is("#block-play")) {
+            if ($(this).is("#block-playForever") || $(this).is("#block-play")) {
                 performExecute();
             }
         });
@@ -134,7 +134,7 @@
     /*
      * Function called when a block is added
      * */
-    var addedBlock = function(block, blockSettings) {
+    var addedBlock = function(block, settings) {
         recalcWidth();
         block.find(".icon-remove-block").off("click").on("click", function(){
             block.trigger("block-remove");
@@ -142,13 +142,10 @@
             refreshBlocks();
         });
 
-        if (block.hasClass("build-block-remote-img")) {
-            var thisOptions = {'remoteImgUrl': 'http://vblocks.media.mit.edu/files/cell.gif'};
-            if (typeof blockSettings !== 'undefined') {
-                if (typeof blockSettings.remoteImg !== 'undefined') {
-                    thisOptions = blockSettings.remoteImg;
-                }
-            } 
+        if (block.hasClass("build-block-remoteImage")) {
+
+            var thisOptions={'remoteImgUrl': 'http://vblocks.media.mit.edu/files/cell.gif'}
+            if (typeof settings!== 'undefined') thisOptions=settings  
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -169,7 +166,8 @@
                     blockOptions['remoteImgUrl'] = $("#remote-img-url").val();
                 }
             });
-        } else if (block.hasClass("build-block-load-image")) {
+
+        } else if (block.hasClass("build-block-loadImage")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -195,13 +193,10 @@
                     }
                 }
             });
-        } else if (block.hasClass("build-block-remote-video")) {
+
+        } else if (block.hasClass("build-block-remoteVideo")) {
             var thisOptions={'remoteVideoUrl': 'http://vblocks.media.mit.edu/files/fox.mp4'}
-            if (typeof blockSettings !== 'undefined') {
-                if (typeof blockSettings.remoteVideo !== 'undefined') {
-                    thisOptions = blockSettings.remoteVideo;
-                }
-            } 
+            if (typeof settings!== 'undefined') thisOptions=settings  
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -222,7 +217,7 @@
                     blockOptions['remoteVideoUrl'] = $("#remote-video-url").val();
                 }
             });
-        } else if (block.hasClass("build-block-load-video")) {
+        } else if (block.hasClass("build-block-loadVideo")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -248,13 +243,9 @@
                     }
                 }
             });
-        } else if (block.hasClass("build-block-binarize")) {
+        } else if (block.attr("data-block-name")=='binarize') {
             var thisOptions={'binThreshold': '128'}
-            if (typeof blockSettings !== 'undefined') {
-                if (typeof blockSettings.binarize !== 'undefined') {
-                    thisOptions = blockSettings.binarize;
-                }
-            }
+            if (typeof settings!== 'undefined') thisOptions=settings  
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -280,11 +271,7 @@
             var thisOptions={
                     'gridSize': '10'
                     }
-            if (typeof blockSettings !== 'undefined') {
-                if (typeof blockSettings.pixelization !== 'undefined') {
-                    thisOptions = blockSettings.pixelization;
-                }
-            }
+            if (typeof settings!== 'undefined') thisOptions=settings  
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -306,16 +293,12 @@
 
                 }
             });
-        } else if (block.hasClass("build-block-color-detect")) {
+        } else if (block.hasClass("build-block-colorDetection")) {
             var thisOptions={
                     'hue': '50',
                     'colThreshold': '18',
                 }
-            if (typeof blockSettings !== 'undefined') {
-                if (typeof blockSettings.colorDetection !== 'undefined') {
-                    thisOptions = blockSettings.colorDetection;
-                }
-            } 
+            if (typeof settings!== 'undefined') thisOptions=settings  
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -369,7 +352,7 @@
 
                 }
             });
-        } else if (block.hasClass("build-block-detect-face")) {
+        } else if (block.hasClass("build-block-faceDetection")) {
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     contentFooter: function() {
@@ -400,8 +383,7 @@
                     blockOptions['url'] = $("#load-image-url").val();
                 }
             });
-        } else if (block.hasClass("build-block-detect-intrusion")) {
-            //window thing
+        } else if (block.hasClass("build-block-intrusionDetection")) {
             window.imageURI=[]
             //options to default with
             var thisOptions={
@@ -411,12 +393,7 @@
                     'height': 100,
                     'threshold': 10,
                 }
-
-            if (typeof blockSettings !== 'undefined') {
-                if (typeof blockSettings.motionDetection !== 'undefined') {
-                    thisOptions = blockSettings.motionDetection;
-                }
-            } 
+            if (typeof settings!== 'undefined') thisOptions=settings  
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content : function() {
@@ -550,11 +527,7 @@
                     'condition': '>',
                     'value':'0',
                     'entry': 'faces'}
-            if (typeof blockSettings !== 'undefined') {
-                if (typeof blockSettings.ifblock !== 'undefined') {
-                    thisOptions = blockSettings.ifblock;
-                }
-            } 
+            if (typeof settings!== 'undefined') thisOptions=settings  
             block.find(".build-block-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -655,15 +628,11 @@
                         }
                     }
             });
-        } else if (block.hasClass("build-block-write-text")) {
+        } else if (block.hasClass("build-block-writeText")) {
             var thisOptions={
                     'text': 'Yay!'
                 }
-            if (typeof blockSettings!== 'undefined') {
-                if (typeof blockSettings.text !== 'undefined') {
-                    thisOptions = blockSettings.text;
-                }
-            }
+            if (typeof settings!== 'undefined') thisOptions=settings  
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -685,16 +654,12 @@
 
                 }
             });
-        } else if (block.hasClass("build-block-draw-regions")) {
+        } else if (block.hasClass("build-block-drawRegions")) {
             var thisOptions={
                   'rgb': 'FF0000',
                   'boxes': 'faces_array'
                 }
-            if (typeof blockSettings !== 'undefined') {
-                if (typeof blockSettings.drawRect !== 'undefined') {
-                    thisOptions = blockSettings.drawRect;
-                }
-            } 
+            if (typeof settings!== 'undefined') thisOptions=settings  
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -722,16 +687,12 @@
                     }
                 }
             });
-        } else if (block.hasClass("build-block-os-alert")) {
+        } else if (block.hasClass("build-block-osAlert")) {
             var thisOptions={
                     'notifTitle': 'Vision Blocks',
                     'notifMsg': 'Come and get some food!',
                 }
-            if (typeof blockSettings !== 'undefined') {
-                if (typeof blockSettings.osAlert !== 'undefined') {
-                    thisOptions = blockSettings.osAlert;
-                }
-            }
+            if (typeof settings!== 'undefined') thisOptions=settings  
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function() {
@@ -867,7 +828,7 @@
         });
     };
 $(document).ready(function() {
-    $(".block-container:not(.block-container-more)").click(function(){
+    $(".block-container:not(.block-container-more, .block-container-help)").click(function(){
         var $this = $(this);
         var blockClassActive = "block-container-active";
         $this.siblings().removeClass(blockClassActive);
