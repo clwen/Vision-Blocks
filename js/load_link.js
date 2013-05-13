@@ -73,6 +73,44 @@ var title={ 'play': 'Play',
       'osAlert':'Desktop Alert',
     }
 
+var blockType={ 'play': 'source', 
+      'playForever':'source', 
+
+      'remoteImage':'source', 
+      'loadImage': 'source', 
+      'loadVideo': 'source',
+      'loadWebcam':'source',      
+      'loadFoodcam':'source',
+      'loadTrafficcam':'source',
+      'loadParkingcam':'source',
+      'loadLaundrocam':'source',
+      'loadPortcam':'source',
+      'loadStorecamA':'source',
+      'loadStorecamB':'source',
+      'loadBirdcam':'source',
+
+      'invert':'filters',
+      'pixelization': 'filters',
+      'grayscale':'filters',
+      'binarize':'filters',
+      'blur':'filters',
+      'swirl':'filters',
+      'mirror':'filters',
+      'spherize':'filters',
+
+      'colorDetection':'vison',
+      'skinDetection':'vison',
+      'faceDetection': 'vison',
+      'intrusionDetection': 'vison',
+      'opticalFlow':'vison',
+
+      'drawRegions':'draw',
+      'writeText':'draw',
+
+      'browserAlert':'alert',
+      'osAlert':'alert',
+    }
+
 
 
 var makeBlockHtml = function(name, leftOff, level){
@@ -104,7 +142,7 @@ var makeBlockHtml = function(name, leftOff, level){
     if (leftOff>0) left=12
     var top=-20-8*level
     var width=182-left
-    text='<div id="block-'+name+'" class="build-block build-block-'+name+' block-container-vision build-block-2" data-block-name="'+name
+    text='<div id="block-'+name+'" class="build-block build-block-'+name+' block-container-'+blockType[name]+' build-block-2" data-block-name="'+name
     text+='" style="top:'+top+'px; left:'+left+'px;">'+ '<div class="build-block-2-top build-block-recalc-width" style="width:'+width+'px;"></div>'
     text+='<div class="build-block-2-title-wrapper build-block-recalc-width popover-enable" style="width: '+width+'px;" data-original-title="">'
     text+='<div class="build-block-2-title"><div class="icon1-build-block icon1-'+icon[name]+'"></div><span>'+title[name]+'</span><div class="icon-remove-block"></div>'
