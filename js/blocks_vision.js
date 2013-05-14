@@ -328,7 +328,7 @@ var opticalIntrusion = function(){
 
             src = $('#image3').attr('src');
             $('#image2').attr('src', src);
-
+    
             src = $('#image4').attr('src');
             $('#image3').attr('src', src);
         }
