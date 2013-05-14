@@ -445,6 +445,7 @@
                 }
             });
         } else if (block.hasClass("build-block-opticalIntrusion")){
+            $("#imageOutput").css("visibility","visible");
             window.imageURI = [];
             var thisOptions = {
                 'x':50,
