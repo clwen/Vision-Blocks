@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="css/bootstrap-responsive.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/block/block-area.css">
+  <link rel="stylesheet" href="css/introjs.css">
 </head>
 
 <body>
@@ -67,13 +68,13 @@
         <div class="row">
 
           <div class="span4 block-area">
-            <div class="block-area-container" data-intro="Here goes blocks we can use to compose applications. Grouped by their funcitons." data-step="1">
-              <div class="block-container block-container-start" data-title="Start" data-intro="It usually starts with a play block to control the executation flow. Play forever is for video; Play is for image." data-step="3">
+            <div class="block-area-container">
+              <div class="block-container block-container-start" data-title="Start" >
                 <div class="icon icon-start"></div>
                 
                 <div class="block-container-content">
                   
-                  <div id="block-play" class="build-block block-container-start build-block-1" data-block-name="play">
+                  <div id="block-play" class="build-block block-container-start build-block-1" data-block-name="play" >
                     <div class="build-block-title-wrapper build-block-recalc-width">
                       <div class="build-block-title">
                         <div class="icon1-build-block icon1-play"></div>
@@ -89,7 +90,7 @@
                     <div class="build-block-1-bottom-fill build-block-recalc-width"></div>
                   </div>
                 
-                  <div id="block-play-forever" class="build-block block-container-start build-block-1" data-block-name="playForever" >
+                  <div id="block-playForever" class="build-block block-container-start build-block-1" data-block-name="playForever" >
                     <div class="build-block-title-wrapper build-block-recalc-width">
                       <div class="build-block-title">
                         <div class="icon1-build-block icon1-play-forever"></div>
@@ -109,12 +110,12 @@
                 </div>
                 
               </div>
-              <div class="block-container block-container-source" data-title="Source" data-intro="Use source blocks to specify the image/video source we want to use." data-step="4">
+              <div class="block-container block-container-source" data-title="Source" >
                 <div class="icon icon-video"></div>
                 
                 <div class="block-container-content">
 
-                  <div id="block-remote-img" class="build-block build-block-remote-img block-container-source build-block-2" data-block-name="remoteImage">
+                  <div id="block-remoteImage" class="build-block build-block-remoteImage block-container-source build-block-2" data-block-name="remoteImage">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -126,7 +127,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
                 
-                  <div id="block-upload-img" class="build-block build-block-load-image block-container-source build-block-2" data-block-name="loadImage">
+                  <div id="block-loadImage" class="build-block build-block-loadImage block-container-source build-block-2" data-block-name="loadImage">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -138,7 +139,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
                   
-                  <div id="block-remote-video" class="build-block build-block-remote-video block-container-source build-block-2" data-block-name="remoteVideo">
+                  <div id="block-remoteVideo" class="build-block build-block-remoteVideo block-container-source build-block-2" data-block-name="remoteVideo">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -150,7 +151,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
                 
-                  <div id="block-upload-video" class="build-block build-block-load-video block-container-source build-block-2" data-block-name="loadVideo">
+                  <div id="block-loadVideo" class="build-block build-block-loadVideo block-container-source build-block-2" data-block-name="loadVideo">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -162,7 +163,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
                   
-                  <div id="block-webcam" class="build-block block-container-source build-block-2" data-block-name="loadWebcam">
+                  <div id="block-loadWebcam" class="build-block block-container-source build-block-2" data-block-name="loadWebcam">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -174,7 +175,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
                 
-                  <div id="block-foodcam" class="build-block block-container-source build-block-2" data-block-name="loadFoodcam">
+                  <div id="block-loadFoodcam" class="build-block block-container-source build-block-2" data-block-name="loadFoodcam">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -186,7 +187,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-                  <div id="block-trafficcam" class="build-block block-container-source build-block-2" data-block-name="loadTrafficcam">
+                  <div id="block-loadTrafficcam" class="build-block block-container-source build-block-2" data-block-name="loadTrafficcam">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -198,7 +199,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-                  <div id="block-parkingcam" class="build-block block-container-source build-block-2" data-block-name="loadParkingcam">
+                  <div id="block-loadParkingcam" class="build-block block-container-source build-block-2" data-block-name="loadParkingcam">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -210,7 +211,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-                  <div id="block-laundrocam" class="build-block block-container-source build-block-2" data-block-name="loadLaundrocam">
+                  <div id="block-loadLaundrocam" class="build-block block-container-source build-block-2" data-block-name="loadLaundrocam">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -222,7 +223,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-                  <div id="block-portcam" class="build-block block-container-source build-block-2" data-block-name="loadPortcam">
+                  <div id="block-loadPortcam" class="build-block block-container-source build-block-2" data-block-name="loadPortcam">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -234,7 +235,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-                  <div id="block-storecam" class="build-block block-container-source build-block-2" data-block-name="loadStorecamA">
+                  <div id="block-loadStorecamA" class="build-block block-container-source build-block-2" data-block-name="loadStorecamA">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -246,7 +247,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-                  <div id="block-storecam" class="build-block block-container-source build-block-2" data-block-name="loadStorecamB">
+                  <div id="block-loadStorecamB" class="build-block block-container-source build-block-2" data-block-name="loadStorecamB">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -258,7 +259,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-                  <div id="block-birdcam" class="build-block block-container-source build-block-2" data-block-name="loadBirdcam">
+                  <div id="block-loadBirdcam" class="build-block block-container-source build-block-2" data-block-name="loadBirdcam">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -269,14 +270,96 @@
                     </div>
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
+
                 </div>
+                
+              </div>
+              
+
+
+
+              <div class="block-container block-container-vision" data-title="Vision">
+                <div class="icon icon-vision"></div>
+                
+                <div class="block-container-content">
+                  
+                  
+
+                  <div id="block-colorDetection" class="build-block build-block-colorDetection block-container-vision build-block-2" data-block-name="colorDetection">
+                    <div class="build-block-2-top build-block-recalc-width"></div>
+                    <div class="build-block-2-title-wrapper build-block-recalc-width">
+                      <div class="build-block-2-title">
+                        <div class="icon1-build-block icon1-fake"></div>
+                        <span>Color Detection</span>
+                        <div class="icon-remove-block"></div>
+                      </div>
+                    </div>
+                    <div class="build-block-2-bottom build-block-recalc-width"></div>
+                  </div>
+
+                  
+                  
+                  <div id="block-skinDetection" class="build-block build-block-skinDetection block-container-vision build-block-2" data-block-name="skinDetection">
+                    <div class="build-block-2-top build-block-recalc-width"></div>
+                    <div class="build-block-2-title-wrapper build-block-recalc-width">
+                      <div class="build-block-2-title">
+                        <div class="icon1-build-block icon1-detect-face"></div>
+                        <span>Skin Detection</span>
+                        <div class="icon-remove-block"></div>
+                      </div>
+                    </div>
+                    <div class="build-block-2-bottom build-block-recalc-width"></div>
+                  </div>
+
+                  <div id="block-faceDetection" class="build-block build-block-faceDetection block-container-vision build-block-2" data-block-name="faceDetection">
+                    <div class="build-block-2-top build-block-recalc-width"></div>
+                    <div class="build-block-2-title-wrapper build-block-recalc-width">
+                      <div class="build-block-2-title">
+                        <div class="icon1-build-block icon1-detect-face"></div>
+                        <span>Face Detection</span>
+                        <div class="icon-remove-block"></div>
+                      </div>
+                    </div>
+                    <div class="build-block-2-bottom build-block-recalc-width"></div>
+                  </div>
+                  
+                  <div id="block-intrusionDetection" class="build-block build-block-intrusionDetection block-container-vision build-block-2" data-block-name="intrusionDetection">
+                    <div class="build-block-2-top build-block-recalc-width"></div>
+                    <div class="build-block-2-title-wrapper build-block-recalc-width">
+                      <div class="build-block-2-title">
+                        <div class="icon1-build-block icon1-detect-face"></div>
+                        <span>Motion Detection</span>
+                        <div class="icon-remove-block"></div>
+                      </div>
+                    </div>
+                    <div class="build-block-2-bottom build-block-recalc-width"></div>
+                  </div>
+
+                  <div id="block-opticalFlow" class="build-block build-block-opticalFlow block-container-vision build-block-2" data-block-name="opticalFlow">
+                    <div class="build-block-2-top build-block-recalc-width"></div>
+                    <div class="build-block-2-title-wrapper build-block-recalc-width">
+                      <div class="build-block-2-title">
+                        <div class="icon1-build-block icon1-detect-face"></div>
+                        <span>Optical Flow</span>
+                        <div class="icon-remove-block"></div>
+                      </div>
+                    </div>
+                    <div class="build-block-2-bottom build-block-recalc-width"></div>
+                  </div>
+                  
+                </div>
+                
               </div>
 
-              <div class="block-container block-container-filters" data-title="Filters" data-intro="Alternatively, we can also apply some pixel-wise operations." data-step="6">
+
+
+
+              <div class="block-container block-container-filters" data-title="Filters">
                 <div class="icon icon-vision"></div>
+
                 <div class="block-container-content">
 
-                  <div id="block-invert-color" class="build-block block-container-filters build-block-2" data-block-name="invertFilter">
+                  <div id="block-invert" class="build-block block-container-filters build-block-2" data-block-name="invert">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -288,7 +371,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-                  <div id="block-binarize" class="build-block build-block-binarize block-container-filters build-block-2" data-block-name="binarizeFilter">
+                  <div id="block-binarize" class="build-block build-block-binarize block-container-filters build-block-2" data-block-name="binarize">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -300,7 +383,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
                   
-                  <div id="block-grayscale" class="build-block block-container-filters build-block-2" data-block-name="grayscaleFilter">
+                  <div id="block-grayscale" class="build-block block-container-filters build-block-2" data-block-name="grayscale">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -324,7 +407,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-                  <div id="block-blur" class="build-block build-block-blur block-container-filters build-block-2" data-block-name="blurFilter">
+                  <div id="block-blur" class="build-block build-block-blur block-container-filters build-block-2" data-block-name="blur">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -335,8 +418,10 @@
                     </div>
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
+                  
+                 
 
-                  <div id="block-swirl" class="build-block block-container-filters build-block-2" data-block-name="swirlFilter">
+                  <div id="block-swirl" class="build-block block-container-filters build-block-2" data-block-name="swirl">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -347,6 +432,8 @@
                     </div>
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
+
+                 
 
                   <div id="block-mirror" class="build-block block-container-filters build-block-2" data-block-name="mirror">
                     <div class="build-block-2-top build-block-recalc-width"></div>
@@ -360,6 +447,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
+
                    <div id="block-spherize" class="build-block block-container-filters build-block-2" data-block-name="spherize">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
@@ -371,88 +459,15 @@
                     </div>
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
+
                 </div>
+                
                </div>
 
-              <div class="block-container block-container-vision" data-title="Vision" data-intro="Then specify the vision algorithms we want to apply." data-step="5">
-                <div class="icon icon-vision"></div>
-                <div class="block-container-content">
-                  <div id="block-color-detect" class="build-block build-block-color-detect block-container-vision build-block-2" data-block-name="colorDetection">
-                    <div class="build-block-2-top build-block-recalc-width"></div>
-                    <div class="build-block-2-title-wrapper build-block-recalc-width">
-                      <div class="build-block-2-title">
-                        <div class="icon1-build-block icon1-fake"></div>
-                        <span>Color Detection</span>
-                        <div class="icon-remove-block"></div>
-                      </div>
-                    </div>
-                    <div class="build-block-2-bottom build-block-recalc-width"></div>
-                  </div>
-                  
-                  <div id="block-skin-detect" class="build-block build-block-skin-detection block-container-vision build-block-2" data-block-name="skinDetection">
-                    <div class="build-block-2-top build-block-recalc-width"></div>
-                    <div class="build-block-2-title-wrapper build-block-recalc-width">
-                      <div class="build-block-2-title">
-                        <div class="icon1-build-block icon1-detect-face"></div>
-                        <span>Skin Detection</span>
-                        <div class="icon-remove-block"></div>
-                      </div>
-                    </div>
-                    <div class="build-block-2-bottom build-block-recalc-width"></div>
-                  </div>
 
-                  <div id="block-face-detect" class="build-block build-block-detect-face block-container-vision build-block-2" data-block-name="faceDetection">
-                    <div class="build-block-2-top build-block-recalc-width"></div>
-                    <div class="build-block-2-title-wrapper build-block-recalc-width">
-                      <div class="build-block-2-title">
-                        <div class="icon1-build-block icon1-detect-face"></div>
-                        <span>Face Detection</span>
-                        <div class="icon-remove-block"></div>
-                      </div>
-                    </div>
-                    <div class="build-block-2-bottom build-block-recalc-width"></div>
-                  </div>
-                  
-                  <div id="block-motion-detect" class="build-block build-block-detect-intrusion block-container-vision build-block-2" data-block-name="intrusionDetection">
-                    <div class="build-block-2-top build-block-recalc-width"></div>
-                    <div class="build-block-2-title-wrapper build-block-recalc-width">
-                      <div class="build-block-2-title">
-                        <div class="icon1-build-block icon1-detect-face"></div>
-                        <span>Motion Detection</span>
-                        <div class="icon-remove-block"></div>
-                      </div>
-                    </div>
-                    <div class="build-block-2-bottom build-block-recalc-width"></div>
-                  </div>
 
-                  <div id="block-optical-flow" class="build-block build-block-optical-flow block-container-vision build-block-2" data-block-name="opticalFlow">
-                    <div class="build-block-2-top build-block-recalc-width"></div>
-                    <div class="build-block-2-title-wrapper build-block-recalc-width">
-                      <div class="build-block-2-title">
-                        <div class="icon1-build-block icon1-detect-face"></div>
-                        <span>Optical Flow</span>
-                        <div class="icon-remove-block"></div>
-                      </div>
-                    </div>
-                    <div class="build-block-2-bottom build-block-recalc-width"></div>
-                  </div>
-                  
-                  <div id="block-optical-intrusion" class="build-block build-block-optical-intrusion block-container-vision build-block-2" data-block-name="opticalIntrusion">
-                    <div class="build-block-2-top build-block-recalc-width"></div>
-                    <div class="build-block-2-title-wrapper build-block-recalc-width">
-                      <div class="build-block-2-title">
-                        <div class="icon1-build-block icon1-detect-face"></div>
-                        <span>Optical Intrusion</span>
-                        <div class="icon-remove-block"></div>
-                      </div>
-                    </div>
-                    <div class="build-block-2-bottom build-block-recalc-width"></div>
-                  </div>
-                  
-                  </div>
-              </div>
 
-              <div class="block-container block-container-logic" data-title="Logic" data-intro="In some applications, it is required to specify conditional events. It can be done by IF blocks." data-step="7">
+              <div class="block-container block-container-logic" data-title="Logic" >
                 <div class="icon icon-logic"></div>
                 
                 <div class="block-container-content">
@@ -481,13 +496,15 @@
                 </div>
                 
               </div>
-
-              <div class="block-container block-container-draw" data-title="Draw" data-intro="For conditional events, we can draw something on the output image/video." data-step="8">
+              <div class="block-container block-container-move" data-title="Move" >
+                <div class="icon icon-move"></div>
+              </div>
+              <div class="block-container block-container-draw" data-title="Draw" >
                 <div class="icon icon-draw"></div>
                 
                 <div class="block-container-content">
 
-                  <div id="block-draw-rect" class="build-block build-block-draw-regions block-container-draw build-block-2" data-block-name="drawRegions">
+                  <div id="block-drawRegions" class="build-block build-block-drawRegions block-container-draw build-block-2" data-block-name="drawRegions">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -503,7 +520,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
 
-                  <div id="block-write-text" class="build-block build-block-write-text block-container-draw build-block-2" data-block-name="writeText">
+                  <div id="block-writeText" class="build-block build-block-writeText block-container-draw build-block-2" data-block-name="writeText">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -523,11 +540,11 @@
                 </div>
                 
               </div>
-              <div class="block-container block-container-alert" data-title="Alert" data-intro="Alternatively, alerts can be sent." data-step="9">
+              <div class="block-container block-container-alert" data-title="Alert" >
                 <div class="icon icon-alert"></div>
 
                 <div class="block-container-content">
-                  <div id="block-browser-alert" class="build-block build-block-browser-alert block-container-alert build-block-2" data-block-name="browserAlert">
+                  <div id="block-browserAlert" class="build-block build-block-browserAlert block-container-alert build-block-2" data-block-name="browserAlert">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -546,7 +563,7 @@
                 </div>
 
                 <div class="block-container-content">
-                  <div id="block-os-alert" class="build-block build-block-os-alert block-container-alert build-block-2" data-block-name="osAlert">
+                  <div id="block-osAlert" class="build-block build-block-osAlert block-container-alert build-block-2" data-block-name="osAlert">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
@@ -573,19 +590,22 @@
               <div class="block-container block-container-more" data-title="More">
                 <div class="icon icon-more"></div>
               </div>
-
             </div>
             <div class="block-area-options" style="display: none">
             </div>
           </div>
 
-          <div class="span5 build-area" data-intro="Drag these blocks to this build area. Vision Blocks is that simple." data-step="2">
-          </div>
+          <div class='span5' style="width: 215px;">        
+               <div class="build-area" style="width: 213px;"></div>
+               <a class='btn' id='save-button' style="float:left; margin-top:5px"> Save </a>
+               <a class='btn' id='copy-button' href='#' style="float:right; margin-top:5px; display:none"> Copy the link </a>
+               <textarea id='link' style=" display:none"></textarea>
+           </div>
 
           <div class="span1">
             <div class="row-fluid">
               <div class="span12">
-                <div class="well output-area" data-intro="After the application is triggered, the result will be shown in output area in real-time. That's it! If you are new to Vision Blocks you can check some interesting preloaded applications in the homepage to get some ideas!" data-step="10">
+                <div class="well output-area">
                   <div id="canvas-title">
                     <h5>Output</h5>
                   </div>
@@ -603,7 +623,7 @@
     </div>
   </div> <!-- /body-area -->
 
-  <!-- JAVASCRIPT -->
+  <!-- JAVASCRIPT -->  
   <script src="js/libs/jquery-1.8.3.js"></script>
   <script src="js/libs/bootstrap.js"></script>
   <script src="js/libs/bootstrap-popover.js"></script>
@@ -612,9 +632,13 @@
   <script src="js/libs/cascades/haarcascade_frontalface_alt.js"></script>
   <script src="js/libs/eventemitter2.js"></script>
   <script src="js/libs/mjpegcanvas.js"></script>
+  <script src="js/libs/purl.js"></script>
+  <script src="js/libs/intro.js"></script>
 
   <script src="js/main.js"></script>
   <script src="js/auxiliary.js"></script>
+  <script src="js/load_link.js"></script>
+  <script src="js/main.js"></script>
   <script src="js/model.js"></script>
   <script src="js/blocks_filter.js"></script>
   <script src="js/blocks_vision.js"></script>
@@ -625,6 +649,92 @@
   <script src="js/block/block-area.js"></script>
   <script src="js/block/drag-and-drop.js"></script>
   <script src="js/block/apply-popover.js"></script>
+
+<script type="text/javascript">
+    if (window.location.search!=''){
+      var urlParam=$.url().param()
+      var blocks=urlParam.blocks
+
+      var buildArea=''
+      var end=[] //array to store the levels at which certain blocks are closed (like play or if)
+      for (var i=0; i<blocks.length;i++) end[i]=[]
+      var numOpened=0 // number of blocks still opened
+      var openedSoonest=0 // the last block that wasn't closed
+      var blockHtml=[] // to store each block's html
+      for (var i=0; i<blocks.length;i++) {
+        blockHtml[i]=makeBlockHtml(blocks[i].name, numOpened,i-openedSoonest-1)
+       
+        buildArea+=blockHtml[i][0] // add the opening part of the block
+        if (blocks[i].end!=i){
+          numOpened++
+          openedSoonest=i
+          end[blocks[i].end].push(i) // set the end of the block
+        } else{
+          buildArea+=blockHtml[i][1] // if simple block -> close it           
+        }
+       while (end[i].length!=0) {  // while there are objects ending at this level
+
+          toClose=end[i].pop()  //take the latest opened
+          buildArea+=blockHtml[toClose][1]  //close it
+          console.log(blocks[toClose].name, blockHtml[toClose][1])
+          numOpened-- 
+        } 
+      }
+      console.log(buildArea)
+      $(".build-area").css('width : 214px')
+      $(".build-area").html(buildArea) //make the html
+      refreshBlocks()
+      var created_blocks=$(".build-area").find('.build-block')
+       for (var i=0; i<blocks.length;i++) {
+        addedBlock($(created_blocks[i]), blocks[i].settings) //apply settings
+      }  
+
+      $($(".play-title")[2]).attr('data-intro',"Click here to start the program!")
+      $($(".play-title")[2]).attr('data-step',1)
+
+      $(".output-area").attr('data-intro',"After the application is triggered, the result will be shown in output area in real-time.")
+      $(".output-area").attr('data-step',2)
+
+      $(".block-container-help").click(function(){introJs().start()})
+
+
+  } else {
+      $(".block-area-container").attr('data-intro',"Here go the blocks we can use to compose applications. Grouped by their funcitons.")
+      $(".block-area-container").attr('data-step',1)
+
+      $(".block-container-start").attr('data-intro',"It usually starts with a play block to control the executation flow. Play forever is for video; Play is for image.")
+      $(".block-container-start").attr('data-step',3)
+
+      $(".block-container-source").attr('data-intro',"Use source blocks to specify the image/video source we want to use.")
+      $(".block-container-source").attr('data-step',4)
+
+      $(".block-container-vision").attr('data-intro',"Then specify the vision algorithms we want to apply.")
+      $(".block-container-vision").attr('data-step',5)
+
+      $(".block-container-filters").attr('data-intro',"Alternatively, we can also apply some pixel-wise operations.")
+      $(".block-container-filters").attr('data-step',6)
+
+      $(".block-container-logic").attr('data-intro',"In some applications, it is required to specify conditional events. It can be done by IF blocks.")
+      $(".block-container-logic").attr('data-step',7)
+
+      $(".block-container-draw").attr('data-intro',"For conditional events, we can draw something on the output image/video.")
+      $(".block-container-draw").attr('data-step',8)
+
+      $(".block-container-alert").attr('data-intro',"Alternatively, alerts can be sent.")
+      $(".block-container-alert").attr('data-step',9)
+
+      $(".output-area").attr('data-intro',"After the application is triggered, the result will be shown in output area in real-time. That's it! If you are new to Vision Blocks you can check some interesting preloaded applications in the homepage to get some ideas!")
+      $(".output-area").attr('data-step',10)
+
+
+      $(".build-area").attr('data-intro',"Drag these blocks to this build area. Vision Blocks is that simple.")
+      $(".build-area").attr('data-step',2)
+
+      $(".block-container-help").click(function(){introJs().start()})
+  }
+  </script>
+
+
 
 </body>
 </html>

@@ -185,6 +185,14 @@
 	border-left-color: #555;
 }
 
+.tooltip .top {
+  background-color: #222;
+}
+
+.tooltip-inner {
+  background-color: #222;
+}
+
 /*
 Icons for menu
 */
