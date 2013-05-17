@@ -508,9 +508,7 @@
                 </div>
                 
               </div>
-              <div class="block-container block-container-move" data-title="Move" >
-                <div class="icon icon-move"></div>
-              </div>
+             
               <div class="block-container block-container-draw" data-title="Draw" >
                 <div class="icon icon-draw"></div>
                 
@@ -695,11 +693,9 @@
 
           toClose=end[i].pop()  //take the latest opened
           buildArea+=blockHtml[toClose][1]  //close it
-          console.log(blocks[toClose].name, blockHtml[toClose][1])
           numOpened-- 
         } 
       }
-      console.log(buildArea)
       $(".build-area").css('width : 214px')
       $(".build-area").html(buildArea) //make the html
       refreshBlocks()

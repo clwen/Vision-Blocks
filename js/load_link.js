@@ -158,9 +158,7 @@ var makeBlockHtml = function(name, leftOff, level){
 
 $('#save-button').click(function(){
   var getChildren=function(Block,start){
-    console.log(Block)
     var children=$(Block).children('.content').children('.build-block') 
-    console.log(children)
     blocksToEncode[start]={}
     
     blocksToEncode[start].name=$(Block).data('block-name')
@@ -173,7 +171,6 @@ $('#save-button').click(function(){
   }
   var blocksToEncode=[] 
   getChildren($('.build-area').children('.build-block')[0],0) 
-  //console.clear()
   $('#link').val(window.location.href.split('?')[0]+'?'+jQuery.param({blocks: blocksToEncode})) 
   $('#link').show()
   $('#copy-button').show()
