@@ -59,7 +59,7 @@ var intrusionDetection = function () {
     var threshold = this.options['threshold'];
     if (avg_diff > threshold) {
         VB.interpreter.dictionary["intrusion"] = true
-        updateImages()
+        
     }
 
 }
