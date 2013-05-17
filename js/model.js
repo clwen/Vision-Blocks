@@ -59,10 +59,10 @@ vb.Interpreter = function () {
 	this.first = null;
 	this.last = null;
 	this.isLoaded = false;
-	
+	var date = new Date();
 	this.dictionary = {
 		"canvas" : "",
-		"count": 0
+		"count": 0,
 	};
 
 	/* The interpreter execute function is responsible to call the first

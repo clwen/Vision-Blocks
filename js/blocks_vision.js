@@ -183,11 +183,43 @@ var opticalFlow = function () {
     ctx.stroke();
 }
 
+var updateThumbnails = function(){
+    return function(){
+        if(VB.interpreter.dictionary["intrusion"]){
+            video = document.querySelector('#inputVideoCam');
+            var selector;
+            if(VB.interpreter.dictionary["count"] < 4){
+                selector = '#image' + VB.interpreter.dictionary["count"].toString();
+                VB.interpreter.dictionary["count"]  = VB.interpreter.dictionary["count"] + 1;
+            }else{
+                selector = '#image4';
+                src = $('#image1').attr('src');
+                $('#image0').attr('src', src);
+
+                src = $('#image2').attr('src');
+                $('#image1').attr('src', src);
+
+                src = $('#image3').attr('src');
+                $('#image2').attr('src', src);
+        
+                src = $('#image4').attr('src');
+                $('#image3').attr('src', src);
+            }
+            image = document.querySelector(selector);
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            var shot = canvas.toDataURL('image/png');
+            image.setAttribute('src', shot);
+        }
+    };
+};
+
+
+var date = new Date();
+var lastTime = date.getSeconds();
 var opticalIntrusion = function(){
 	//Setting up the variable
 	VB.interpreter.dictionary["intrusion"] = false;
 	//Setting up the region to draw
-	
 	VB.interpreter.dictionary["workingArea"].x = this.options['x'];
 	VB.interpreter.dictionary["workingArea"].y = this.options['y'];
 	VB.interpreter.dictionary["workingArea"].width = this.options['width'];
@@ -304,33 +336,68 @@ var opticalIntrusion = function(){
     uu /= n;
     vv /= n;
     var scale = Math.sqrt(uu*uu + vv*vv) * 36;
+
+    //VB.interpreter.dictionary["lastTime"] = date.getSeconds();
+    date = new Date();
+
     if(scale >= threshold){
 
         /// THUMBNAIL CODE
-/*        video = document.querySelector('#inputVideoCam');
-        var selector;
-        if(VB.interpreter.dictionary["count"] < 4){
-            selector = '#image' + VB.interpreter.dictionary["count"].toString();
-            VB.interpreter.dictionary["count"]  = VB.interpreter.dictionary["count"] + 1;
-        }else{
-            selector = '#image4';
-            src = $('#image1').attr('src');
-            $('#image0').attr('src', src);
-
-            src = $('#image2').attr('src');
-            $('#image1').attr('src', src);
-
-            src = $('#image3').attr('src');
-            $('#image2').attr('src', src);
-    
-            src = $('#image4').attr('src');
-            $('#image3').attr('src', src);
-        }
-        image = document.querySelector(selector);
-        canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
-        var shot = canvas.toDataURL('image/png');
-        image.setAttribute('src', shot);*/
         VB.interpreter.dictionary["intrusion"] = true;
+        if(date.getSeconds() - lastTime > 1){
+            video = document.querySelector('#inputVideoCam');
+            var selector;
+            if(VB.interpreter.dictionary["count"] < 4){
+                selector = '#image' + VB.interpreter.dictionary["count"].toString();
+                VB.interpreter.dictionary["count"]  = VB.interpreter.dictionary["count"] + 1;
+            }else{
+                selector = '#image4';
+                src = $('#image1').attr('src');
+                $('#image0').attr('src', src);
+
+                src = $('#image2').attr('src');
+                $('#image1').attr('src', src);
+
+                src = $('#image3').attr('src');
+                $('#image2').attr('src', src);
+        
+                src = $('#image4').attr('src');
+                $('#image3').attr('src', src);
+            }
+            image = document.querySelector(selector);
+            canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+            var shot = canvas.toDataURL('image/png');
+            image.setAttribute('src', shot);
+            lastTime = date.getSeconds();            
+        }
+
+        // video = document.querySelector('#inputVideoCam');
+        // var selector;
+        // if(VB.interpreter.dictionary["count"] < 4){
+        //     selector = '#image' + VB.interpreter.dictionary["count"].toString();
+        //     VB.interpreter.dictionary["count"]  = VB.interpreter.dictionary["count"] + 1;
+        // }else{
+        //     selector = '#image4';
+        //     src = $('#image1').attr('src');
+        //     $('#image0').attr('src', src);
+
+        //     src = $('#image2').attr('src');
+        //     $('#image1').attr('src', src);
+
+        //     src = $('#image3').attr('src');
+        //     $('#image2').attr('src', src);
+    
+        //     src = $('#image4').attr('src');
+        //     $('#image3').attr('src', src);
+        // }
+        // image = document.querySelector(selector);
+        // canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
+        // var shot = canvas.toDataURL('image/png');
+        // image.setAttribute('src', shot);
+    }
+
+    if(date.getSeconds() == 0 && lastTime > 55){
+        lastTime = date.getSeconds();
     }
 
     //Removed the code for drawing the aggregate arrow
