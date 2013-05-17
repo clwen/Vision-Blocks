@@ -444,7 +444,8 @@
                     blockOptions['threshold'] = $("#detect-motion-pop-thresh").val();
                 }
             });
-        } else if (block.hasClass("build-block-optical-intrusion")){
+        } else if (block.hasClass("build-block-opticalIntrusion")){
+            $("#imageOutput").css("visibility","visible");
             window.imageURI = [];
             var thisOptions = {
                 'x':50,

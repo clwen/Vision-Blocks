@@ -305,15 +305,9 @@ var opticalIntrusion = function(){
     vv /= n;
     var scale = Math.sqrt(uu*uu + vv*vv) * 36;
     if(scale >= threshold){
-        /*
-        canvas.width = width;
-        canvas.height = height;
-        canvas.getContext('2d').drawImage(video, 0, 0, width, height);
-        var data = canvas.toDataURL('image/png');
-        photo.setAttribute('src', data);
-        */
-        //Printing to the image!
-        video = document.querySelector('#inputVideoCam');
+
+        /// THUMBNAIL CODE
+/*        video = document.querySelector('#inputVideoCam');
         var selector;
         if(VB.interpreter.dictionary["count"] < 4){
             selector = '#image' + VB.interpreter.dictionary["count"].toString();
@@ -328,14 +322,14 @@ var opticalIntrusion = function(){
 
             src = $('#image3').attr('src');
             $('#image2').attr('src', src);
-
+    
             src = $('#image4').attr('src');
             $('#image3').attr('src', src);
         }
         image = document.querySelector(selector);
         canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
         var shot = canvas.toDataURL('image/png');
-        image.setAttribute('src', shot);
+        image.setAttribute('src', shot);*/
         VB.interpreter.dictionary["intrusion"] = true;
     }
 
