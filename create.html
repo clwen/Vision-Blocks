@@ -69,7 +69,7 @@
 
           <div class="span4 block-area">
             <div class="block-area-container">
-              <div class="block-container block-container-start" data-title="Start" >
+              <div id="container-start" class="block-container block-container-start" data-title="Start" >
                 <div class="icon icon-start"></div>
                 
                 <div class="block-container-content">
@@ -110,7 +110,7 @@
                 </div>
                 
               </div>
-              <div class="block-container block-container-source" data-title="Source" >
+              <div id="container-source" class="block-container block-container-source" data-title="Source" >
                 <div class="icon icon-video"></div>
                 
                 <div class="block-container-content">
@@ -272,18 +272,11 @@
                   </div>
 
                 </div>
-                
               </div>
-              
 
-
-
-              <div class="block-container block-container-vision" data-title="Vision">
+              <div id="container-vision" class="block-container block-container-vision" data-title="Vision">
                 <div class="icon icon-vision"></div>
-                
                 <div class="block-container-content">
-                  
-                  
 
                   <div id="block-colorDetection" class="build-block build-block-colorDetection block-container-vision build-block-2" data-block-name="colorDetection">
                     <div class="build-block-2-top build-block-recalc-width"></div>
@@ -296,8 +289,6 @@
                     </div>
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
-
-                  
                   
                   <div id="block-skinDetection" class="build-block build-block-skinDetection block-container-vision build-block-2" data-block-name="skinDetection">
                     <div class="build-block-2-top build-block-recalc-width"></div>
@@ -360,13 +351,9 @@
                   </div>
                   
                 </div>
-                
               </div>
 
-
-
-
-              <div class="block-container block-container-filters" data-title="Filters">
+              <div id="container-filters" class="block-container block-container-filters" data-title="Filters">
                 <div class="icon icon-vision"></div>
 
                 <div class="block-container-content">
@@ -479,7 +466,7 @@
 
 
 
-              <div class="block-container block-container-logic" data-title="Logic" >
+              <div id="container-logic" class="block-container block-container-logic" data-title="Logic" >
                 <div class="icon icon-logic"></div>
                 
                 <div class="block-container-content">
@@ -509,7 +496,7 @@
                 
               </div>
              
-              <div class="block-container block-container-draw" data-title="Draw" >
+              <div id="container-draw" class="block-container block-container-draw" data-title="Draw" >
                 <div class="icon icon-draw"></div>
                 
                 <div class="block-container-content">
@@ -550,7 +537,7 @@
                 </div>
                 
               </div>
-              <div class="block-container block-container-alert" data-title="Alert" >
+              <div id="container-alert" class="block-container block-container-alert" data-title="Alert" >
                 <div class="icon icon-alert"></div>
 
                 <div class="block-container-content">
@@ -713,29 +700,29 @@
 
     $(".block-container-help").click(function(){introJs().start();});
   } else {
-    $(".block-area-container").attr('data-intro', "Here go the blocks we can use to compose applications. Grouped by their funcitons.");
+    $(".block-area-container").attr('data-intro', "Here goes the blocks we can use to compose applications. Grouped by their funcitons.");
     $(".block-area-container").attr('data-step', '1');
 
-    $(".block-container-start").attr('data-intro', "It usually starts with a play block to control the executation flow. Play forever is for video; Play is for image.");
-    $(".block-container-start").attr('data-step', '3');
+    $("#container-start").attr('data-intro', "It usually starts with a play block to control the executation flow. Play forever is for video; Play is for image.");
+    $("#container-start").attr('data-step', '3');
 
-    $(".block-container-source").attr('data-intro', "Use source blocks to specify the image/video source we want to use.");
-    $(".block-container-source").attr('data-step', '4');
+    $("#container-source").attr('data-intro', "Use source blocks to specify the image/video source we want to use.");
+    $("#container-source").attr('data-step', '4');
 
-    $(".block-container-vision").attr('data-intro', "Then specify the vision algorithms we want to apply.");
-    $(".block-container-vision").attr('data-step', '5');
+    $("#container-vision").attr('data-intro', "Then specify the vision algorithms we want to apply.");
+    $("#container-vision").attr('data-step', '5');
 
-    $(".block-container-filters").attr('data-intro', "Alternatively, we can also apply some pixel-wise operations.");
-    $(".block-container-filters").attr('data-step', '6');
+    $("#container-filters").attr('data-intro', "Alternatively, we can also apply some pixel-wise operations.");
+    $("#container-filters").attr('data-step', '6');
 
-    $(".block-container-logic").attr('data-intro', "In some applications, it is required to specify conditional events. It can be done by IF blocks.");
-    $(".block-container-logic").attr('data-step', '7');
+    $("#container-logic").attr('data-intro', "In some applications, it is required to specify conditional events. It can be done by IF blocks.");
+    $("#container-logic").attr('data-step', '7');
 
-    $(".block-container-draw").attr('data-intro', "For conditional events, we can draw something on the output image/video.");
-    $(".block-container-draw").attr('data-step', '8');
+    $("#container-draw").attr('data-intro', "For conditional events, we can draw something on the output image/video.");
+    $("#container-draw").attr('data-step', '8');
 
-    $(".block-container-alert").attr('data-intro', "Alternatively, alerts can be sent.");
-    $(".block-container-alert").attr('data-step', '9');
+    $("#container-alert").attr('data-intro', "Alternatively, alerts can be sent.");
+    $("#container-alert").attr('data-step', '9');
 
     $(".output-area").attr('data-intro', "After the application is triggered, the result will be shown in output area in real-time. That's it! If you are new to Vision Blocks you can check some interesting preloaded applications in the homepage to get some ideas!");
     $(".output-area").attr('data-step', '10');
