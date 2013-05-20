@@ -702,7 +702,7 @@
     refreshBlocks();
     var created_blocks = $(".build-area").find('.build-block');
     for (var i=0; i<blocks.length; i++) {
-      addedBlock($(created_blocks[i]), blocks[i].settings) // apply settings
+      addedBlock($(created_blocks[i]), blocks[i].settings) // apply settings;
     }  
 
     $($(".play-title")[2]).attr('data-intro', "Click here to start the program!");

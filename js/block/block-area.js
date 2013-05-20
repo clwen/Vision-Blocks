@@ -384,16 +384,16 @@
                 }
             });
         } else if (block.hasClass("build-block-intrusionDetection")) {
-            window.imageURI=[]
-            //options to default with
-            var thisOptions={
+            window.imageURI = [];
+            // default parameters
+            var thisOptions = {
                     'x': 50,
                     'y': 50,
                     'width': 100,
                     'height': 100,
                     'threshold': 10,
-                }
-            if (typeof settings!== 'undefined') thisOptions=settings  
+                };
+            if (typeof settings !== 'undefined') { thisOptions=settings; }
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content : function() {
@@ -444,22 +444,17 @@
                     blockOptions['threshold'] = $("#detect-motion-pop-thresh").val();
                 }
             });
-        } else if (block.hasClass("build-block-opticalIntrusion")){
+        } else if (block.hasClass("build-block-opticalIntrusion")) {
             $("#imageOutput").css("visibility","visible");
             window.imageURI = [];
             var thisOptions = {
-                'x':50,
-                'y':50,
-                'width':100,
-                'height':100,
-                'threshold':80
+                'x': 50,
+                'y': 50,
+                'width': 100,
+                'height': 100,
+                'threshold': 80
             };
-
-            if (typeof blockSettings !== 'undefined') {
-                if (typeof blockSettings.opticalIntrusion !== 'undefined') {
-                    thisOptions = blockSettings.opticalIntrusion;
-                }
-            }
+            if (typeof settings !== 'undefined') { thisOptions = settings; }
             block.find(".build-block-2-title-wrapper:first").applyPopover({
                 'popover': {
                     content: function(){
@@ -718,7 +713,7 @@
                 }
             });
         }
-    };
+    }; // end of addedBlock
 
     /*
      * Function called to reorganize blocks on stack.
