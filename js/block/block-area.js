@@ -634,7 +634,7 @@
                     content: function() {
                         var html = "<div class='build-block-write-text-popover'>";
                         html += "<div class='build-block-write-text-popover-top'>";
-                        html += "<div>Text</div> <div><input id='write-text-popover-text' maxlength='15' class='enter-out-popover'/></div>";
+                        html += "<div>Text</div> <div><input id='write-text-popover-text' maxlength='50' class='enter-out-popover'/></div>";
                         html += "</div>";
                         html += "</div>";
 
@@ -694,8 +694,8 @@
                     content: function() {
                         var html = "<div class='build-block-draw-region-popover'>";
                         html += "<div class='build-block-draw-region-popover-top'>";
-                        html += "<div>Title</div> <div><input id='os-alert-popover-title' maxlength='15' class='enter-out-popover'/></div>";
-                        html += "<div>Msg</div> <div><input id='os-alert-popover-msg' maxlength='15' class='enter-out-popover'/></div>";
+                        html += "<div>Title</div> <div><input id='os-alert-popover-title' maxlength='30' class='enter-out-popover'/></div>";
+                        html += "<div>Msg</div> <div><input id='os-alert-popover-msg' maxlength='50' class='enter-out-popover'/></div>";
                         html += "</div>";
                         html += "</div>";
 
