@@ -33,7 +33,6 @@ var icon = {
     'drawRegions':'draw-rect',
     'writeText':'draw-rect',
 
-
     'browserAlert':'draw-rect',
     'osAlert' :'draw-rect',
 };
@@ -158,9 +157,9 @@ var makeBlockHtml = function(name, leftOff, level) {
 };
 
 
-$('#save-button').click(function(){
-    var getChildren = function(Block,start) {
-        var children = $(Block).children('.content').children('.build-block') ;
+$('#save-button').click(function() {
+    var getChildren = function(Block, start) {
+        var children = $(Block).children('.content').children('.build-block');
         blocksToEncode[start] = {};
 
         blocksToEncode[start].name = $(Block).data('block-name');
@@ -176,5 +175,4 @@ $('#save-button').click(function(){
     $('#link').val(window.location.href.split('?')[0] + '?' + jQuery.param({blocks: blocksToEncode}));
     $('#link').show();
     $('#copy-button').show();
-})
-
+});

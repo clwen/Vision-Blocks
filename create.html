@@ -668,87 +668,84 @@
   <script src="js/block/apply-popover.js"></script>
 
 <script type="text/javascript">
-    if (window.location.search!=''){
-      var urlParam=$.url().param()
-      var blocks=urlParam.blocks
+  if (window.location.search !== '') {
+    var urlParam = $.url().param();
+    var blocks = urlParam.blocks;
+    var buildArea = '';
+    var end = []; // array to store the levels at which certain blocks are closed (like play or if)
+    for (var i=0; i<blocks.length; i++) {end[i] = [];}
+    var numOpened = 0; // number of blocks still opened
+    var openedSoonest = 0; // the last block that wasn't closed
+    var blockHtml = []; // to store each block's html
 
-      var buildArea=''
-      var end=[] //array to store the levels at which certain blocks are closed (like play or if)
-      for (var i=0; i<blocks.length;i++) end[i]=[]
-      var numOpened=0 // number of blocks still opened
-      var openedSoonest=0 // the last block that wasn't closed
-      var blockHtml=[] // to store each block's html
-      for (var i=0; i<blocks.length;i++) {
-        blockHtml[i]=makeBlockHtml(blocks[i].name, numOpened,i-openedSoonest-1)
-       
-        buildArea+=blockHtml[i][0] // add the opening part of the block
-        if (blocks[i].end!=i){
-          numOpened++
-          openedSoonest=i
-          end[blocks[i].end].push(i) // set the end of the block
-        } else{
-          buildArea+=blockHtml[i][1] // if simple block -> close it           
-        }
-       while (end[i].length!=0) {  // while there are objects ending at this level
-
-          toClose=end[i].pop()  //take the latest opened
-          buildArea+=blockHtml[toClose][1]  //close it
-          numOpened-- 
-        } 
+    for (var i=0; i<blocks.length; i++) {
+      blockHtml[i] = makeBlockHtml(blocks[i].name, numOpened,i-openedSoonest-1);
+     
+      buildArea += blockHtml[i][0]; // add the opening part of the block
+      if (blocks[i].end != i) {
+        numOpened++;
+        openedSoonest = i;
+        end[blocks[i].end].push(i); // set the end of the block
+      } else {
+        buildArea += blockHtml[i][1]; // if simple block -> close it           
       }
-      $(".build-area").css('width : 214px')
-      $(".build-area").html(buildArea) //make the html
-      refreshBlocks()
-      var created_blocks=$(".build-area").find('.build-block')
-       for (var i=0; i<blocks.length;i++) {
-        addedBlock($(created_blocks[i]), blocks[i].settings) //apply settings
-      }  
 
-      $($(".play-title")[2]).attr('data-intro',"Click here to start the program!")
-      $($(".play-title")[2]).attr('data-step',1)
+      while (end[i].length != 0) { // while there are objects ending at this level
+        toClose=end[i].pop(); // take the latest opened
+        buildArea += blockHtml[toClose][1];  // close it
+        numOpened--;
+      } 
+    }
 
-      $(".output-area").attr('data-intro',"After the application is triggered, the result will be shown in output area in real-time.")
-      $(".output-area").attr('data-step',2)
+    $(".build-area").css('width : 214px');
+    $(".build-area").html(buildArea); // make the html
+    refreshBlocks();
+    var created_blocks = $(".build-area").find('.build-block');
+    for (var i=0; i<blocks.length; i++) {
+      addedBlock($(created_blocks[i]), blocks[i].settings) // apply settings
+    }  
 
-      $(".block-container-help").click(function(){introJs().start()})
+    $($(".play-title")[2]).attr('data-intro', "Click here to start the program!");
+    $($(".play-title")[2]).attr('data-step', '1');
 
+    $(".output-area").attr('data-intro', "After the application is triggered, the result will be shown in output area in real-time.");
+    $(".output-area").attr('data-step', '2');
 
+    $(".block-container-help").click(function(){introJs().start();});
   } else {
-      $(".block-area-container").attr('data-intro',"Here go the blocks we can use to compose applications. Grouped by their funcitons.")
-      $(".block-area-container").attr('data-step',1)
+    $(".block-area-container").attr('data-intro', "Here go the blocks we can use to compose applications. Grouped by their funcitons.");
+    $(".block-area-container").attr('data-step', '1');
 
-      $(".block-container-start").attr('data-intro',"It usually starts with a play block to control the executation flow. Play forever is for video; Play is for image.")
-      $(".block-container-start").attr('data-step',3)
+    $(".block-container-start").attr('data-intro', "It usually starts with a play block to control the executation flow. Play forever is for video; Play is for image.");
+    $(".block-container-start").attr('data-step', '3');
 
-      $(".block-container-source").attr('data-intro',"Use source blocks to specify the image/video source we want to use.")
-      $(".block-container-source").attr('data-step',4)
+    $(".block-container-source").attr('data-intro', "Use source blocks to specify the image/video source we want to use.");
+    $(".block-container-source").attr('data-step', '4');
 
-      $(".block-container-vision").attr('data-intro',"Then specify the vision algorithms we want to apply.")
-      $(".block-container-vision").attr('data-step',5)
+    $(".block-container-vision").attr('data-intro', "Then specify the vision algorithms we want to apply.");
+    $(".block-container-vision").attr('data-step', '5');
 
-      $(".block-container-filters").attr('data-intro',"Alternatively, we can also apply some pixel-wise operations.")
-      $(".block-container-filters").attr('data-step',6)
+    $(".block-container-filters").attr('data-intro', "Alternatively, we can also apply some pixel-wise operations.");
+    $(".block-container-filters").attr('data-step', '6');
 
-      $(".block-container-logic").attr('data-intro',"In some applications, it is required to specify conditional events. It can be done by IF blocks.")
-      $(".block-container-logic").attr('data-step',7)
+    $(".block-container-logic").attr('data-intro', "In some applications, it is required to specify conditional events. It can be done by IF blocks.");
+    $(".block-container-logic").attr('data-step', '7');
 
-      $(".block-container-draw").attr('data-intro',"For conditional events, we can draw something on the output image/video.")
-      $(".block-container-draw").attr('data-step',8)
+    $(".block-container-draw").attr('data-intro', "For conditional events, we can draw something on the output image/video.");
+    $(".block-container-draw").attr('data-step', '8');
 
-      $(".block-container-alert").attr('data-intro',"Alternatively, alerts can be sent.")
-      $(".block-container-alert").attr('data-step',9)
+    $(".block-container-alert").attr('data-intro', "Alternatively, alerts can be sent.");
+    $(".block-container-alert").attr('data-step', '9');
 
-      $(".output-area").attr('data-intro',"After the application is triggered, the result will be shown in output area in real-time. That's it! If you are new to Vision Blocks you can check some interesting preloaded applications in the homepage to get some ideas!")
-      $(".output-area").attr('data-step',10)
+    $(".output-area").attr('data-intro', "After the application is triggered, the result will be shown in output area in real-time. That's it! If you are new to Vision Blocks you can check some interesting preloaded applications in the homepage to get some ideas!");
+    $(".output-area").attr('data-step', '10');
 
-      $(".build-area").attr('data-intro',"Drag these blocks to this build area. Vision Blocks is that simple.")
-      $(".build-area").attr('data-step',2)
+    $(".build-area").attr('data-intro', "Drag these blocks to this build area. Vision Blocks is that simple.");
+    $(".build-area").attr('data-step', '2');
 
-      $(".block-container-help").click(function(){introJs().start()})
+    $(".block-container-help").click(function(){introJs().start();});
   }
-  </script>
-
-
+</script>
 
 </body>
 </html>
