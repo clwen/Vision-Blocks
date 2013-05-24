@@ -3347,13 +3347,13 @@ input[type="button"].btn-block {
 .btn-warning {
   color: #ffffff;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-  background-color: #faa732;
+  background-color: #58595b;
   *background-color: #f89406;
-  background-image: -moz-linear-gradient(top, #fbb450, #f89406);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#fbb450), to(#f89406));
-  background-image: -webkit-linear-gradient(top, #fbb450, #f89406);
-  background-image: -o-linear-gradient(top, #fbb450, #f89406);
-  background-image: linear-gradient(to bottom, #fbb450, #f89406);
+  background-image: -moz-linear-gradient(top, #6E6F70, #58595b);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6E6F70), to(#58595b));
+  background-image: -webkit-linear-gradient(top,  #6E6F70, #58595b);
+  background-image: -o-linear-gradient(top, #6E6F70, #58595b);
+  background-image: linear-gradient(to bottom, #6E6F70, #58595b);
   background-repeat: repeat-x;
   border-color: #f89406 #f89406 #ad6704;
   border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
@@ -3367,7 +3367,7 @@ input[type="button"].btn-block {
 .btn-warning.disabled,
 .btn-warning[disabled] {
   color: #ffffff;
-  background-color: #f89406;
+  background-color: #58595b;
   *background-color: #df8505;
 }
 

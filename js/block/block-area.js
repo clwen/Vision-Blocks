@@ -65,15 +65,15 @@
     $("#outputCanvas").bind('mousedown', cvsMouseDown);
     $("#outputCanvas").bind('mouseup', cvsMouseUp);
     $("#outputCanvas").bind('mousemove', cvsMouseMove);
-
+    $('#play-button').click(function(){performExecute()})
     $("html").on("click", "body", function(e){
         var $tgt = $(e.target);
 
-        $tgt.parents().each(function() {
-            if ($(this).is("#block-playForever") || $(this).is("#block-play")) {
+       /* $tgt.parents().each(function() {
+            if ($(this).is("#block-playForever") || $(this).is("#block-play") || $(this).is("#play-button")) {
                 performExecute();
             }
-        });
+        }); */
 
         if ($tgt.is("#drag-draw-btn")) {
             drag_draw_btn = true;

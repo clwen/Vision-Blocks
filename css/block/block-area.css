@@ -520,9 +520,7 @@ Building blocks v2
 	cursor: pointer;
 }
 
-.build-area .play-title:HOVER {
-  color: #F39;
-}
+
 
 .drag-element {
 	position: absolute;

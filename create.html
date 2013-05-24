@@ -314,18 +314,7 @@
                     <div class="build-block-2-bottom build-block-recalc-width"></div>
                   </div>
                   
-                  <div id="block-intrusionDetection" class="build-block build-block-intrusionDetection block-container-vision build-block-2" data-block-name="intrusionDetection">
-                    <div class="build-block-2-top build-block-recalc-width"></div>
-                    <div class="build-block-2-title-wrapper build-block-recalc-width">
-                      <div class="build-block-2-title">
-                        <div class="icon1-build-block icon1-detect-face"></div>
-                        <span>Motion Detection</span>
-                        <div class="icon-remove-block"></div>
-                      </div>
-                    </div>
-                    <div class="build-block-2-bottom build-block-recalc-width"></div>
-                  </div>
-
+                
                   <div id="block-opticalFlow" class="build-block build-block-opticalFlow block-container-vision build-block-2" data-block-name="opticalFlow">
                     <div class="build-block-2-top build-block-recalc-width"></div>
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
@@ -343,7 +332,7 @@
                     <div class="build-block-2-title-wrapper build-block-recalc-width">
                       <div class="build-block-2-title">
                         <div class="icon1-build-block icon1-detect-face"></div>
-                        <span>Optical Intrusion</span>
+                        <span>Motion Detection</span>
                         <div class="icon-remove-block"></div>
                       </div>
                     </div>
@@ -594,9 +583,10 @@
 
           <div class='span5' style="width: 215px;">        
                <div class="build-area" style="width: 213px;"></div>
-               <a class='btn' id='save-button' style="float:left; margin-top:5px"> Save </a>
-               <a class='btn' id='copy-button' href='#' style="float:right; margin-top:5px; display:none"> Copy the link </a>
+               <a class='btn btn-warning' id='play-button' href='#' style="float:left; margin-top:5px; "> Play </a>
+               <a class='btn' id='save-button' style="float:right; margin-top:5px"> Save </a>               
                <textarea id='link' style=" display:none"></textarea>
+               <a class='btn' id='shorten-button' style="float:left; margin-top:5px;display:none"> Get a short URL </a>      
            </div>
 
           <div class="span1">
@@ -661,16 +651,14 @@
     var buildArea = '';
     var end = []; // array to store the levels at which certain blocks are closed (like play or if)
     for (var i=0; i<blocks.length; i++) {end[i] = [];}
-    var numOpened = 0; // number of blocks still opened
     var openedSoonest = 0; // the last block that wasn't closed
     var blockHtml = []; // to store each block's html
 
     for (var i=0; i<blocks.length; i++) {
-      blockHtml[i] = makeBlockHtml(blocks[i].name, numOpened,i-openedSoonest-1);
+      blockHtml[i] = makeBlockHtml(blocks[i].name, i-openedSoonest-1);
      
       buildArea += blockHtml[i][0]; // add the opening part of the block
       if (blocks[i].end != i) {
-        numOpened++;
         openedSoonest = i;
         end[blocks[i].end].push(i); // set the end of the block
       } else {
@@ -679,8 +667,7 @@
 
       while (end[i].length != 0) { // while there are objects ending at this level
         toClose=end[i].pop(); // take the latest opened
-        buildArea += blockHtml[toClose][1];  // close it
-        numOpened--;
+        buildArea += blockHtml[toClose][1];  // close it       
       } 
     }
 
