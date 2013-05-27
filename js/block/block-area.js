@@ -65,15 +65,15 @@
     $("#outputCanvas").bind('mousedown', cvsMouseDown);
     $("#outputCanvas").bind('mouseup', cvsMouseUp);
     $("#outputCanvas").bind('mousemove', cvsMouseMove);
-
+    $('#play-button').click(function(){performExecute()})
     $("html").on("click", "body", function(e){
         var $tgt = $(e.target);
 
-        $tgt.parents().each(function() {
-            if ($(this).is("#block-playForever") || $(this).is("#block-play")) {
+       /* $tgt.parents().each(function() {
+            if ($(this).is("#block-playForever") || $(this).is("#block-play") || $(this).is("#play-button")) {
                 performExecute();
             }
-        });
+        }); */
 
         if ($tgt.is("#drag-draw-btn")) {
             drag_draw_btn = true;
@@ -710,6 +710,30 @@
                 'hidden-event': function(blockOptions) {
                     blockOptions['notifTitle'] = $("#os-alert-popover-title").val();
                     blockOptions['notifMsg'] = $("#os-alert-popover-msg").val();
+                }
+            });
+        } else if (block.hasClass("build-block-saveImage")) {
+            var thisOptions={
+                    'name': 'VB',                    
+                }
+            if (typeof settings!== 'undefined') thisOptions=settings  
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div class='build-block-draw-region-popover'>";
+                        html += "<div class='build-block-draw-region-popover-top'>";
+                        html += "<div>Name</div> <div><input id='os-alert-popover-title' maxlength='30' class='enter-out-popover'/></div>";                      
+                        html += "</div>";
+                        return html;
+                    }
+                },
+                'block-options': thisOptions,
+                'shown-event': function(blockOptions) {
+                    $("#os-alert-popover-title").val(blockOptions['name']);
+                   
+                },
+                'hidden-event': function(blockOptions) {
+                    blockOptions['name'] = $("#os-alert-popover-title").val();                   
                 }
             });
         }

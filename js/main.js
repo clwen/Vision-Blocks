@@ -36,6 +36,7 @@ $(document).ready(function(){
             'writeText'             : function() {return new vb.Block('Write Text', writeText)},
             'browserAlert'          : function() {return new vb.Block('Alert', browserAlert)},
             'osAlert'               : function() {return new vb.Block('osAlert', osAlert)},
+            'saveImage'             : function() {return new vb.Block('saveImage', saveImage)},
 
             'faceDetection' 		: function() {return new vb.Block('Face Detection', faceDetection, true)},
             'skinDetection' 		: function() {return new vb.Block('Skin Detection', skinDetection)},

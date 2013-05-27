@@ -147,6 +147,19 @@ var osAlert = function() {
         notification.show();
     }
 };
+date= new Date()
+var time=date.getSeconds()
+
+var saveImage=function(){
+	 if(date.getSeconds() - time > 1){
+		 var name=this.options.name
+		 var canvas = VB.interpreter.dictionary["canvas"];
+	     canvas.toBlob(function(blob) {
+	            saveAs(blob, name+".png");
+	        });
+	     time=date.getSeconds()
+	 }
+}
 
 /*
  * Returns the chain of block-info (Base information about a block, like name and options on popover)
