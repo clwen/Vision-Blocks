@@ -342,6 +342,7 @@ var opticalIntrusion = function(){
 
     if(scale >= threshold){
 
+
         /// THUMBNAIL CODE
         VB.interpreter.dictionary["intrusion"] = true;
         if(date.getSeconds() - lastTime > 1){

@@ -712,6 +712,30 @@
                     blockOptions['notifMsg'] = $("#os-alert-popover-msg").val();
                 }
             });
+        } else if (block.hasClass("build-block-saveImage")) {
+            var thisOptions={
+                    'name': 'VB',                    
+                }
+            if (typeof settings!== 'undefined') thisOptions=settings  
+            block.find(".build-block-2-title-wrapper:first").applyPopover({
+                'popover': {
+                    content: function() {
+                        var html = "<div class='build-block-draw-region-popover'>";
+                        html += "<div class='build-block-draw-region-popover-top'>";
+                        html += "<div>Name</div> <div><input id='os-alert-popover-title' maxlength='30' class='enter-out-popover'/></div>";                      
+                        html += "</div>";
+                        return html;
+                    }
+                },
+                'block-options': thisOptions,
+                'shown-event': function(blockOptions) {
+                    $("#os-alert-popover-title").val(blockOptions['name']);
+                   
+                },
+                'hidden-event': function(blockOptions) {
+                    blockOptions['name'] = $("#os-alert-popover-title").val();                   
+                }
+            });
         }
     }; // end of addedBlock
 
